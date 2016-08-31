@@ -60,7 +60,16 @@ public class XMLDeckBuilder implements DeckBuilder {
 
             for (int index = 0; index < cardList.getLength(); index++) {
                 try {
-                    _deck.add(extractCard(cardList.item(index).getChildNodes()));
+                    NodeList list = cardList.item(index).getChildNodes();
+
+                    if (foundCardOfType("play",list)){
+                        _deck.add(extractPlayCard(list));
+                    } else if (foundCardOfType("trump",list)){
+                        //_deck.add(extractCard(list));
+
+                    } else if (foundCardOfType("rule",list)){
+                        //_deck.add(extractCard(list));
+                    }
                 } catch (CardNotFoundException ex) {
                     System.out.println("Card not found for specific dict key");
                 }
@@ -74,53 +83,70 @@ public class XMLDeckBuilder implements DeckBuilder {
 
     }
 
-    private Card extractCard(NodeList list) throws CardNotFoundException {
-        //function is passed list = cardList.item(index).getChildNodes()
+    private boolean foundCardOfType(String cardType, NodeList list) throws CardNotFoundException {
+        for (int i = 1; i < list.getLength(); i++) {
+            Node xmlNode = list.item(i);
 
-        boolean foundCard = false;
-        boolean foundPlayCard = false;
-        boolean foundTrumpCard = false;
-        boolean foundRuleCard = false;
+            if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getTextContent().equals(cardType)) {
+                System.out.println("found " + cardType + " card");
+                return true;
+            }
+        }
+        return false;
+    }
 
-        String cardTitle = "";
-        String fileName = "";
-        String imageName = "";
+    private PlayCard extractPlayCard(NodeList list) {
+        //function is passed a list that contains all the card data
+
+        String cardType = "";
+        String title = "";
+        String chemistry="";
+        String classification="";
+        String crystalSystem="";
+        String[] occurrence = new String[3];
+        String hardness="";
+        String specificGravity="";
+        String cleavage="";
+        String crystalAbundance="";
+        String economicValue="";
 
         for (int i = 1; i < list.getLength(); i++) {
             Node xmlNode = list.item(i);
 
-            if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getTextContent().equals("play")) {
-                System.out.println("found play card");
-                foundPlayCard = true;
-            } else if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getTextContent().equals("trump")) {
-                System.out.println("found trump card");
-                foundTrumpCard = true;
-            } else if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getTextContent().equals("rule")) {
-                System.out.println("found rule card");
-                foundRuleCard = true;
-            }
-
-            if (foundPlayCard){
-                extractPlayCard(list);
-            } else if (foundTrumpCard){
-                extractTrumpCard
-            }
-
-            if (xmlNode.getPreviousSibling().getTextContent().equals("fileName") && xmlNode.getNodeName().equals("string")) {
-                foundCard = true;
-                fileName = xmlNode.getTextContent();
-            } else if (xmlNode.getPreviousSibling().getTextContent().equals("imageName") && xmlNode.getNodeName().equals("string")) {
-                imageName = xmlNode.getTextContent();
+            if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getNodeName().equals("string")) {
+                cardType = xmlNode.getTextContent();
             } else if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
-                cardTitle = xmlNode.getTextContent();
+                title = xmlNode.getTextContent();
+            } else if (xmlNode.getPreviousSibling().getTextContent().equals("chemistry") && xmlNode.getNodeName().equals("string")) {
+                chemistry = xmlNode.getTextContent();
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("classification") && xmlNode.getNodeName().equals("string")) {
+                classification = xmlNode.getTextContent();
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("crystal_system") && xmlNode.getNodeName().equals("string")) {
+                crystalSystem = xmlNode.getTextContent();
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("occurrence") && xmlNode.getNodeName().equals("array")) {
+                NodeList occurrenceList = xmlNode.getChildNodes();
+
+                for (int j = 0; j<occurrenceList.getLength();++j){
+                    Node occNode = occurrenceList.item(j);
+                    if (occNode.getNodeName().equals("string")){
+                        occurrence[j] = occNode.getTextContent();
+                    }
+                }
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("hardness") && xmlNode.getNodeName().equals("string")) {
+                hardness = xmlNode.getTextContent();
             }
-
+            else if (xmlNode.getPreviousSibling().getTextContent().equals("specific_gravity") && xmlNode.getNodeName().equals("string")) {
+                specificGravity = xmlNode.getTextContent();
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("cleavage") && xmlNode.getNodeName().equals("string")) {
+                cleavage = xmlNode.getTextContent();
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("crustal_abundance") && xmlNode.getNodeName().equals("string")) {
+                crystalAbundance = xmlNode.getTextContent();
+            }else if (xmlNode.getPreviousSibling().getTextContent().equals("economic_value") && xmlNode.getNodeName().equals("string")) {
+                economicValue = xmlNode.getTextContent();
+            }
         }
 
-        if (foundCard) {
-            return new BasicCard(cardTitle, imageName, fileName);
-        } else {
-            throw new CardNotFoundException();
-        }
+        return new PlayCard(cardType,title,chemistry,classification,crystalSystem,occurrence,hardness,specificGravity,cleavage,crystalAbundance,economicValue);
+
     }
 }

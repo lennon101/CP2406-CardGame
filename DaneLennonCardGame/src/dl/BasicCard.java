@@ -5,24 +5,12 @@ package dl;
  */
 public class BasicCard implements Card {
 
-    private String _imageName;
-    private String _imageFile;
+    private String _cardType;
     private String _title;
 
-    public BasicCard(String title, String imageName, String imageFile) {
-        _imageName = imageName;
-        _imageFile = imageFile;
+    public BasicCard(String cardType, String title) {
+        _cardType = cardType;
         _title = title;
-    }
-
-    @Override
-    public String imageFile() {
-        return _imageFile;
-    }
-
-    @Override
-    public String imageName() {
-        return _imageName;
     }
 
     @Override
@@ -33,9 +21,10 @@ public class BasicCard implements Card {
     @Override
     public String toString() {
         return "BasicCard{" +
-                "imageName='" + _imageName + '\'' +
-                ", imageFile='" + _imageFile + '\'' +
                 ", title='" + _title + '\'' +
                 '}';
     }
+
+    @Override
+    public String cardType() {return _cardType;}
 }

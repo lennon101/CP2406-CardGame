@@ -5,8 +5,6 @@
 package dl;
 
 public class PlayCard implements Card {
-    private String _imageFile;
-    private String _imageName;
     private String _cardType;
     private String _title;
     private String _chemistry;
@@ -19,9 +17,8 @@ public class PlayCard implements Card {
     private String _crustal_abundance;
     private String _economic_value;
 
-    public PlayCard(String _imageFile, String _imageName, String _cardType, String _title, String _chemistry, String _classification, String _crystal_system, String[] _occurrence, String _hardnesss, String _specific_gravity, String _cleavage, String _crustal_abundance, String _economic_value) {
-        this._imageFile = _imageFile;
-        this._imageName = _imageName;
+    public PlayCard(String _cardType, String _title, String _chemistry, String _classification, String _crystal_system, String[] _occurrence, String _hardnesss, String _specific_gravity, String _cleavage, String _crustal_abundance, String _economic_value) {
+
         this._cardType = _cardType;
         this._title = _title;
         this._chemistry = _chemistry;
@@ -36,14 +33,7 @@ public class PlayCard implements Card {
     }
 
     @Override
-    public String imageFile() {
-        return _imageFile;
-    }
-
-    @Override
-    public String imageName() {
-        return _imageName;
-    }
+    public String cardType() {return _cardType;}
 
     @Override
     public String title() {
@@ -52,10 +42,78 @@ public class PlayCard implements Card {
 
     @Override
     public String toString() {
-        return "BasicCard{" +
-                "imageName='" + _imageName + '\'' +
-                ", imageFile='" + _imageFile + '\'' +
-                ", title='" + _title + '\'' +
-                '}';
+        return "BasicCard{title = " + _title + "}";
+    }
+
+    public String get_chemistry() {
+        return _chemistry;
+    }
+
+    public void set_chemistry(String _chemistry) {
+        this._chemistry = _chemistry;
+    }
+
+    public String get_classification() {
+        return _classification;
+    }
+
+    public void set_classification(String _classification) {
+        this._classification = _classification;
+    }
+
+    public String get_crystal_system() {
+        return _crystal_system;
+    }
+
+    public void set_crystal_system(String _crystal_system) {
+        this._crystal_system = _crystal_system;
+    }
+
+    public String[] get_occurrence() {
+        return _occurrence;
+    }
+
+    public void set_occurrence(String[] _occurrence) {
+        this._occurrence = _occurrence;
+    }
+
+    public String get_hardnesss() {
+        return _hardnesss;
+    }
+
+    public void set_hardnesss(String _hardnesss) {
+        this._hardnesss = _hardnesss;
+    }
+
+    public String get_specific_gravity() {
+        return _specific_gravity;
+    }
+
+    public void set_specific_gravity(String _specific_gravity) {
+        this._specific_gravity = _specific_gravity;
+    }
+
+    public String get_cleavage() {
+        return _cleavage;
+    }
+
+    public void set_cleavage(String _cleavage) {
+        this._cleavage = _cleavage;
+    }
+
+    public String get_crustal_abundance() {
+        return _crustal_abundance;
+    }
+
+    public void set_crustal_abundance(String _crustal_abundance) {
+        this._crustal_abundance = _crustal_abundance;
+    }
+
+    public String get_economic_value() {
+        return _economic_value;
+    }
+
+    public void set_economic_value(String _economic_value) {
+        this._economic_value = _economic_value;
     }
 }

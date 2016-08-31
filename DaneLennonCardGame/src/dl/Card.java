@@ -5,9 +5,7 @@ package dl;
  */
 public interface Card {
 
-    String imageFile();
-
-    String imageName();
-
+    String cardType();
     String title();
+
 }
