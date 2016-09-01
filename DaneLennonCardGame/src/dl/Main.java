@@ -8,8 +8,17 @@ public class Main {
         String xmlFile = System.getProperty("user.dir") + "/" + CARD_XML_FILE;
 
         Deck deck = new XMLDeckBuilder(xmlFile).deck();
-        for (Card c : deck.cards()) {
-            System.out.println(c.toString());
+
+        //set up UI player and list of AI Players
+        BasicDeck playerDeck = new BasicDeck();
+        for (int i=0;i<8;++i) {
+            Card c = deck.cards().get(i);
+            if (c.getClass().equals(PlayCard.class)){
+                playerDeck.add(c);
+            }
         }
+        Player player1 = new Player(playerDeck);
+        System.out.println(player1);
+        System.out.println(player1.getPlayerCard(1));
     }
 }

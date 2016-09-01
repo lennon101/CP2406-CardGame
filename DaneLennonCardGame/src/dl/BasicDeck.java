@@ -33,4 +33,10 @@ public class BasicDeck implements Deck {
         //needs work
     }
 
+    @Override
+    public String toString() {
+        return "BasicDeck{" +
+                "_cards=" + _cards +
+                '}';
+    }
 }

@@ -79,7 +79,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     }
 
     private class CardNotFoundException extends Exception {
-
+        //this is void class to stop the thrown exception being intrusive
     }
 
     private boolean foundCardOfType(String cardType, NodeList list) throws CardNotFoundException {
@@ -87,7 +87,6 @@ public class XMLDeckBuilder implements DeckBuilder {
             Node xmlNode = list.item(i);
 
             if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getTextContent().equals(cardType)) {
-                System.out.println("found " + cardType + " card");
                 return true;
             }
         }
