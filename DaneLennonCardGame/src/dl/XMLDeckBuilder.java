@@ -65,8 +65,7 @@ public class XMLDeckBuilder implements DeckBuilder {
                     if (foundCardOfType("play",list)){
                         _deck.add(extractPlayCard(list));
                     } else if (foundCardOfType("trump",list)){
-                        //_deck.add(extractCard(list));
-
+                        _deck.add(extractTrumpCard(list));
                     } else if (foundCardOfType("rule",list)){
                         //_deck.add(extractCard(list));
                     }
@@ -97,8 +96,6 @@ public class XMLDeckBuilder implements DeckBuilder {
 
     private PlayCard extractPlayCard(NodeList list) {
         //function is passed a list that contains all the card data
-
-        String cardType = "";
         String title = "";
         String chemistry="";
         String classification="";
@@ -113,9 +110,7 @@ public class XMLDeckBuilder implements DeckBuilder {
         for (int i = 1; i < list.getLength(); i++) {
             Node xmlNode = list.item(i);
 
-            if (xmlNode.getPreviousSibling().getTextContent().equals("card_type") && xmlNode.getNodeName().equals("string")) {
-                cardType = xmlNode.getTextContent();
-            } else if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
+            if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
                 title = xmlNode.getTextContent();
             } else if (xmlNode.getPreviousSibling().getTextContent().equals("chemistry") && xmlNode.getNodeName().equals("string")) {
                 chemistry = xmlNode.getTextContent();
@@ -146,7 +141,23 @@ public class XMLDeckBuilder implements DeckBuilder {
             }
         }
 
-        return new PlayCard(cardType,title,chemistry,classification,crystalSystem,occurrence,hardness,specificGravity,cleavage,crystalAbundance,economicValue);
+        return new PlayCard(title,chemistry,classification,crystalSystem,occurrence,hardness,specificGravity,cleavage,crystalAbundance,economicValue);
+    }
 
+    public TrumpCard extractTrumpCard(NodeList list){
+        //function is passed a list that contains all the card data
+        String title = "";
+        String subTitle = "";
+
+        for (int i = 1; i < list.getLength(); i++) {
+            Node xmlNode = list.item(i);
+
+            if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
+                title = xmlNode.getTextContent();
+            } else if (xmlNode.getPreviousSibling().getTextContent().equals("subtitle") && xmlNode.getNodeName().equals("string")) {
+                subTitle = xmlNode.getTextContent();
+            }
+        }
+        return new TrumpCard(title,subTitle);
     }
 }

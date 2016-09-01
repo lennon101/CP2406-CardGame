@@ -14,17 +14,15 @@ public class BasicCard implements Card {
     }
 
     @Override
-    public String title() {
+    public String getTitle() {
         return _title;
     }
 
     @Override
     public String toString() {
         return "BasicCard{" +
-                ", title='" + _title + '\'' +
+                "title='" + _title +
                 '}';
     }
 
-    @Override
-    public String cardType() {return _cardType;}
 }

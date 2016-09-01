@@ -30,7 +30,7 @@ public class BasicDeck implements Deck {
 
     @Override
     public void shuffle() {
-
+        //needs work
     }
 
 }

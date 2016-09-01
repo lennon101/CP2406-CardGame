@@ -5,27 +5,25 @@
 package dl;
 
 public class PlayCard implements Card {
-    private String _cardType;
     private String _title;
     private String _chemistry;
     private String _classification;
     private String _crystal_system;
     private String[] _occurrence;
-    private String _hardnesss;
+    private String _hardness;
     private String _specific_gravity;
     private String _cleavage;
     private String _crustal_abundance;
     private String _economic_value;
 
-    public PlayCard(String _cardType, String _title, String _chemistry, String _classification, String _crystal_system, String[] _occurrence, String _hardnesss, String _specific_gravity, String _cleavage, String _crustal_abundance, String _economic_value) {
+    public PlayCard(String _title, String _chemistry, String _classification, String _crystal_system, String[] _occurrence, String _hardness, String _specific_gravity, String _cleavage, String _crustal_abundance, String _economic_value) {
 
-        this._cardType = _cardType;
         this._title = _title;
         this._chemistry = _chemistry;
         this._classification = _classification;
         this._crystal_system = _crystal_system;
         this._occurrence = _occurrence;
-        this._hardnesss = _hardnesss;
+        this._hardness = _hardness;
         this._specific_gravity = _specific_gravity;
         this._cleavage = _cleavage;
         this._crustal_abundance = _crustal_abundance;
@@ -33,16 +31,15 @@ public class PlayCard implements Card {
     }
 
     @Override
-    public String cardType() {return _cardType;}
-
-    @Override
-    public String title() {
+    public String getTitle() {
         return _title;
     }
 
     @Override
     public String toString() {
-        return "BasicCard{title = " + _title + "}";
+        return "PlayCard{" +
+                "title = " + _title + "; " +
+                "chemistry = " + _chemistry + "}";
     }
 
     public String get_chemistry() {
@@ -77,12 +74,12 @@ public class PlayCard implements Card {
         this._occurrence = _occurrence;
     }
 
-    public String get_hardnesss() {
-        return _hardnesss;
+    public String get_hardness() {
+        return _hardness;
     }
 
-    public void set_hardnesss(String _hardnesss) {
-        this._hardnesss = _hardnesss;
+    public void set_hardness(String _hardness) {
+        this._hardness = _hardness;
     }
 
     public String get_specific_gravity() {

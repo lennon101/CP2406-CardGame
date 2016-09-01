@@ -11,8 +11,5 @@ public class Main {
         for (Card c : deck.cards()) {
             System.out.println(c.toString());
         }
-
-
-
     }
 }
