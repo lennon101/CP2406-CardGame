@@ -19,6 +19,11 @@ public class BasicDeck implements Deck {
     }
 
     @Override
+    public int getNumCards() {
+        return _cards.size();
+    }
+
+    @Override
     public Vector<Card> cards() {
         return _cards;
     }

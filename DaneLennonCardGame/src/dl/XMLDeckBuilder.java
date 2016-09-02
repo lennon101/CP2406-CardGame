@@ -16,6 +16,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     private Deck _deck;
     private boolean _hasBeenRead = false;
 
+
     public XMLDeckBuilder(String filePath) {
         _filePath = filePath;
         _deck = new BasicDeck();

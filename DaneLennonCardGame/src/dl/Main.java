@@ -16,19 +16,6 @@ public class Main {
 
         Deck deck = new XMLDeckBuilder(xmlFile).deck();
 
-        //set up UI player and list of AI Players
-        BasicDeck playerDeck = new BasicDeck();
-        for (int i = 0; i < 8; ++i) {
-            Card c = deck.cards().get(i);
-            if (c.getClass().equals(PlayCard.class)) {
-                playerDeck.add(c);
-            }
-        }
-
-        Player player1 = new Player(playerDeck);
-        System.out.println(player1);
-        System.out.println(player1.getPlayerCard(1));
-
         showSplashScreen();
 
         while (!complete){
@@ -42,7 +29,14 @@ public class Main {
                 complete = true;
             } else if (choice == 'p' || choice == 'P'){
                 numPlayers = getNumPlayers();
-                game = new Game();
+                game = new Game(numPlayers,deck);
+                System.out.println("Dealing the cards...");
+                game.dealCardsToPlayers();
+                System.out.println("Your hand is: ");
+                for (int i = 0; i<game.getPlayer(1).getNumCardsInHand(); ++i){
+                    System.out.println(game.getPlayer(1).getPlayerCard(i));
+                }
+                System.out.println();
             }
         }
 
@@ -60,7 +54,7 @@ public class Main {
                 "\t\tthe table. The player must state the mineral name, one of the five trump categories \n" +
                 "\t\t(i.e., either Hardness, Specific Gravity, Cleavage, Crustal Abundance, or Economic Value), \n" +
                 "\t\tand the top value of that category. For example, a player placing the Glaucophane card may \n" +
-                "\t\tstate “Glaucophane, Specific Gravity, 3.2”\n\n" +
+                "\t\tstate \"Glaucophane, Specific Gravity, 3.2\"\n\n" +
 
                 "\t3. The player next to the left takes the next turn. This player must play a mineral card \n" +
                 "\t\tthat has a higher value in the trump category than the card played by the previous player. \n" +
@@ -93,7 +87,7 @@ public class Main {
                 "Mineral Supertrumps is a game designed to help players learn about\n" +
                 "the properties and uses of economically-significant and common rock-forming \n" +
                 "minerals. \n" +
-                "The pack consists of 54 mineral cards and 6 “supertrump” \n" +
+                "The pack consists of 54 mineral cards and 6 \"supertrump\" \n" +
                 "cards. Each mineral card includes information about the mineral such as \n" +
                 "the chemical formula, the classification, crystal system, the geological environment where \n" +
                 "the mineral is commonly found or formed (igneous, metamorphic, \n" +
@@ -113,11 +107,12 @@ public class Main {
         boolean valid = false;
         int number = 0;
         while (!valid){
+            System.out.print("Enter the number of players to player the game (3-5): ");
             try {
                 number = input.nextInt();
                 valid = true;
             } catch (Throwable t) {
-
+                System.out.println("Invalid.");
             }
         }
         return number;

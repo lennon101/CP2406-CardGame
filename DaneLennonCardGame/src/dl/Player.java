@@ -4,24 +4,28 @@ package dl;
  * Created by danelennon on 1/09/2016.
  */
 public class Player {
-    BasicDeck _playerDeck;
+    BasicDeck _hand;
 
-    public Player(BasicDeck playerDeck) {
-        this._playerDeck = playerDeck;
+    public Player(BasicDeck hand) {
+        this._hand = hand;
     }
 
     public BasicDeck get_playerDeck() {
-        return _playerDeck;
+        return _hand;
     }
 
-    public Card getPlayerCard(int card1){
-        return this._playerDeck.cards().get(card1);
+    public int getNumCardsInHand(){
+        return _hand.getNumCards();
+    }
+
+    public Card getPlayerCard(int card){
+        return this._hand.cards().get(card);
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "_playerDeck=" + _playerDeck +
+                "_hand=" + _hand +
                 '}';
     }
 }
