@@ -3,7 +3,7 @@ package dl;
 import java.util.Vector;
 
 /**
- * Created by xander on 19/08/2016.
+ * Created by danelennon on 19/08/2016.
  */
 public class BasicDeck implements Deck {
 
