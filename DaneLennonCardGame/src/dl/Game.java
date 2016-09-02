@@ -10,12 +10,12 @@ public class Game {
 	private Player[] players;
 	private Deck deck; 
 
-	public game(int numPlayers){
+	public void game(int numPlayers){
 		this.numPlayers = numPlayers;
 	}
 
 	public void selectDealer(){
-		//tod: randomis this selection 
+		//todo: randomise this selection
 		this.dealerId = 1;
 	}
 	
