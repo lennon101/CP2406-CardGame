@@ -20,5 +20,8 @@ public class Main {
         Player player1 = new Player(playerDeck);
         System.out.println(player1);
         System.out.println(player1.getPlayerCard(1));
-    }
+
+		
+		System.out.println("Welcome to the ultimate Super Trump Game\nA game that will make you an expert in elements from around the world"); 
+		//create game class --> contains players which contain cards 
 }
