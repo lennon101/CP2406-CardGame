@@ -18,6 +18,7 @@ public class Game {
         "2 perfect, 1 good","3 perfect","4 perfect","6 perfect"};
     private String[] _crustalAbundanceRank = {"ultratrace", "trace", "low", "moderate", "high", "very high"};
     private String[] _economicValue = {"trivial","low","moderate","high","very high","I'm rich!"};
+    private String trumpCategory;
 
     public Game(int numPlayers,Deck deck) {
         this.numPlayers = numPlayers;
@@ -55,5 +56,9 @@ public class Game {
 
     public Vector<Card> getDeck(){
         return deck.cards();
+    }
+
+    public void setTrumpCategory(String trumpCategory) {
+        this.trumpCategory = trumpCategory;
     }
 }

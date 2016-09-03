@@ -1,5 +1,6 @@
 package dl;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -45,17 +46,25 @@ public class Main {
                 System.out.print("\n\nChoose a card by entering the card number (1-" + game.getPlayer(1).getNumCardsInHand() + "): ");
                 int cardIndex = getCardIndexToPlay(game.getPlayer(1).getNumCardsInHand());
                 System.out.println("Card being played is card: " + cardIndex);
-                Card playingCard = game.getPlayer(1).getPlayerCard(cardIndex);
 
-                if (playingCard.getClass().equals(PlayCard.class)) {
-                    System.out.println("This cards trump categories are: \n");
-                    PlayCard c = (PlayCard) playingCard; //cast this card to PlayCard type so PlayCard methods are exposed
+                Card playedCard = game.getPlayer(1).getPlayerCard(cardIndex-1);
+
+                if (playedCard.getClass().equals(PlayCard.class)) {
+                    System.out.println("This card's trump categories are: \n");
+                    PlayCard c = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
                     System.out.println(c.getDictOfTrumpCategories());
 
                     System.out.print("select a trump category for this round: ");
-                    //emplement Round Class to track trump category, current card that has been played etc
-                    //Game has-a Round
-                }else if (playingCard.getClass().equals(TrumpCard.class)){
+                    String trumpCategory = getTrumpCategory(c.getDictOfTrumpCategories());
+                    game.setTrumpCategory(trumpCategory);
+
+                    System.out.println("The trump category chosen for this round is: " + trumpCategory);
+
+                    System.out.println("And the top value of the " + trumpCategory + " is: " + c.getDictOfTrumpCategories().get(trumpCategory));
+
+                    //game.AIPlay();
+
+                }else if (playedCard.getClass().equals(TrumpCard.class)){
                     System.out.println("You have selected a trump card! Bold move...");
                     System.out.println("Select a new Trump Category");
                 }else{
@@ -70,6 +79,32 @@ public class Main {
         }
 
     }
+
+    private static String getTrumpCategory(HashMap trumpCategories) {
+        Scanner input = new Scanner(System.in);
+        int trumpNum = 0;
+        boolean valid = false;
+        while (!valid){
+            try {
+                System.out.println("The categories are: ");
+                for (int i = 0;i<trumpCategories.size();++i){
+                    System.out.println("Category " + (i+1) +": " + trumpCategories.keySet().toArray()[i]);
+                }
+                System.out.print("Enter a number between 1 and " + (trumpCategories.size()) + " to chose a trump category: ");
+                trumpNum = input.nextInt();
+                if (trumpNum<0 || trumpNum>trumpCategories.size()){
+                    System.out.println("Enter number in the valid range");
+                }else{
+                    valid = true;
+                }
+            } catch (Throwable t){
+                System.out.println("invalid input");
+            }
+
+        }
+        return (String) trumpCategories.keySet().toArray()[trumpNum-1];
+    }
+
 
     private static char getYesNoChoice() {
         Scanner input = new Scanner(System.in);
@@ -204,4 +239,5 @@ public class Main {
     private static void showSplashScreen() {
         System.out.println("Welcome to the ultimate Super Trump Game\nA game that will make you an expert in elements from around the world\n");
     }
+
 }
