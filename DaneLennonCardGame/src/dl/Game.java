@@ -30,13 +30,17 @@ public class Game {
         this.dealerId = 1;
     }
 
+    public void shuffleDeck(){
+        this.deck.shuffle();
+    }
+
     //sets up a vector of Players and deals the right number of cards to them
     public void dealCardsToPlayers(){
         for (int i = 0;i<numPlayers;++i){
             BasicDeck hand = new BasicDeck();
             for (int j = 0; j < NUM_STARTS_CARDS; ++j) {
                 Card c = deck.cards().get(j);
-                if (c.getClass().equals(PlayCard.class)) {
+                if (c.getClass().equals(PlayCard.class) || (c.getClass().equals(TrumpCard.class))) {
                     hand.add(c);
                 }
             }
@@ -47,5 +51,9 @@ public class Game {
 
     public Player getPlayer(int indexOfPlayer) {
         return players.get(indexOfPlayer);
+    }
+
+    public Vector<Card> getDeck(){
+        return deck.cards();
     }
 }

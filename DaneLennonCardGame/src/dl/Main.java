@@ -30,16 +30,79 @@ public class Main {
             } else if (choice == 'p' || choice == 'P'){
                 numPlayers = getNumPlayers();
                 game = new Game(numPlayers,deck);
+                System.out.println("would you like to shuffle the cards now? (y/n): ");
+                char yes_no = getYesNoChoice();
+                if (yes_no == 'y'){
+                    game.shuffleDeck();
+                }
                 System.out.println("Dealing the cards...");
                 game.dealCardsToPlayers();
                 System.out.println("Your hand is: ");
                 for (int i = 0; i<game.getPlayer(1).getNumCardsInHand(); ++i){
-                    System.out.println(game.getPlayer(1).getPlayerCard(i));
+                    System.out.println("Card " + (i+1) + ": " + game.getPlayer(1).getPlayerCard(i));
                 }
-                System.out.println();
+
+                System.out.print("\n\nChoose a card by entering the card number (1-" + game.getPlayer(1).getNumCardsInHand() + "): ");
+                int cardIndex = getCardIndexToPlay(game.getPlayer(1).getNumCardsInHand());
+                System.out.println("Card being played is card: " + cardIndex);
+                Card playingCard = game.getPlayer(1).getPlayerCard(cardIndex);
+
+                if (playingCard.getClass().equals(PlayCard.class)) {
+                    System.out.println("This cards trump categories are: \n");
+                    PlayCard c = (PlayCard) playingCard; //cast this card to PlayCard type so PlayCard methods are exposed
+                    System.out.println(c.getDictOfTrumpCategories());
+
+                    System.out.print("select a trump category for this round: ");
+                    //emplement Round Class to track trump category, current card that has been played etc
+                    //Game has-a Round
+                }else if (playingCard.getClass().equals(TrumpCard.class)){
+                    System.out.println("You have selected a trump card! Bold move...");
+                    System.out.println("Select a new Trump Category");
+                }else{
+                    System.out.println("Error: card not matched to a class");
+                }
+
+
+                //game.getPlayer(1).playACard(cardIndex);
+
+
             }
         }
 
+    }
+
+    private static char getYesNoChoice() {
+        Scanner input = new Scanner(System.in);
+        boolean valid = false;
+        char answer = 'x';
+        while (!valid){
+            answer = input.next().charAt(0);
+            if (answer != 'n' && answer != 'y'){
+                System.out.println("invalid choice, enter \"y\" or \"n\"");
+            }else {
+                valid = true;
+            }
+        }
+        return answer;
+    }
+
+    private static int getCardIndexToPlay(int numCardsInHand) {
+        Scanner input = new Scanner(System.in);
+        boolean valid = false;
+        int index = 0;
+        while (!valid){
+            try{
+                index = input.nextInt();
+                if (index>numCardsInHand || index<=0){
+                    System.out.println("This is outside the range of cards in the hand");
+                }else {
+                    valid = true;
+                }
+            } catch (Throwable t){
+                System.out.println("Not a valid number.");
+            }
+        }
+        return index;
     }
 
     private static void displayInstructions() {

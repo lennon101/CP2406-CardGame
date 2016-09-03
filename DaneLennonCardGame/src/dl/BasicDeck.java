@@ -1,5 +1,6 @@
 package dl;
 
+import java.util.Collections;
 import java.util.Vector;
 
 /**
@@ -35,7 +36,11 @@ public class BasicDeck implements Deck {
 
     @Override
     public void shuffle() {
-        //needs work
+        if (_cards.size() <= 2){
+            System.out.println("only 2 or less cards left in the deck, nothing to shuffle");
+        }else {
+            Collections.shuffle(_cards);
+        }
     }
 
     @Override

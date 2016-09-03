@@ -4,6 +4,9 @@
 
 package dl;
 
+import java.util.HashMap;
+import java.util.Vector;
+
 public class PlayCard implements Card {
     private String _title;
     private String _chemistry;
@@ -39,7 +42,7 @@ public class PlayCard implements Card {
     public String toString() {
         return "PlayCard{" +
                 "Title = " + _title + "; " +
-                "Hardness = " + _hardness +
+                "Hardness = " + _hardness + "; " +
                 "Specific Gravity = " + _specific_gravity + "; " +
                 "Clevage = " + _cleavage + "; " +
                 "Crustal Abundance = " + _crustal_abundance + "; " +
@@ -85,5 +88,15 @@ public class PlayCard implements Card {
 
     public String get_economic_value() {
         return _economic_value;
+    }
+
+    public HashMap getDictOfTrumpCategories() {
+        HashMap trumpCategories = new HashMap();
+        trumpCategories.put("hardness",this._hardness);
+        trumpCategories.put("specific_gravity",this._specific_gravity);
+        trumpCategories.put("cleavage",this._cleavage);
+        trumpCategories.put("crustal_abundance",this._crustal_abundance);
+        trumpCategories.put("economic_value",this._economic_value);
+        return trumpCategories;
     }
 }
