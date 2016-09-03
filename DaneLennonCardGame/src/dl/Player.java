@@ -5,6 +5,7 @@ package dl;
  */
 public class Player {
     BasicDeck _hand;
+    boolean trumpChooser;
 
     public Player(BasicDeck hand) {
         this._hand = hand;
@@ -27,5 +28,19 @@ public class Player {
         return "Player{" +
                 "_hand=" + _hand +
                 '}';
+    }
+
+    public void displayHand() {
+        for (int i = 0; i<getNumCardsInHand(); ++i){
+            System.out.println("Card " + (i+1) + ": " + getPlayerCard(i));
+        }
+    }
+
+    public boolean isTrumpChooser() {
+        return trumpChooser;
+    }
+
+    public void setTrumpChooser(boolean trumpChooser) {
+        this.trumpChooser = trumpChooser;
     }
 }

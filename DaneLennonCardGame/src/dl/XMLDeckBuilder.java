@@ -1,6 +1,7 @@
 
 package dl;
 
+import org.omg.CORBA.INTERNAL;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -101,8 +102,10 @@ public class XMLDeckBuilder implements DeckBuilder {
         String classification="";
         String crystalSystem="";
         String[] occurrence = new String[3];
-        String hardness="";
-        String specificGravity="";
+        String hardnessRange = null;
+        float hardness=0;
+        String specificGravityRange = null;
+        float specificGravity= 0;
         String cleavage="";
         String crystalAbundance="";
         String economicValue="";
@@ -128,20 +131,55 @@ public class XMLDeckBuilder implements DeckBuilder {
                     }
                 }
             }else if (xmlNode.getPreviousSibling().getTextContent().equals("hardness") && xmlNode.getNodeName().equals("string")) {
-                hardness = xmlNode.getTextContent();
+                hardnessRange = xmlNode.getTextContent();
+                hardness = splitThis(hardnessRange);
             }
             else if (xmlNode.getPreviousSibling().getTextContent().equals("specific_gravity") && xmlNode.getNodeName().equals("string")) {
-                specificGravity = xmlNode.getTextContent();
+                specificGravityRange = xmlNode.getTextContent();
+                specificGravity = splitThis(specificGravityRange);
+
             }else if (xmlNode.getPreviousSibling().getTextContent().equals("cleavage") && xmlNode.getNodeName().equals("string")) {
                 cleavage = xmlNode.getTextContent();
             }else if (xmlNode.getPreviousSibling().getTextContent().equals("crustal_abundance") && xmlNode.getNodeName().equals("string")) {
                 crystalAbundance = xmlNode.getTextContent();
             }else if (xmlNode.getPreviousSibling().getTextContent().equals("economic_value") && xmlNode.getNodeName().equals("string")) {
                 economicValue = xmlNode.getTextContent();
+            }else{
+                System.out.println("no PlayCard attributes found in xml node");
             }
         }
 
-        return new PlayCard(title,chemistry,classification,crystalSystem,occurrence,hardness,specificGravity,cleavage,crystalAbundance,economicValue);
+        return new PlayCard(title,chemistry,classification,crystalSystem,occurrence,hardnessRange,hardness,specificGravityRange,specificGravity,cleavage,crystalAbundance,economicValue);
+    }
+
+    private float splitThis(String toSplit) {
+        System.out.println("attempting to split: " + toSplit);
+        boolean splitSuccess = false;
+        float splitFloat = 0;
+        if (!splitSuccess){
+            try{
+                splitFloat = Float.parseFloat(toSplit.split(" - ")[1]);
+                splitSuccess = true;
+            }catch (Throwable t){}
+        }
+        if (!splitSuccess){
+            try{
+                splitFloat = Float.parseFloat(toSplit.split("-")[1]);
+                splitSuccess = true;
+            }catch (Throwable t){}
+        }
+        if (!splitSuccess){
+            try{
+                splitFloat = Float.parseFloat(toSplit.split(" ")[1]);
+                splitSuccess = true;
+            }catch (Throwable t){}
+        }
+        if (!splitSuccess){
+            System.out.println("failed to split");
+            System.out.println("attempt to convert without split...");
+            splitFloat = Float.parseFloat(toSplit);
+        }
+        return splitFloat;
     }
 
     public TrumpCard extractTrumpCard(NodeList list){

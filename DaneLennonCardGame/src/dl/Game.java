@@ -19,6 +19,7 @@ public class Game {
     private String[] _crustalAbundanceRank = {"ultratrace", "trace", "low", "moderate", "high", "very high"};
     private String[] _economicValue = {"trivial","low","moderate","high","very high","I'm rich!"};
     private String trumpCategory;
+    private String trumpValue;
 
     public Game(int numPlayers,Deck deck) {
         this.numPlayers = numPlayers;
@@ -43,12 +44,39 @@ public class Game {
                 Card c = deck.cards().get(j);
                 if (c.getClass().equals(PlayCard.class) || (c.getClass().equals(TrumpCard.class))) {
                     hand.add(c);
+                    deck.remove(c);
                 }
             }
             this.players.add(new Player(hand));
         }
-
     }
+
+    /*
+    public boolean isTrumpHigherThanCurrent(String trumpCategory,String trumpValue){
+        boolean higher = false;
+        switch (trumpCategory){
+            case "hardness": higher = testHardness(trumpValue);
+                break;
+            case "specific_gravity":higher = testSpecificGravity(trumpValue);
+                break;
+            case "cleavage":higher = testCleavage(trumpValue);
+                break;
+            case "crustal_abundance":higher = testCrustalAbundance(trumpValue);
+                break;
+            case "economic_value":higher = testEconomicValue(trumpValue);
+                break;
+        }
+        return higher;
+    }
+
+
+    private boolean testHardness(String trumpValue) {
+        try{
+            this.
+        }
+        return higher;
+    }
+    */
 
     public Player getPlayer(int indexOfPlayer) {
         return players.get(indexOfPlayer);
@@ -60,5 +88,13 @@ public class Game {
 
     public void setTrumpCategory(String trumpCategory) {
         this.trumpCategory = trumpCategory;
+    }
+
+    public String getTrumpCategory() {
+        return this.trumpCategory;
+    }
+
+    public void setTrumpValue(Object o) {
+        this.trumpValue = (String) o;
     }
 }
