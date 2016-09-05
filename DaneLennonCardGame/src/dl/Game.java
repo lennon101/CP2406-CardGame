@@ -33,27 +33,20 @@ public class Game {
         this._players = new Vector<Player>();
     }
 
-    public boolean testAndSetHardnessTrump(double hardnessValue){
+    public boolean hasHigherHardnessTrump(double hardnessValue){
         if (hardnessValue>this._hardnessTrump){
-            this._hardnessTrump = hardnessValue;
             return true;
         }else return false;
     }
 
-    public boolean testAndSetSpecificGravityTrump(double specificGravityValue){
+    public boolean hasHigherSpecificGravityTrump(double specificGravityValue){
         if (specificGravityValue>this._specificGravityTrump){
-            this._specificGravityTrump = specificGravityValue;
             return true;
         }else return false;
     }
 
-    public boolean testAndSetCleavageTrump(String cleavageValue){
-        int cleavageRank = 0;
-        for (int i = 0; i< cleavageList.length; ++i){
-            if (cleavageList[i].equals(cleavageValue)){
-                cleavageRank = i;
-            }
-        }
+    public boolean hasHigherCleavageTrump(String cleavageValue){
+        int cleavageRank = getCleavageValueRank(cleavageValue);
         if (cleavageRank > _cleavageTrump){
             this._cleavageTrump = cleavageRank;
             return true;
@@ -62,34 +55,71 @@ public class Game {
         }
     }
 
-    public boolean testAndSetCrustalAbundanceTrump(String crustalAbundanceValue){
+    public int getCleavageValueRank(String cleavageValue){
+        int cleavageRank = 0;
+        for (int i = 0; i< cleavageList.length; ++i){
+            if (cleavageList[i].equals(cleavageValue)){
+                cleavageRank = i;
+            }
+        }
+        return cleavageRank;
+    }
+
+    public boolean hasHigherCrustalAbundanceTrump(String crustalAbundanceValue){
+        int crustalAbundanceRank = getCrustalAbundanceRank(crustalAbundanceValue);
+        if (crustalAbundanceRank > this._crustalAbundanceTrump){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public int getCrustalAbundanceRank(String crustalAbundanceValue){
         int crustalAbundanceRank = 0;
         for (int i = 0; i< _crustalAbundanceList.length; ++i){
             if (this._crustalAbundanceList[i].equals(crustalAbundanceValue)){
                 crustalAbundanceRank = i;
             }
         }
-        if (crustalAbundanceRank > this._crustalAbundanceTrump){
-            this._crustalAbundanceTrump = crustalAbundanceRank;
-            return true;
-        }else {
-            return false;
-        }
+        return crustalAbundanceRank;
     }
 
-    public boolean testAndSetEconomicValueTrump(String economicValue){
-        int economicValueRank = 0;
-        for (int i = 0; i< this._economicValueList.length; ++i){
-            if (this._economicValueList[i].equals(economicValue)){
-                economicValueRank = i;
-            }
-        }
+    public boolean hasHigherEconomicValueTrump(String economicValue){
+        int economicValueRank = getEconomicValueRank(economicValue);
         if (economicValueRank > this._economicValueTrump){
             this._crustalAbundanceTrump = economicValueRank;
             return true;
         }else {
             return false;
         }
+    }
+    public int getEconomicValueRank(String economicValue){
+        int economicValueRank = 0;
+        for (int i = 0; i< this._economicValueList.length; ++i){
+            if (this._economicValueList[i].equals(economicValue)){
+                economicValueRank = i;
+            }
+        }
+        return economicValueRank;
+    }
+
+    public void set_hardnessTrump(double _hardnessTrump) {
+        this._hardnessTrump = _hardnessTrump;
+    }
+
+    public void set_specificGravityTrump(double _specificGravityTrump) {
+        this._specificGravityTrump = _specificGravityTrump;
+    }
+
+    public void set_cleavageTrump(int _cleavageTrump) {
+        this._cleavageTrump = _cleavageTrump;
+    }
+
+    public void set_crustalAbundanceTrump(int _crustalAbundanceTrump) {
+        this._crustalAbundanceTrump = _crustalAbundanceTrump;
+    }
+
+    public void set_economicValueTrump(int _economicValueTrump) {
+        this._economicValueTrump = _economicValueTrump;
     }
 
     public Trump_Categories get_trumpCategory() {
@@ -132,32 +162,6 @@ public class Game {
         }
     }
 
-    /*
-    public boolean isTrumpHigherThanCurrent(String _trumpCategory,String trumpValue){
-        boolean higher = false;
-        switch (_trumpCategory){
-            case "hardness": higher = testHardness(trumpValue);
-                break;
-            case "specific_gravity":higher = testSpecificGravity(trumpValue);
-                break;
-            case "cleavage":higher = testCleavage(trumpValue);
-                break;
-            case "crustal_abundance":higher = testCrustalAbundance(trumpValue);
-                break;
-            case "economic_value":higher = testEconomicValue(trumpValue);
-                break;
-        }
-        return higher;
-    }
-
-
-    private boolean testHardness(String trumpValue) {
-        try{
-            this.
-        }
-        return higher;
-    }
-    */
 
     public Player getPlayer(int indexOfPlayer) {
         return _players.get(indexOfPlayer);
@@ -188,5 +192,104 @@ public class Game {
             _deck.remove(c);
             player.get_playerDeck().add(c);
         }
+    }
+
+    public boolean playedCardHasHigherTrumpValue(PlayCard c) {
+        Object trumpObject = c.getDictOfTrumpCategories().get(this._trumpCategory);
+
+        switch (this._trumpCategory) {
+            case HARDNESS:
+                try {
+                    if (hasHigherHardnessTrump((double) trumpObject)) {
+                        set_hardnessTrump((double) trumpObject);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }catch (Throwable t){
+                    System.out.println("failed to cast trump category to double");
+                }
+                break;
+            case SPECIFIC_GRAVITY:
+                try {
+                    if (hasHigherSpecificGravityTrump((double) trumpObject)) {
+                        set_specificGravityTrump((double) trumpObject);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }catch (Throwable t){
+                    System.out.println("failed to cast trump category to double");
+                }
+                break;
+            case CLEAVAGE:
+                try {
+                    if (hasHigherCleavageTrump((String) trumpObject)) {
+                        set_cleavageTrump(getCleavageValueRank((String) trumpObject));
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }catch (Throwable t){
+                    System.out.println("failed to cast trump category to String");
+                }
+                break;
+            case CRUSTAL_ABUNDANCE:
+                try {
+                    if (hasHigherCrustalAbundanceTrump((String) trumpObject)) {
+                        set_crustalAbundanceTrump(getCrustalAbundanceRank((String) trumpObject));
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }catch (Throwable t){
+                    System.out.println("failed to cast trump category to String");
+                }
+                break;
+            case ECONOMIC_VALUE:
+                try {
+                    if (hasHigherEconomicValueTrump((String) trumpObject)) {
+                        set_economicValueTrump(getEconomicValueRank((String) trumpObject));
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (Throwable t) {
+                    System.out.println("Failed to cast trump category to String");
+                }
+                break;
+        }
+        return false;
+    }
+
+    public String getTrumpValue(){
+        switch (this._trumpCategory) {
+            case HARDNESS:
+                try{
+                    return this._hardnessTrump + "";
+                }catch (Throwable t){}
+            break;
+            case SPECIFIC_GRAVITY:
+                try{
+                    return this._specificGravityTrump + "";
+                }catch (Throwable t){}
+            break;
+            case CLEAVAGE:
+                try{
+                    return this._cleavageTrump + "";
+                }catch (Throwable t){}
+            break;
+            case CRUSTAL_ABUNDANCE:
+                try{
+                    return this._crustalAbundanceTrump + "";
+                }catch (Throwable t){}
+            break;
+            case ECONOMIC_VALUE:
+                try{
+                    return this._economicValueTrump + "";
+                }catch (Throwable t){}
+            break;
+        }
+        return "";
     }
 }

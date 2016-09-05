@@ -1,6 +1,5 @@
 package dl;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -60,6 +59,27 @@ public class Main {
     }
 
     private static void playRound(Game game) {
+        //setup the round. this needs to occur once at the start of each round
+
+        Player player = game.getPlayer(1);
+        System.out.println("Your hand is: ");
+        game.getPlayer(1).displayHand();
+
+        boolean validCardChoice = false;
+        while (!validCardChoice){
+            System.out.print("\nChoose a card to play by entering the card number (1-" + player.getNumCardsInHand() + "): ");
+            int cardIndex = getCardIndexToPlay(player.getNumCardsInHand());
+            System.out.println("Card being played is card " + (cardIndex + 1) + ": " + player.getPlayerCard(cardIndex).getTitle() + "\n");
+            Card playedCard = player.getPlayerCard(cardIndex);
+            if (!playedCard.getClass().equals(PlayCard.class)) {
+                System.out.println("You must enter a PlayCard to start the round off");
+            }else {
+                PlayCard pc = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
+                playPlayCard(game, player, pc);
+                validCardChoice = true;
+            }
+        }
+
         while (!game.roundComplete()){
             if (!game.getPlayer(1).isPassed()) {
                 System.out.println("Your hand is: ");
@@ -101,26 +121,36 @@ public class Main {
     private static void playAHand(Game game, Player player) {
         try {
             if (game.get_trumpCategory() != null){
-                System.out.println("The current trump category is: " + game.get_trumpCategory());
+                System.out.println("The current trump category is: " + game.get_trumpCategory() + ": " + game.getTrumpValue());
                 //System.out.println("And the current trump value is: " + game.getTrumpValue());
                 System.out.println("You must choose a card that is higher in value than this...\n");
             }
         }catch (Throwable t){}
 
-        System.out.print("\nChoose a card to play by entering the card number (1-" + player.getNumCardsInHand() + "): ");
-        int cardIndex = getCardIndexToPlay(player.getNumCardsInHand());
-        System.out.println("Card being played is card " + (cardIndex + 1) + ": " + player.getPlayerCard(cardIndex).getTitle() + "\n");
+        boolean validCardChoice = false;
+        while (!validCardChoice){
+            System.out.print("\nChoose a card to play by entering the card number (1-" + player.getNumCardsInHand() + "): ");
+            int cardIndex = getCardIndexToPlay(player.getNumCardsInHand());
+            System.out.println("Card being played is card " + (cardIndex + 1) + ": " + player.getPlayerCard(cardIndex).getTitle() + "\n");
 
-        Card playedCard = player.getPlayerCard(cardIndex);
-        player.get_playerDeck().remove(playedCard);
-
-        if (playedCard.getClass().equals(PlayCard.class)) {
-            playPlayCard(game,player,playedCard);
-
-        }else if (playedCard.getClass().equals(TrumpCard.class)){
-            playTrumpCard();
-        }else{
-            System.out.println("Error: card not matched to a class");
+            Card playedCard = player.getPlayerCard(cardIndex);
+            if (playedCard.getClass().equals(PlayCard.class)) {
+                PlayCard pc = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
+                if (game.get_trumpCategory() != null) {
+                    if (!game.playedCardHasHigherTrumpValue(pc)) {
+                        System.out.println("This cards Hardness value isn't higher enough");
+                        System.out.println("Try again...");
+                    } else {
+                        playPlayCard(game, player, pc);
+                        validCardChoice = true;
+                    }
+                }
+            }else if (playedCard.getClass().equals(TrumpCard.class)){
+                playTrumpCard();
+                validCardChoice = true;
+            }else{
+                System.out.println("Error: card not matched to a class");
+            }
         }
 
     }
@@ -130,61 +160,26 @@ public class Main {
         //needs work to figure out all the different options for the different types of trump cards
     }
 
-    private static void playPlayCard(Game game, Player player, Card playedCard) {
+    private static void playPlayCard(Game game, Player player, PlayCard pc) {
         System.out.println("This card's trump categories are:");
-        PlayCard c = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
-        System.out.println(c.getDictOfTrumpCategories() + "\n");
+        System.out.println(pc.getDictOfTrumpCategories() + "\n");
 
         if (player.isTrumpChooser()){
+            player.get_playerDeck().remove(pc);
+
             System.out.print("select a trump category for this round: ");
             displayTrumpCategories();
-            //String trumpCategory = getValidTrumpCategory(c.getDictOfTrumpCategories());
 
             Trump_Categories trumpCategory = getValidTrumpCategory();
             game.set_trumpCategory(trumpCategory);
-
-            Object trumpObject = c.getDictOfTrumpCategories().get(trumpCategory);
-
-            switch (trumpCategory) {
-                case HARDNESS:
-                    try {
-                        game.testAndSetHardnessTrump((double) trumpObject);
-                    }catch (Throwable t){
-                        System.out.println("failed to cast trump category to double");
-                    }
-                    break;
-                case SPECIFIC_GRAVITY:
-                    try {
-                        game.testAndSetSpecificGravityTrump((double) trumpObject);
-                    }catch (Throwable t){
-                        System.out.println("failed to cast trump category to double");
-                    }
-                    break;
-                case CLEAVAGE:
-                    try {
-                        game.testAndSetCleavageTrump((String) trumpObject);
-                    }catch (Throwable t){
-                        System.out.println("failed to cast trump category to String");
-                    }
-                    break;
-                case CRUSTAL_ABUNDANCE:
-                    try {
-                        game.testAndSetCleavageTrump((String) trumpObject);
-                    }catch (Throwable t){
-                        System.out.println("failed to cast trump category to String");
-                    }
-                    break;
-                case ECONOMIC_VALUE:
-                    try {
-                        game.testAndSetEconomicValueTrump((String) trumpObject);
-                    } catch (Throwable t) {
-                        System.out.println("failed to cast trump category to String");
-                    }
-            }
+            game.playedCardHasHigherTrumpValue(pc);
 
             System.out.println("The trump category chosen for this round is: " + trumpCategory);
-            System.out.println("And the top value of the " + trumpCategory + " is: " + c.getDictOfTrumpCategories().get(trumpCategory));
+            System.out.println("And the top value of the " + trumpCategory + " is: " + pc.getDictOfTrumpCategories().get(trumpCategory));
             player.setTrumpChooser(false);
+        }else {
+            System.out.println("This card has a higher trump value and has been placed down");
+            player.get_playerDeck().remove(pc);
         }
 
     }
