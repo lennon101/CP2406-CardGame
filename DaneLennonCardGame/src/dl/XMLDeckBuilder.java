@@ -145,7 +145,7 @@ public class XMLDeckBuilder implements DeckBuilder {
             }else if (xmlNode.getPreviousSibling().getTextContent().equals("economic_value") && xmlNode.getNodeName().equals("string")) {
                 economicValue = xmlNode.getTextContent();
             }else{
-                System.out.println("no PlayCard attributes found in xml node");
+                //System.out.println("no PlayCard attributes found in xml node");
             }
         }
 
@@ -153,7 +153,6 @@ public class XMLDeckBuilder implements DeckBuilder {
     }
 
     private float splitThis(String toSplit) {
-        System.out.println("attempting to split: " + toSplit);
         boolean splitSuccess = false;
         float splitFloat = 0;
         if (!splitSuccess){
@@ -175,8 +174,6 @@ public class XMLDeckBuilder implements DeckBuilder {
             }catch (Throwable t){}
         }
         if (!splitSuccess){
-            System.out.println("failed to split");
-            System.out.println("attempt to convert without split...");
             splitFloat = Float.parseFloat(toSplit);
         }
         return splitFloat;

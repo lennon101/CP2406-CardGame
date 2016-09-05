@@ -6,6 +6,7 @@ package dl;
 public class Player {
     BasicDeck _hand;
     boolean trumpChooser;
+    boolean passed = false;
 
     public Player(BasicDeck hand) {
         this._hand = hand;
@@ -43,4 +44,13 @@ public class Player {
     public void setTrumpChooser(boolean trumpChooser) {
         this.trumpChooser = trumpChooser;
     }
+
+    public boolean isPassed() {
+        return passed;
+    }
+
+    public void setPassed(boolean passed) {
+        this.passed = passed;
+    }
+
 }

@@ -97,4 +97,27 @@ public class Game {
     public void setTrumpValue(Object o) {
         this.trumpValue = (String) o;
     }
+
+    public boolean roundComplete() {
+        int numPlayersPassed = 0;
+        for (int i=0;i<numPlayers;++i){
+            if (players.get(i).isPassed()){
+                ++numPlayersPassed;
+            }
+        }
+
+        if (numPlayersPassed==numPlayers-1){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void pickUp(Player player, int numCards) {
+        for (int i = 0;i<numCards;++i){
+            Card c = deck.cards().firstElement();
+            deck.remove(c);
+            player.get_playerDeck().add(c);
+        }
+    }
 }

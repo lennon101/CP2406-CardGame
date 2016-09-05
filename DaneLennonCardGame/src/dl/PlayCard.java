@@ -99,8 +99,8 @@ public class PlayCard implements Card {
 
     public HashMap getDictOfTrumpCategories() {
         HashMap trumpCategories = new HashMap();
-        trumpCategories.put("hardness",this._hardnessRange);
-        trumpCategories.put("specific_gravity",this._specific_gravity_range);
+        trumpCategories.put("hardness",this._hardness);
+        trumpCategories.put("specific_gravity",this._specific_gravity);
         trumpCategories.put("cleavage",this._cleavage);
         trumpCategories.put("crustal_abundance",this._crustal_abundance);
         trumpCategories.put("economic_value",this._economic_value);

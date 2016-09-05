@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="14dd60f4-c307-4634-a786-83c56c93bc38" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/CodeInFigures/ErrorTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/CodeInFigures/First.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/CodeInFigures/FirstBadOutput.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/CodeInFigures/FirstDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/CodeInFigures/FirstWithMissingSemicolon.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/CodeInFigures/HelloErrors.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/DebugOne1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/DebugOne2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/DebugOne3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/DebugOne4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/FixDebugOne1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/FixDebugOne2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/FixDebugOne3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/DebuggingExercises/FixDebugOne4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/Task_5_ProgrammingExercises/Task_5_ProgrammingExercises.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/Task_5_ProgrammingExercises/src/Comments.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/Task_5_ProgrammingExercises/src/CommentsDiaglog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/Task_5_ProgrammingExercises/src/TableAndChairs.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch01/cp2406_farrell8_ch01.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/AirlineDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/GetUserInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/GetUserInfo2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/GetUserInfo3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/HelloNameDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/HelloThereNewLine.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/HelloTherePrintlnTwice.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/ImprecisionDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/NumbersDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/NumbersPrintln.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/CodeInFigures/SalaryDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/DebuggingExercises/DebugTwo1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/DebuggingExercises/DebugTwo2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/DebuggingExercises/DebugTwo3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/DebuggingExercises/DebugTwo4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/Task_2_ProgrammingExercises.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/src/MinuteConversion.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/src/NauticalMiles.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/src/NauticalMilesInteractive.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/src/QuartsToGallons.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/src/QuartsToGallonsInteractive.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/Task_2_ProgrammingExercises/src/TicketNumber.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/cp2406_farrell8_ch02.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/Task_2_ProgrammingExercises/MinuteConversion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/Task_2_ProgrammingExercises/NauticalMiles.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/Task_2_ProgrammingExercises/NauticalMilesInteractive.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/Task_2_ProgrammingExercises/QuartsToGallons.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/Task_2_ProgrammingExercises/QuartsToGallonsInteractive.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/Task_2_ProgrammingExercises/TicketNumber.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/AirlineDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/DebugTwo1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/DebugTwo2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/DebugTwo3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/DebugTwo4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/GetUserInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/GetUserInfo2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/GetUserInfo3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/HelloNameDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/HelloThereNewLine.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/HelloTherePrintlnTwice.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/ImprecisionDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/NumbersDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/NumbersPrintln.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch02/out/production/cp2406_farrell8_ch02/SalaryDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/CodeInFigures/ComputeCommission.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/CodeInFigures/DeclareTwoEmployees.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/CodeInFigures/DemoRaise.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/CodeInFigures/Employee.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/CodeInFigures/First.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/CodeInFigures/MethodsThatUseAnEmployee.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/DebuggingExercises/DebugThree1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/DebuggingExercises/DebugThree2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/DebuggingExercises/DebugThree3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/DebuggingExercises/DebugThree4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/Task_3_Programming_Exercises/NumbersDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/Task_3_Programming_Exercises/NumbersDemo2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/Task_3_Programming_Exercises/Percentages.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/Task_3_Programming_Exercises/Percentages2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/cp2406_farrell8_ch03.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/five_user_stories.docx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/ComputeCommission.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/DebugThree1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/DebugThree2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/DebugThree3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/DebugThree4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/DeclareTwoEmployees.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/DemoRaise.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/Employee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/First.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/MethodsThatUseAnEmployee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/NumbersDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/NumbersDemo2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/Percentages.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch03/out/production/cp2406_farrell8_ch03/Percentages2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/BaseballPlayer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/CallSimpleMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/CallSimpleMethodAgain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/DeliveryDate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/Employee.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/LocalDateDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/NameAndAddress.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/OverridingVariable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/RealEstateListing.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/School.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/SchoolDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/Student.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/TestEmployeeMethods.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/TestMethodWithNestedBlocks.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/TestPlayer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/CodeInFigures/TestStudent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/DebuggingExercises/DebugBox.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/DebuggingExercises/DebugFour1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/DebuggingExercises/DebugFour2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/DebuggingExercises/DebugFour3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/DebuggingExercises/DebugFour4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/Bread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/FormLetterWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/Sandwhich.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/SandwhichFilling.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/TestBread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/TestSandwhich.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/Task_5_Programming_Exercises/TestSandwhichFilling.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/cp2406_farrell8_ch04.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/BaseballPlayer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/Bread.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/CallSimpleMethod.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/CallSimpleMethodAgain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/DebugBox.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/DebugFour1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/DebugFour2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/DebugFour3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/DebugFour4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/DeliveryDate.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/Employee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/FormLetterWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/LocalDateDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/NameAndAddress.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/OverridingVariable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/RealEstateListing$HouseData.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/RealEstateListing.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/Sandwhich.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/SandwhichFilling.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/School.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/SchoolDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/Student.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestBread.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestEmployeeMethods.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestMethodWithNestedBlocks.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestPlayer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestSandwhich.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestSandwhichFilling.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch04/out/production/cp2406_farrell8_ch04/TestStudent.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/CodeInFigures/Employee.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/CodeInFigures/Payroll.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/DebuggingExercises/DebugFive1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/DebuggingExercises/DebugFive2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/DebuggingExercises/DebugFive3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/DebuggingExercises/DebugFive4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/Task_2_ProgrammingExercises/AscendingAndDescending.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/Task_2_ProgrammingExercises/EvenOdd.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/cp2406_farrell8_ch05.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/AscendingAndDescending.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/DebugFive1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/DebugFive2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/DebugFive3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/DebugFive4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/Employee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/EvenOdd.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch05/out/production/cp2406_farrell8_ch05/Payroll.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/BankBalance.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/BankBalance2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/BankBalanceByRateAndYear.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/Clock.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/CompareLoopTimes.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/CompareLoopTimes2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/EnterSmallValue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/IncrementDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/CodeInFigures/PrefixPostfixDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/DebuggingExercises/DebugSix1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/DebuggingExercises/DebugSix2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/DebuggingExercises/DebugSix3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/DebuggingExercises/DebugSix4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/Task4_Programming_Exercises/CountByAnything.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/Task4_Programming_Exercises/CountByThrees.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/Task4_Programming_Exercises/Perfect.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/cp2406_farrell8_ch06.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/BankBalance.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/BankBalance2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/BankBalanceByRateAndYear.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/Clock.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/CompareLoopTimes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/CompareLoopTimes2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/CountByAnything.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/CountByThrees.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/DebugSix1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/DebugSix2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/DebugSix3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/DebugSix4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/EnterSmallValue.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/IncrementDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/Perfect.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch06/out/production/cp2406_farrell8_ch06/PrefixPostfixDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/BusinessLetter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/CharacterInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/CompareConcatenationTimes.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/CompareStrings.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/ConcatenationTimeComparison.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/ConvertStringToInteger.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/StringBuilderDemo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/TestCharacter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/CodeInFigures/TryToCompareStrings.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/DebuggingExercises/DebugSeven1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/DebuggingExercises/DebugSeven2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/DebuggingExercises/DebugSeven3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/DebuggingExercises/DebugSeven4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/Programming_Exercises/BabyNameComparison.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/Programming_Exercises/ValidatePassword.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/cp2406_farrell8_ch07.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/BabyNameComparison.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/BusinessLetter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/CharacterInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/CompareConcatenationTimes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/CompareStrings.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/ConcatenationTimeComparison.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/ConvertStringToInteger.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/DebugSeven1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/DebugSeven2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/DebugSeven3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/DebugSeven4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/StringBuilderDemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/TestCharacter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/TryToCompareStrings.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch07/out/production/cp2406_farrell8_ch07/ValidatePassword.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/CodeInFigures/AverageOfQuizzes.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/CodeInFigures/Employee.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/CodeInFigures/FindDiscount.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/CodeInFigures/FindPrice.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/CodeInFigures/PassArray.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/CodeInFigures/PassArrayElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/DebuggingExercises/DebugEight1.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/DebuggingExercises/DebugEight2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/DebuggingExercises/DebugEight3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/DebuggingExercises/DebugEight4.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/Programming_exercises/CollegeCourse.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/Programming_exercises/InputGrades.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/Programming_exercises/Student.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/Programming_exercises/TwelveInts.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/cp2406_farrell8_ch08.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/AverageOfQuizzes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/CollegeCourse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/DebugEight1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/DebugEight2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/DebugEight3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/DebugEight4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/Employee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/FindDiscount.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/FindPrice.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/InputGrades.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/PassArray.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/PassArrayElement.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/Student.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cp2406_farrell8_ch08/out/production/cp2406_farrell8_ch08/TwelveInts.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/description.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/project-template.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/MstCards_151021.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide03 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide04 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide04.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide05.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide06.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide07.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide08.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide09.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide15.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide16.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide17.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide18.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide19.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide20 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide20.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide21 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide21.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide22.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide23 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide23.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide24.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide25.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide27.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide28.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide29.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide30 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide30.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide31.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide32.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide33 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide33.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide34.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide35.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide36.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide37.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide38.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide39.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide40.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide41 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide41.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide42 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide42.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide43.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide44.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide45 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide45.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide46 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide46.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide47.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide48.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide49.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide50.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide51.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide52.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide53.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide54.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide55.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide56 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide56.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide57 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide57.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide58.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide59.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide60.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide61.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide62.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide63.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide64.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide65 (1).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide65.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/images/Slide66.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/out/production/project_mineral_super_trumps_game/com/DL/Card.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/out/production/project_mineral_super_trumps_game/com/DL/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/out/production/project_mineral_super_trumps_game/test.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/project_mineral_super_trumps_game.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/src/DomParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/src/XmlParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/src/com/DL/Card.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/src/com/DL/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/src/com/DL/Parser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project_mineral_super_trumps_game/src/test.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DaneLennonCardGame/.idea/workspace.xml" afterPath="$PROJECT_DIR$/DaneLennonCardGame/.idea/workspace.xml" />
+    </list>
+    <ignored path="CP2406-CardGame.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="CP2406-CardGame" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1510" />
+    <option name="height" value="1053" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DaneLennonCardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CP2406-CardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DaneLennonCardGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14dd60f4-c307-4634-a786-83c56c93bc38" name="Default" comment="" />
+      <created>1473071428515</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1473071428515</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1510" height="1053" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>
