@@ -31,7 +31,7 @@ public class Main {
             } else if (choice == 'p' || choice == 'P'){
                 numPlayers = getNumPlayers();
                 game = new Game(numPlayers,deck);
-                System.out.println("There are " + game.getDeck().size() + " cards in the pick-up deck.");
+                System.out.println("\nThere are " + game.get_deck().size() + " cards in the pick-up deck.");
                 System.out.println("would you like to shuffle and deal the cards now? (y/n): ");
                 char yes_no = getYesNoChoice();
                 while (yes_no != 'y'){
@@ -42,7 +42,7 @@ public class Main {
 
                 System.out.println("Dealing the cards...");
                 game.dealCardsToPlayers();
-                System.out.println("The pick-up deck now has " + game.getDeck().size() + " cards.");
+                System.out.println("The pick-up deck now has " + game.get_deck().size() + " cards.");
 
                 game.getPlayer(1).setTrumpChooser(true);
 
@@ -64,7 +64,6 @@ public class Main {
             if (!game.getPlayer(1).isPassed()) {
                 System.out.println("Your hand is: ");
                 game.getPlayer(1).displayHand();
-                System.out.println("\n");
 
                 System.out.println("Enter: " +
                         "\n(P) to Pass to pass (and pick up a card)" +
@@ -101,8 +100,8 @@ public class Main {
 
     private static void playAHand(Game game, Player player) {
         try {
-            if (game.getTrumpCategory() != null){
-                System.out.println("The current trump category is: " + game.getTrumpCategory());
+            if (game.get_trumpCategory() != null){
+                System.out.println("The current trump category is: " + game.get_trumpCategory());
                 //System.out.println("And the current trump value is: " + game.getTrumpValue());
                 System.out.println("You must choose a card that is higher in value than this...\n");
             }
@@ -138,38 +137,85 @@ public class Main {
 
         if (player.isTrumpChooser()){
             System.out.print("select a trump category for this round: ");
-            String trumpCategory = getTrumpCategory(c.getDictOfTrumpCategories());
-            game.setTrumpCategory(trumpCategory);
-            game.setTrumpValue(c.getDictOfTrumpCategories().get(trumpCategory));
+            displayTrumpCategories();
+            //String trumpCategory = getValidTrumpCategory(c.getDictOfTrumpCategories());
+
+            Trump_Categories trumpCategory = getValidTrumpCategory();
+            game.set_trumpCategory(trumpCategory);
+
+            Object trumpObject = c.getDictOfTrumpCategories().get(trumpCategory);
+
+            switch (trumpCategory) {
+                case HARDNESS:
+                    try {
+                        game.testAndSetHardnessTrump((double) trumpObject);
+                    }catch (Throwable t){
+                        System.out.println("failed to cast trump category to double");
+                    }
+                    break;
+                case SPECIFIC_GRAVITY:
+                    try {
+                        game.testAndSetSpecificGravityTrump((double) trumpObject);
+                    }catch (Throwable t){
+                        System.out.println("failed to cast trump category to double");
+                    }
+                    break;
+                case CLEAVAGE:
+                    try {
+                        game.testAndSetCleavageTrump((String) trumpObject);
+                    }catch (Throwable t){
+                        System.out.println("failed to cast trump category to String");
+                    }
+                    break;
+                case CRUSTAL_ABUNDANCE:
+                    try {
+                        game.testAndSetCleavageTrump((String) trumpObject);
+                    }catch (Throwable t){
+                        System.out.println("failed to cast trump category to String");
+                    }
+                    break;
+                case ECONOMIC_VALUE:
+                    try {
+                        game.testAndSetEconomicValueTrump((String) trumpObject);
+                    } catch (Throwable t) {
+                        System.out.println("failed to cast trump category to String");
+                    }
+            }
+
             System.out.println("The trump category chosen for this round is: " + trumpCategory);
             System.out.println("And the top value of the " + trumpCategory + " is: " + c.getDictOfTrumpCategories().get(trumpCategory));
             player.setTrumpChooser(false);
         }
+
     }
 
-    private static String getTrumpCategory(HashMap trumpCategories) {
+    private static void displayTrumpCategories(){
+        System.out.println("The categories are: ");
+        int i = 1;
+        for (Trump_Categories trumpCat:Trump_Categories.values()){
+            System.out.println("Category " + i++ +": " + trumpCat);
+        }
+    }
+
+    private static Trump_Categories getValidTrumpCategory() {
         Scanner input = new Scanner(System.in);
-        int trumpNum = 0;
+        Integer trumpNum = 0;
         boolean valid = false;
         while (!valid){
             try {
-                System.out.println("The categories are: ");
-                for (int i = 0;i<trumpCategories.size();++i){
-                    System.out.println("Category " + (i+1) +": " + trumpCategories.keySet().toArray()[i]);
-                }
-                System.out.print("Enter a number between 1 and " + (trumpCategories.size()) + " to chose a trump category: ");
-                trumpNum = input.nextInt();
-                if (trumpNum<0 || trumpNum>trumpCategories.size()){
-                    System.out.println("Enter number in the valid range");
+                System.out.print("\nEnter a number between 1 and " + (Trump_Categories.values().length) + " to chose a trump category: ");
+                String trumpNumStr = input.next();
+                trumpNum = Integer.parseInt(trumpNumStr);
+                if (trumpNum<1 || trumpNum>Trump_Categories.values().length){
+                    System.out.println("\nEnter number in the valid range\n");
                 }else{
                     valid = true;
                 }
             } catch (Throwable t){
-                System.out.println("invalid input");
+                System.out.println("\ninvalid input\n");
             }
-
         }
-        return (String) trumpCategories.keySet().toArray()[trumpNum-1];
+        return Trump_Categories.values()[trumpNum-1];
     }
 
 
@@ -270,12 +316,15 @@ public class Main {
     private static int getNumPlayers() {
         Scanner input = new Scanner(System.in);
         boolean valid = false;
-        int number = 0;
+        Integer number = 0;
         while (!valid){
             System.out.print("Enter the number of players to player the game (3-5): ");
             try {
-                number = input.nextInt();
-                valid = true;
+                String numberStr = input.next();
+                number = Integer.parseInt(numberStr);
+                if (number <3 || number > 5){
+                    System.out.println("Number must be between 3 and 5");
+                } else valid = true;
             } catch (Throwable t) {
                 System.out.println("Invalid.");
             }

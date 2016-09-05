@@ -13,9 +13,9 @@ public class PlayCard implements Card {
     private String _crystal_system;
     private String[] _occurrence;
     private String _hardnessRange;
-    private float _hardness;
+    private double _hardness;
     private String _specific_gravity_range;
-    private float _specific_gravity;
+    private double _specific_gravity;
     private String _cleavage;
     private String _crustal_abundance;
     private String _economic_value;
@@ -77,11 +77,11 @@ public class PlayCard implements Card {
         return _hardnessRange;
     }
 
-    public float get_hardness() {
+    public double get_hardness() {
         return _hardness;
     }
 
-    public float get_specific_gravity() {
+    public double get_specific_gravity() {
         return _specific_gravity;
     }
 
@@ -99,11 +99,11 @@ public class PlayCard implements Card {
 
     public HashMap getDictOfTrumpCategories() {
         HashMap trumpCategories = new HashMap();
-        trumpCategories.put("hardness",this._hardness);
-        trumpCategories.put("specific_gravity",this._specific_gravity);
-        trumpCategories.put("cleavage",this._cleavage);
-        trumpCategories.put("crustal_abundance",this._crustal_abundance);
-        trumpCategories.put("economic_value",this._economic_value);
+        trumpCategories.put(Trump_Categories.HARDNESS,this._hardness);
+        trumpCategories.put(Trump_Categories.SPECIFIC_GRAVITY,this._specific_gravity);
+        trumpCategories.put(Trump_Categories.CLEAVAGE,this._cleavage);
+        trumpCategories.put(Trump_Categories.CRUSTAL_ABUNDANCE,this._crustal_abundance);
+        trumpCategories.put(Trump_Categories.ECONOMIC_VALUE,this._economic_value);
         return trumpCategories;
     }
 }

@@ -35,6 +35,7 @@ public class Player {
         for (int i = 0; i<getNumCardsInHand(); ++i){
             System.out.println("Card " + (i+1) + ": " + getPlayerCard(i));
         }
+        System.out.println();
     }
 
     public boolean isTrumpChooser() {
