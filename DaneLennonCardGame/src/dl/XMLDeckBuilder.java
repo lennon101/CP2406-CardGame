@@ -103,9 +103,9 @@ public class XMLDeckBuilder implements DeckBuilder {
         String crystalSystem="";
         String[] occurrence = new String[3];
         String hardnessRange = null;
-        float hardness=0;
+        Double hardness=0.0;
         String specificGravityRange = null;
-        float specificGravity= 0;
+        Double specificGravity= 0.0;
         String cleavage="";
         String crystalAbundance="";
         String economicValue="";
@@ -152,29 +152,29 @@ public class XMLDeckBuilder implements DeckBuilder {
         return new PlayCard(title,chemistry,classification,crystalSystem,occurrence,hardnessRange,hardness,specificGravityRange,specificGravity,cleavage,crystalAbundance,economicValue);
     }
 
-    private float splitThis(String toSplit) {
+    private Double splitThis(String toSplit) {
         boolean splitSuccess = false;
-        float splitFloat = 0;
+        Double splitFloat = 0.0;
         if (!splitSuccess){
             try{
-                splitFloat = Float.parseFloat(toSplit.split(" - ")[1]);
+                splitFloat = Double.parseDouble(toSplit.split(" - ")[1]);
                 splitSuccess = true;
             }catch (Throwable t){}
         }
         if (!splitSuccess){
             try{
-                splitFloat = Float.parseFloat(toSplit.split("-")[1]);
+                splitFloat = Double.parseDouble(toSplit.split("-")[1]);
                 splitSuccess = true;
             }catch (Throwable t){}
         }
         if (!splitSuccess){
             try{
-                splitFloat = Float.parseFloat(toSplit.split(" ")[1]);
+                splitFloat = Double.parseDouble(toSplit.split(" ")[1]);
                 splitSuccess = true;
             }catch (Throwable t){}
         }
         if (!splitSuccess){
-            splitFloat = Float.parseFloat(toSplit);
+            splitFloat = Double.parseDouble(toSplit);
         }
         return splitFloat;
     }

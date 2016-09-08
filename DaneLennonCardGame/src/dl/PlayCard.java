@@ -20,7 +20,7 @@ public class PlayCard implements Card {
     private String _crustal_abundance;
     private String _economic_value;
 
-    public PlayCard(String _title, String _chemistry, String _classification, String _crystal_system, String[] _occurrence, String _hardnessRange, float _hardness, String _specific_gravity_range, float _specific_gravity, String _cleavage, String _crustal_abundance, String _economic_value) {
+    public PlayCard(String _title, String _chemistry, String _classification, String _crystal_system, String[] _occurrence, String _hardnessRange, Double _hardness, String _specific_gravity_range, Double _specific_gravity, String _cleavage, String _crustal_abundance, String _economic_value) {
 
         this._title = _title;
         this._chemistry = _chemistry;
@@ -77,11 +77,11 @@ public class PlayCard implements Card {
         return _hardnessRange;
     }
 
-    public double get_hardness() {
+    public Double get_hardness() {
         return _hardness;
     }
 
-    public double get_specific_gravity() {
+    public Double get_specific_gravity() {
         return _specific_gravity;
     }
 

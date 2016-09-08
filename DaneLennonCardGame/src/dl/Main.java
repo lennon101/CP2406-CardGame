@@ -30,55 +30,45 @@ public class Main {
             } else if (choice == 'p' || choice == 'P'){
                 numPlayers = getNumPlayers();
                 game = new Game(numPlayers,deck);
-                System.out.println("\nThere are " + game.get_deck().size() + " cards in the pick-up deck.");
-                System.out.println("would you like to shuffle and deal the cards now? (y/n): ");
-                char yes_no = getYesNoChoice();
-                while (yes_no != 'y'){
-                    System.out.println("Your friends are getting board, shuffle and deal the cards now? (y/n): ");
-                    yes_no = getYesNoChoice();
-                }
-                game.shuffleDeck();
-
-                System.out.println("Dealing the cards...");
-                game.dealCardsToPlayers();
-                System.out.println("The pick-up deck now has " + game.get_deck().size() + " cards.");
+                setUpGame(game);
 
                 game.getPlayer(1).setTrumpChooser(true);
-
                 boolean gameComplete = false;
                 while (!gameComplete){
-                    //insert logic to find out if a player has no cards.
-                    //game is then complete -->start a new game or quit?
-                    //if (game.getPlayer(1).get_playerDeck().getNumCards() > 0){
-
-                    playRound(game);
+                    //insert logic to find out if player has no cards.
+                    if (game.getPlayer(1).getNumCardsInHand() > 0) {
+                        playRound(game);
+                    } else{
+                        System.out.println("You have won the game!");
+                        gameComplete = true;
+                    }
                 }
+                System.out.println("Game is complete!");
+                //game is then complete -->start a new game or quit?
             }
         }
+    }
 
+    private static void setUpGame(Game game) {
+        System.out.println("\nThere are " + game.get_deck().size() + " cards in the pick-up deck.");
+        System.out.println("would you like to shuffle and deal the cards now? (y/n): ");
+        char yes_no = getYesNoChoice();
+        while (yes_no != 'y'){
+            System.out.println("Your friends are getting board, shuffle and deal the cards now? (y/n): ");
+            yes_no = getYesNoChoice();
+        }
+        game.shuffleDeck();
+
+        System.out.println("Dealing the cards...");
+        game.dealCardsToPlayers();
+        System.out.println("The pick-up deck now has " + game.get_deck().size() + " cards.");
     }
 
     private static void playRound(Game game) {
-        //setup the round. this needs to occur once at the start of each round
-
         Player player = game.getPlayer(1);
-        System.out.println("Your hand is: ");
-        game.getPlayer(1).displayHand();
 
-        boolean validCardChoice = false;
-        while (!validCardChoice){
-            System.out.print("\nChoose a card to play by entering the card number (1-" + player.getNumCardsInHand() + "): ");
-            int cardIndex = getCardIndexToPlay(player.getNumCardsInHand());
-            System.out.println("Card being played is card " + (cardIndex + 1) + ": " + player.getPlayerCard(cardIndex).getTitle() + "\n");
-            Card playedCard = player.getPlayerCard(cardIndex);
-            if (!playedCard.getClass().equals(PlayCard.class)) {
-                System.out.println("You must enter a PlayCard to start the round off");
-            }else {
-                PlayCard pc = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
-                playPlayCard(game, player, pc);
-                validCardChoice = true;
-            }
-        }
+        //setup the round. this needs to occur once at the start of each round
+        setUpRound(game,player);
 
         while (!game.roundComplete()){
             if (!game.getPlayer(1).isPassed()) {
@@ -99,9 +89,28 @@ public class Main {
                 }
             }
             //game.AIPlay();
-
         }
     }
+
+    private static void setUpRound(Game game, Player player) {
+        System.out.println("Your hand is: ");
+        game.getPlayer(1).displayHand();
+        boolean validCardChoice = false;
+        while (!validCardChoice){
+            System.out.print("\nChoose a card to play by entering the card number (1-" + player.getNumCardsInHand() + "): ");
+            int cardIndex = getCardIndexToPlay(player.getNumCardsInHand());
+            System.out.println("Card being played is card " + (cardIndex + 1) + ": " + player.getPlayerCard(cardIndex).getTitle() + "\n");
+            Card playedCard = player.getPlayerCard(cardIndex);
+            if (!playedCard.getClass().equals(PlayCard.class)) {
+                System.out.println("You must enter a PlayCard to start the round off");
+            }else {
+                PlayCard pc = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
+                playPlayCard(game, player, pc);
+                validCardChoice = true;
+            }
+        }
+    }
+
 
     private static char getPlayARoundChoice() {
         Scanner input = new Scanner(System.in);
@@ -138,7 +147,7 @@ public class Main {
                 PlayCard pc = (PlayCard) playedCard; //cast this card to PlayCard type so PlayCard methods are exposed
                 if (game.get_trumpCategory() != null) {
                     if (!game.playedCardHasHigherTrumpValue(pc)) {
-                        System.out.println("This cards Hardness value isn't higher enough");
+                        System.out.println("This cards trump value isn't higher enough");
                         System.out.println("Try again...");
                     } else {
                         playPlayCard(game, player, pc);
@@ -146,8 +155,8 @@ public class Main {
                     }
                 }
             }else if (playedCard.getClass().equals(TrumpCard.class)){
-                playTrumpCard();
                 validCardChoice = true;
+                playTrumpCard(game, player, (TrumpCard)playedCard);
             }else{
                 System.out.println("Error: card not matched to a class");
             }
@@ -155,17 +164,47 @@ public class Main {
 
     }
 
-    private static void playTrumpCard() {
+    private static void playTrumpCard(Game game, Player player, TrumpCard t) {
         System.out.println("You have selected a trump card! Bold move...");
         //needs work to figure out all the different options for the different types of trump cards
+        displayTrumpCard(t);
+        Trump_Categories trumpCategory = Trump_Categories.CLEAVAGE.HARDNESS;
+
+        if (t.getTitle().equals("The Miner")){
+            trumpCategory = Trump_Categories.ECONOMIC_VALUE;
+        }else if (t.getTitle().equals("The Petrologist")){
+            trumpCategory = Trump_Categories.CRUSTAL_ABUNDANCE;
+        }else if (t.getTitle().equals("The Gemmologist")){
+            trumpCategory = Trump_Categories.HARDNESS;
+        }else if (t.getTitle().equals("The Mineralogist")){
+            trumpCategory = Trump_Categories.CLEAVAGE;
+        }else if (t.getTitle().equals("The Geophysicist")){
+            trumpCategory = Trump_Categories.SPECIFIC_GRAVITY;
+        }else if (t.getTitle().equals("The Geologist")){
+            System.out.print("select a trump category for this round: ");
+            displayTrumpCategories();
+            trumpCategory = getValidTrumpCategory();
+        }
+
+        game.set_trumpCategory(trumpCategory);
+        System.out.println("The trump category has been set to: " + trumpCategory);
+        player.get_playerDeck().remove(t);
+        System.out.println("Your hand is: ");
+        game.getPlayer(1).displayHand();
+        playAHand(game,player);
+    }
+
+    private static void displayTrumpCard(TrumpCard t) {
+        System.out.println("Trump Card being played is: ");
+        System.out.println(t);
     }
 
     private static void playPlayCard(Game game, Player player, PlayCard pc) {
         System.out.println("This card's trump categories are:");
         System.out.println(pc.getDictOfTrumpCategories() + "\n");
+        player.get_playerDeck().remove(pc);
 
         if (player.isTrumpChooser()){
-            player.get_playerDeck().remove(pc);
 
             System.out.print("select a trump category for this round: ");
             displayTrumpCategories();
@@ -179,7 +218,6 @@ public class Main {
             player.setTrumpChooser(false);
         }else {
             System.out.println("This card has a higher trump value and has been placed down");
-            player.get_playerDeck().remove(pc);
         }
 
     }
@@ -236,13 +274,14 @@ public class Main {
         while (!valid){
             try{
                 index = input.nextInt();
-                if (index>numCardsInHand || index<=0){
-                    System.out.println("This is outside the range of cards in the hand");
-                }else {
-                    valid = true;
-                }
             } catch (Throwable t){
                 System.out.println("Not a valid number.");
+            }
+            if (index>numCardsInHand || index<=0){
+                System.out.println("This is outside the range of cards in the hand");
+                System.out.print("Try again: ");
+            }else {
+                valid = true;
             }
         }
         return index - 1;
