@@ -5,17 +5,22 @@ import java.util.Vector;
 /**
  * Created by danelennon on 19/08/2016.
  */
-public class PickUpDeck implements Deck {
+public class BasicDeck implements Deck {
 
     private Vector<Card> _cards;
 
-    public PickUpDeck() {
+    public BasicDeck() {
         _cards = new Vector<Card>();
     }
 
     @Override
     public void add(Card c) {
         _cards.add(c);
+    }
+
+    @Override
+    public Card getCard(int i) {
+        return _cards.get(i);
     }
 
     @Override
@@ -44,7 +49,7 @@ public class PickUpDeck implements Deck {
 
     @Override
     public String toString() {
-        return "PickUpDeck{" +
+        return "BasicDeck{" +
                 "_cards=" + _cards +
                 '}';
     }

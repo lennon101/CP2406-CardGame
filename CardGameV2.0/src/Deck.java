@@ -7,6 +7,8 @@ import java.util.Vector;
 public interface Deck {
     void add(Card c);
 
+    Card getCard(int i);
+
     Vector<Card> cards();
 
     int getNumCards();

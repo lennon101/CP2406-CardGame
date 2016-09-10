@@ -29,4 +29,9 @@ public class Range {
     boolean isHigherThan(Range other) {
         return this.higher() > other.higher();
     }
+
+    @Override
+    public String toString() {
+        return lower + "-" + higher;
+    }
 }

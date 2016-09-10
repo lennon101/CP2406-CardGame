@@ -4,11 +4,11 @@
  * Created by danelennon on 9/09/2016.
  */
 public class CardComparisonResult {
-    boolean hardnessTrumped;
-    boolean gravityTrumped;
-    boolean cleavageTrumped;
-    boolean economicWasTrumped;
-    boolean crustalWasTrumped;
+    private boolean hardnessTrumped;
+    private boolean gravityTrumped;
+    private boolean cleavageTrumped;
+    private boolean economicWasTrumped;
+    private boolean crustalWasTrumped;
 
     public CardComparisonResult(boolean hardnessTrumped, boolean gravityTrumped, boolean cleavageTrumped, boolean economicWasTrumped, boolean crustalWasTrumped) {
         this.hardnessTrumped = hardnessTrumped;
@@ -18,23 +18,23 @@ public class CardComparisonResult {
         this.crustalWasTrumped = crustalWasTrumped;
     }
 
-    boolean hardnessWasTrumped() {
+    public boolean hardnessWasTrumped() {
         return hardnessTrumped;
     }
 
-    boolean gravityWasTrumped() {
+    public boolean gravityWasTrumped() {
         return gravityTrumped;
     }
 
-    boolean cleavageWasTrumped() {
+    public boolean cleavageWasTrumped() {
         return cleavageTrumped;
     }
 
-    boolean economicValueWasTrumped() {
+    public boolean economicValueWasTrumped() {
         return economicWasTrumped;
     }
 
-    boolean crustalAbundanceWasTrumped() {
+    public boolean crustalAbundanceWasTrumped() {
         return crustalWasTrumped;
     }
 }
