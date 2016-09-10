@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dl/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="354" column="15" selection-start-line="354" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+            <state relative-caret-position="4320">
+              <caret line="288" column="0" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
               <folding>
                 <element signature="method#displayInstructions#0;class#Main#0" expanded="false" />
                 <element signature="method#displayAbout#0;class#Main#0" expanded="false" />
@@ -74,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dl/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+            <state relative-caret-position="495">
+              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
               <folding>
                 <element signature="method#hasHigherSpecificGravityTrump#0;class#Game#0" expanded="false" />
                 <element signature="method#hasHigherCleavageTrump#0;class#Game#0" expanded="false" />
@@ -808,21 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dl/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <element signature="method#hasHigherSpecificGravityTrump#0;class#Game#0" expanded="false" />
-            <element signature="method#hasHigherCleavageTrump#0;class#Game#0" expanded="false" />
-            <element signature="method#getCleavageValueRank#0;class#Game#0" expanded="false" />
-            <element signature="method#hasHigherCrustalAbundanceTrump#0;class#Game#0" expanded="false" />
-            <element signature="method#getCrustalAbundanceRank#0;class#Game#0" expanded="false" />
-            <element signature="method#hasHigherEconomicValueTrump#0;class#Game#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dl/XMLDeckBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
@@ -839,6 +824,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/dl/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4320">
+          <caret line="288" column="0" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
+          <folding>
+            <element signature="method#displayInstructions#0;class#Main#0" expanded="false" />
+            <element signature="method#displayAbout#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dl/TrumpCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -847,13 +843,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dl/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/dl/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="354" column="15" selection-start-line="354" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+        <state relative-caret-position="495">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
           <folding>
-            <element signature="method#displayInstructions#0;class#Main#0" expanded="false" />
-            <element signature="method#displayAbout#0;class#Main#0" expanded="false" />
+            <element signature="method#hasHigherSpecificGravityTrump#0;class#Game#0" expanded="false" />
+            <element signature="method#hasHigherCleavageTrump#0;class#Game#0" expanded="false" />
+            <element signature="method#getCleavageValueRank#0;class#Game#0" expanded="false" />
+            <element signature="method#hasHigherCrustalAbundanceTrump#0;class#Game#0" expanded="false" />
+            <element signature="method#getCrustalAbundanceRank#0;class#Game#0" expanded="false" />
+            <element signature="method#hasHigherEconomicValueTrump#0;class#Game#0" expanded="false" />
           </folding>
         </state>
       </provider>

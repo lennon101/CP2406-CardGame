@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -16,31 +15,27 @@ public class Main {
         while (!game.complete()){
             // TODO: 9/09/2016  insert logic to find out if player has no cards.
             playRound(game);
+            break;
         }
     }
 
     private static void playRound(Game game) {
         setUpRound(game);
-        int indexOf2ndPlayer;
-        if (game.getDealerId()+2 >game.getNumPlayersLeft()){
-            indexOf2ndPlayer = 0;
-        }else{
-            indexOf2ndPlayer = game.getDealerId() + 2; //The dealer deals, 1st player sets up round, 2nd player starts actual game
-        }
-
-        for (int i=indexOf2ndPlayer;i<game.getNumPlayersLeft();++i){
-
-            if (game.getPlayers().get(i).isHuman()){
+        while (!game.roundComplete()){
+            Player p = game.getNextPlayer();
+            if (p.isHuman()){
                 humanRound(game);
             }else{
-                //game.aIRound(); // TODO: 9/09/2016 make AI round
+                game.aIRound(p); // TODO: 9/09/2016 make AI round
                 System.out.println("AI round commences");
+                break;
             }
+
         }
     }
 
     private static void setUpRound(Game game) {
-        Player firstPlayer = game.getFirstPlayer();
+        Player firstPlayer = game.getNextPlayer();
         System.out.println(firstPlayer.getName() + " is the next player to the left of the dealer");
         if (firstPlayer.isHuman()){
             System.out.println("Your hand is: ");
@@ -74,8 +69,9 @@ public class Main {
 
     private static void humanRound(Game game) {
         Player human = game.getHuman();
+        System.out.println("Your hand is: ");
+        human.displayHand();
         boolean validCardChoice = false;
-
         while (!validCardChoice) {
             System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
             int cardNum = getNumInRange(0, human.getNumCards());
@@ -83,7 +79,13 @@ public class Main {
 
             System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
 
-            if (!game.cardCanBePlayed(selectedCard)){
+            if (selectedCard.isTrump()){
+                System.out.println("You selected a trump card!");
+                validCardChoice = true;
+                game.playCard(human,selectedCard);
+                System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategory()) + " and won this round");
+                System.out.println("you must now");
+            }else if (!game.cardCanBePlayed(selectedCard)){
                 System.out.println("This cards trump value isn't higher enough\n" +
                         "Try again...");
             } else {
