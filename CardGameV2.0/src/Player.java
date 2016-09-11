@@ -81,4 +81,9 @@ public class Player {
     public void passed(boolean b) {
         passed = b;
     }
+
+
+    public void pickUpCard(Card c) {
+        _hand.add(c);
+    }
 }

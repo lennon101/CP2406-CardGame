@@ -74,31 +74,74 @@ public class Main {
         System.out.println("Your hand is: ");
         human.displayHand();
 
-        // TODO: 11/09/2016 ask user if they want to play a card or pass
+        System.out.println("Enter: " +
+                "\n(P) to Pass to pass (and pick up a card)" +
+                "\n(C) to Play a card");
+        char choice = getPlayRoundChoice(game,human);
+        if (choice == 'p' || choice == 'P') {
+            System.out.println("You have chosen to pass this round :( ");
+            game.pickUp(human);
+            human.passed(true);
+        }else if (choice == 'c' || choice == 'C') {
+            boolean validCardChoice = false;
+            while (!validCardChoice) {
+                System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
+                int cardNum = getNumInRange(1, human.getNumCards());
+                Card selectedCard = human.getCard(cardNum - 1);
 
-        boolean validCardChoice = false;
-        while (!validCardChoice) {
-            System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
-            int cardNum = getNumInRange(1, human.getNumCards());
-            Card selectedCard = human.getCard(cardNum - 1);
+                System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
 
-            System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
-
-            if (selectedCard.isTrump()){
-                System.out.println("You selected a trump card!");
-                validCardChoice = true;
-                game.playCard(human,selectedCard);
-                System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategoryFromUser()) + " and won this round");
-                System.out.println("you must now");
-            }else if (!game.cardCanBePlayed(selectedCard)){
-                System.out.println("This cards trump value isn't higher enough\n" +
-                        "Try again...");
-            } else {
-                game.playCard(human,selectedCard);
-                validCardChoice = true;
+                if (selectedCard.isTrump()) {
+                    System.out.println("You selected a trump card!");
+                    validCardChoice = true;
+                    game.playCard(human, selectedCard);
+                    System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategoryFromUser()) + " and won this round");
+                    System.out.println("you must now"); // TODO: 11/09/2016 give human player ability to play trump card
+                } else if (!game.cardCanBePlayed(selectedCard)) {
+                    System.out.println("This cards trump value isn't higher enough\n" +
+                            "Try again...");
+                } else {
+                    game.playCard(human, selectedCard);
+                    validCardChoice = true;
+                }
             }
         }
     }
+    private static char getPlayRoundChoice(Game g, Player player) {
+        Scanner input = new Scanner(System.in);
+        char answer = 'x';
+        boolean valid = false;
+        //search through all of players cards to see if they can actually play any cards
+        boolean canPlay = false;
+        for (Card c:player.get_playerDeck().cards()){
+            if (g.cardCanBePlayed(c)) {
+                canPlay = true;
+            }
+        }
+
+        if (!canPlay){
+            while (!valid){
+                System.out.println("You don't have any cards higher enough to play, you must opt to pass");
+                answer = input.next().charAt(0);
+                if (answer != 'p' && answer != 'P'){
+                    System.out.println("invalid choice, enter \"p\" or \"P\"");
+                }else {
+                    valid = true;
+                }
+            }
+        }else {
+            while (!valid) {
+                answer = input.next().charAt(0);
+                if (answer != 'p' && answer != 'c') {
+                    System.out.println("invalid choice, enter \"p\" or \"c\"");
+                } else {
+                    valid = true;
+                }
+            }
+        }
+        return answer;
+    }
+
 
     private static Game startNewGame() {
         Scanner input = new Scanner(System.in);

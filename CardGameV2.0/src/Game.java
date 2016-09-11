@@ -219,6 +219,7 @@ public class Game {
                         break;
                 }
                 c = getValidFirstCard(ai);
+                System.out.println("--- he has selected the " + c.name() + " card: " + c.getTrumpValueForCategory(gc) + "\n");
             }
         }else {
             System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
@@ -226,8 +227,8 @@ public class Game {
             int gcNum = chooseCategory();
             System.out.println("--- he has selected card: " + c.name());
             gc = GameCategory.values()[gcNum];
+            System.out.println("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
         }
-        System.out.println("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
         playFirstCard(c, gc, ai);
     }
 
@@ -299,6 +300,7 @@ public class Game {
         }else{
             System.out.println("--- he has chosen to pass\n");
             ai.passed(true);
+            pickUp(ai);
             incrementPlayer();
         }
     }
@@ -313,5 +315,11 @@ public class Game {
         for (Card c:_picUpDeck.cards()){
             System.out.println(c);
         }
+    }
+
+    public void pickUp(Player player) {
+        Card c = _picUpDeck.getCard(0); //the top card
+        _picUpDeck.remove(c);
+        player.pickUpCard(c);
     }
 }
