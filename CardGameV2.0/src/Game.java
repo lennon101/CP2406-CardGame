@@ -13,7 +13,6 @@ public class Game {
     private int humanPlayerId=0;
     private String _humanName;
     private Vector<Player> _players;
-    private int numPlayersLeft;
     private GameCategory _gameCategory;
     private Card _lastCardPlayed;
 
@@ -22,7 +21,6 @@ public class Game {
 
     public Game(String humanName, int numPlayers,Deck deck) {
         this._numPlayers = numPlayers;
-        this.numPlayersLeft = numPlayers;
         this._picUpDeck = deck;
         this._players = new Vector<Player>();
         this._humanName = humanName;
@@ -33,7 +31,7 @@ public class Game {
 
     public void selectDealer(){
         Random random = new Random();
-        int dealerId = random.nextInt(numPlayersLeft);
+        int dealerId = random.nextInt(numPlayersLeft());
         //todo: randomise this selection
         this._dealerId = dealerId;
         this._nextPlayerId = dealerId;
@@ -92,20 +90,19 @@ public class Game {
     }
 
     public boolean complete() {
-        if (getNumPlayersLeft() <= 1) {
+        if (numPlayersLeftInGame() <= 1) {
             return true;
         }else{
             return false;
         }
     }
 
-    public int getNumPlayersLeft() {
-        return numPlayersLeft;
+    private int numPlayersLeftInGame() {
+        return _players.size();
     }
 
     public void removePlayer(int i){
         _players.remove(i);
-        --numPlayersLeft;
     }
 
     public int getHumanPlayerId() {
@@ -120,7 +117,7 @@ public class Game {
         return _players.get(_nextPlayerId); //player to the left of last player
     }
 
-    private void incrementPlayer() {
+    public void incrementPlayer() {
         if (_nextPlayerId +1>=_numPlayers){
             _nextPlayerId = 0;
         }else{
@@ -168,9 +165,13 @@ public class Game {
     }
 
     public void playCard(Player p, Card c) {
-        _lastCardPlayed = c;
-        p.removeCardFromHand(c);
-        incrementPlayer();
+        if (c != null){
+            _lastCardPlayed = c;
+            p.removeCardFromHand(c);
+        }else {
+            System.out.println("card c is null");
+        }
+
     }
 
     public String getTrumpValue() {
@@ -183,9 +184,13 @@ public class Game {
 
     public void playFirstCard(Card c, GameCategory gc,Player p) {
         _gameCategory = gc;
-        _lastCardPlayed = c;
-        p.removeCardFromHand(c);
-        incrementPlayer();
+        if (c != null){
+            _lastCardPlayed = c;
+            p.removeCardFromHand(c);
+        }else {
+            System.out.println("card c is null");
+        }
+
     }
 
     public void setUpRound(Player ai) {
@@ -198,9 +203,9 @@ public class Game {
                 switch (_lastCardPlayed.trumpType()) {
                     case ANY:
                         System.out.println("--- choosing trump category");
-                        c = getValidFirstCard(ai);
                         int gcNum = chooseCategory();
                         gc = GameCategory.values()[gcNum];
+                        System.out.println("--- he chose: " + gc);
                         break;
                     case HARDNESS:
                         gc = GameCategory.HARDNESS;
@@ -220,16 +225,17 @@ public class Game {
                 }
                 c = getValidFirstCard(ai);
                 System.out.println("--- he has selected the " + c.name() + " card: " + c.getTrumpValueForCategory(gc) + "\n");
+            }else {
+                System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
+                c = getValidFirstCard(ai);
+                int gcNum = chooseCategory();
+                System.out.println("--- he has selected card: " + c.name());
+                gc = GameCategory.values()[gcNum];
+                System.out.println("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
             }
-        }else {
-            System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
-            c = getValidFirstCard(ai);
-            int gcNum = chooseCategory();
-            System.out.println("--- he has selected card: " + c.name());
-            gc = GameCategory.values()[gcNum];
-            System.out.println("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
         }
         playFirstCard(c, gc, ai);
+        incrementPlayer();
     }
 
     private Card getValidFirstCard(Player ai){
@@ -263,16 +269,24 @@ public class Game {
     }
 
     public boolean roundComplete() {
-        int numPlayersPassed = 0;
-        if (_lastCardPlayed.isTrump()){
-            return true;
+        try {
+            if (_lastCardPlayed.isTrump()){
+                return true;
+            }
+        }catch (Throwable t){
+            System.out.println(t);
         }
+        return numPlayersLeft() <=1;
+    }
+
+    public int numPlayersLeft(){
+        int numPlayersPassed = 0;
         for (Player p:_players){
             if (p.isPassed()){
                 ++numPlayersPassed;
             }
         }
-        return numPlayersPassed >= numPlayersLeft-1;
+        return _numPlayers - numPlayersPassed;
     }
 
     public void aIRound(Player ai) {
@@ -285,18 +299,22 @@ public class Game {
             c = ai.getCard(cardNum);
             if (c.isTrump()) {
                 System.out.println("--- he played a trump card!");
-                System.out.print("--- he has selected: " + c.name() + " with a trump category of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
-                --_nextPlayerId;
+                System.out.print("--- he has selected: " + c.name() + " with a trump category of: " + c.trumpType() + "\n");
                 canPlay = true;
                 break;
             } else if (cardCanBePlayed(c)) {
                 System.out.println("--- he has selected: " + c.name() + " with a " + _gameCategory + " value of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
                 canPlay = true;
+                incrementPlayer();
                 break;
             }
         }
         if (canPlay){
-            playCard(ai, c);
+            if (c != null){
+                playCard(ai, c);
+            }else {
+                System.out.println("card is null");
+            }
         }else{
             System.out.println("--- he has chosen to pass\n");
             ai.passed(true);
@@ -322,4 +340,5 @@ public class Game {
         _picUpDeck.remove(c);
         player.pickUpCard(c);
     }
+
 }

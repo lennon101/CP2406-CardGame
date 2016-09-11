@@ -22,13 +22,20 @@ public class Main {
     private static void playRound(Game game) {
         setUpRound(game);
         while (!game.roundComplete()){
+            System.out.println("There are " + game.numPlayersLeft() + " players left in this round");
+            if (game.numPlayersLeft() == 2){
+                System.out.println("there are 2 players left");
+            }
             Player p = game.getNextPlayer();
-            if (p.isHuman()){
-                humanRound(game);
-            }else{
-                System.out.println("AI round commences");
-                game.aIRound(p);
-                //break; // TODO: 11/09/2016 debug why infinite loop occurs
+            if (p.isPassed()){
+                game.incrementPlayer();
+            }else {
+                if (p.isHuman()){
+                    humanRound(game);
+                }else{
+                    System.out.println("AI round commences");
+                    game.aIRound(p);
+                }
             }
         }
     }
@@ -57,6 +64,7 @@ public class Main {
                     System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
                     GameCategory gc = getGameCategoryFromUser();
                     game.playFirstCard(selectedCard,gc,firstPlayer);
+                    game.incrementPlayer();
                 }
             }
             System.out.println("The trump category chosen for this round is: " + game.getCategory());
@@ -94,14 +102,23 @@ public class Main {
                 if (selectedCard.isTrump()) {
                     System.out.println("You selected a trump card!");
                     validCardChoice = true;
-                    game.playCard(human, selectedCard);
+                    if (selectedCard != null){
+                        game.playCard(human, selectedCard);
+                    }else {
+                        System.out.println("card is null");
+                    }
                     System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategoryFromUser()) + " and won this round");
-                    System.out.println("you must now"); // TODO: 11/09/2016 give human player ability to play trump card
+                    System.out.print("--- you selected: " + selectedCard.name() + " with a trump category of: " + selectedCard.trumpType() + "\n");
                 } else if (!game.cardCanBePlayed(selectedCard)) {
                     System.out.println("This cards trump value isn't higher enough\n" +
                             "Try again...");
                 } else {
-                    game.playCard(human, selectedCard);
+                    if (selectedCard != null){
+                        game.playCard(human, selectedCard);
+                    }else{
+                        System.out.println("card is null");
+                    }
+                    game.incrementPlayer();
                     validCardChoice = true;
                 }
             }
@@ -195,10 +212,12 @@ public class Main {
     public static int getNumInRange(int start, int stop) {
         Scanner input = new Scanner(System.in);
         boolean valid = false;
-        int index = 0;
+        int index = -1;
+        String indexStr = "";
         while (!valid){
+            indexStr = input.next();
             try{
-                index = input.nextInt();
+                index = Integer.parseInt(indexStr);
             } catch (Throwable t){
                 System.out.println("Not a valid number.");
             }
