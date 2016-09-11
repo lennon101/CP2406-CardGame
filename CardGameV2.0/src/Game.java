@@ -189,21 +189,65 @@ public class Game {
     }
 
     public void setUpRound(Player ai) {
-        Random random = new Random();
-        System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
         Card c = null;
-        int cardNum = 0;
-        boolean isValid = false;
-        while (!isValid){
-            cardNum = random.nextInt(ai.getNumCards());
-            c = ai.getCard(cardNum);
-            if (!c.isTrump()) {isValid = true;}
+        GameCategory gc = null;
+        if (_lastCardPlayed != null){
+            if (_lastCardPlayed.isTrump()) {
+                System.out.println("--- " + ai.getName() + " following instructions on trump card he placed down");
+                System.out.println("--- Game Category set to: " + _lastCardPlayed.trumpType());
+                switch (_lastCardPlayed.trumpType()) {
+                    case ANY:
+                        System.out.println("--- choosing trump category");
+                        c = getValidFirstCard(ai);
+                        int gcNum = chooseCategory();
+                        gc = GameCategory.values()[gcNum];
+                        break;
+                    case HARDNESS:
+                        gc = GameCategory.HARDNESS;
+                        break;
+                    case SPECIFIC_GRAVITY:
+                        gc = GameCategory.SPECIFIC_GRAVITY;
+                        break;
+                    case CLEAVAGE:
+                        gc = GameCategory.CLEAVAGE;
+                        break;
+                    case CRUSTAL_ABUNDANCE:
+                        gc = GameCategory.CRUSTAL_ABUNDANCE;
+                        break;
+                    case ECONOMIC_VALUE:
+                        gc = GameCategory.ECONOMIC_VALUE;
+                        break;
+                }
+                c = getValidFirstCard(ai);
+            }
+        }else {
+            System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
+            c = getValidFirstCard(ai);
+            int gcNum = chooseCategory();
+            System.out.println("--- he has selected card: " + c.name());
+            gc = GameCategory.values()[gcNum];
         }
-        int gcNum = random.nextInt(GameCategory.values().length);
-        System.out.println("--- he has selected card " + (cardNum) + ": " + c.name());
-        GameCategory gc = GameCategory.values()[gcNum];
         System.out.println("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
-        playFirstCard(c,gc,ai);
+        playFirstCard(c, gc, ai);
+    }
+
+    private Card getValidFirstCard(Player ai){
+        Random random = new Random();
+        Card c = null;
+        boolean isValid = false;
+        while (!isValid) {
+            int cardNum = random.nextInt(ai.getNumCards());
+            c = ai.getCard(cardNum);
+            if (!c.isTrump()) {
+                isValid = true;
+            }
+        }
+        return c;
+    }
+
+    private int chooseCategory(){
+        Random random = new Random();
+        return random.nextInt(GameCategory.values().length);
     }
 
     public Player getDealer() {
@@ -240,7 +284,7 @@ public class Game {
             c = ai.getCard(cardNum);
             if (c.isTrump()) {
                 System.out.println("--- he played a trump card!");
-                System.out.print("--- he has selected: " + c.name() + "with a trump category of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
+                System.out.print("--- he has selected: " + c.name() + " with a trump category of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
                 --_nextPlayerId;
                 canPlay = true;
                 break;

@@ -112,7 +112,6 @@ public class Main {
         System.out.print("Enter the number of players to player the game (3-5): ");
         int numPlayers = getNumInRange(3,5);
         Game game = new Game(humanName,numPlayers,deck);
-        game.displayPickUpDeck();
 
         game.displayAllPlayers();
 
