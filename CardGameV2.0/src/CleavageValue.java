@@ -8,6 +8,7 @@ public enum CleavageValue {
     POOR_NONE,
     ONE_POOR,
     TWO_POOR,
+    ONE_GOOD,
     ONE_GOOD_ONE_POOR,
     TWO_GOOD,
     THREE_GOOD,

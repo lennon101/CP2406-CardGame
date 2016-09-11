@@ -52,13 +52,22 @@ public abstract class Card {
         } else {
             switch (gameCategory) {
                 case HARDNESS:
-                    return hardness().higher() + "";
+                    if (hardness().lower() == hardness().higher()){
+                        return hardness().higher() + "";
+                    }
+                    else {
+                        return hardness().lower() + "-" + hardness().higher() + "";
+                    }
                 case ECONOMIC_VALUE:
                     return economicValue().toString();
                 case CRUSTAL_ABUNDANCE:
                     return crustalAbundance().toString();
                 case SPECIFIC_GRAVITY:
-                    return gravity().higher() + "";
+                    if (gravity().lower() == gravity().higher()){
+                        return gravity().higher() + "";
+                    }else {
+                        return gravity().lower() + "-" + gravity().higher() + "";
+                    }
                 case CLEAVAGE:
                     return cleavage().toString();
             }

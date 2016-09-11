@@ -5,10 +5,10 @@
 public class Player {
     private boolean _dealer;
     private boolean _human;
-    BasicDeck _hand;
-    boolean trumpChooser;
-    boolean passed = false;
-    String _name;
+    private BasicDeck _hand;
+    private boolean trumpChooser;
+    private boolean passed = false;
+    private String _name;
 
     public Player(String name, boolean isHuman) {
         this._name = name;
@@ -76,5 +76,9 @@ public class Player {
 
     public void add(BasicDeck hand) {
         this._hand = hand;
+    }
+
+    public void passed(boolean b) {
+        passed = b;
     }
 }

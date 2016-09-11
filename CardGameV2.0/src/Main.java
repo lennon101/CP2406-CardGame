@@ -15,7 +15,7 @@ public class Main {
         while (!game.complete()){
             // TODO: 9/09/2016  insert logic to find out if player has no cards.
             playRound(game);
-            break;
+            //break;
         }
     }
 
@@ -26,17 +26,17 @@ public class Main {
             if (p.isHuman()){
                 humanRound(game);
             }else{
-                game.aIRound(p); // TODO: 9/09/2016 make AI round
                 System.out.println("AI round commences");
-                break;
+                game.aIRound(p);
+                //break; // TODO: 11/09/2016 debug why infinite loop occurs
             }
-
         }
     }
 
     private static void setUpRound(Game game) {
+        game.unPassAllPlayers();
         Player firstPlayer = game.getNextPlayer();
-        System.out.println(firstPlayer.getName() + " is the next player to the left of the dealer");
+        System.out.println("New round commencing\n" + firstPlayer.getName() + " is the next player");
         if (firstPlayer.isHuman()){
             System.out.println("Your hand is: ");
             firstPlayer.displayHand();
@@ -55,7 +55,7 @@ public class Main {
                     selectedCard.displayCategories();
 
                     System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
-                    GameCategory gc = getGameCategory();
+                    GameCategory gc = getGameCategoryFromUser();
                     game.playFirstCard(selectedCard,gc,firstPlayer);
                 }
             }
@@ -63,18 +63,23 @@ public class Main {
             System.out.println("And the top value of this category is: " + game.getTrumpValue());
         }else{
             //dumbAI: choose a card at random and set the game category at random
-            game.setUpRound();
+            game.setUpRound(firstPlayer);
         }
     }
 
     private static void humanRound(Game game) {
         Player human = game.getHuman();
+        System.out.println("Your turn to select and play a card.\n" +
+        "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
         System.out.println("Your hand is: ");
         human.displayHand();
+
+        // TODO: 11/09/2016 ask user if they want to play a card or pass
+
         boolean validCardChoice = false;
         while (!validCardChoice) {
             System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
-            int cardNum = getNumInRange(0, human.getNumCards());
+            int cardNum = getNumInRange(1, human.getNumCards());
             Card selectedCard = human.getCard(cardNum - 1);
 
             System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
@@ -83,7 +88,7 @@ public class Main {
                 System.out.println("You selected a trump card!");
                 validCardChoice = true;
                 game.playCard(human,selectedCard);
-                System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategory()) + " and won this round");
+                System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategoryFromUser()) + " and won this round");
                 System.out.println("you must now");
             }else if (!game.cardCanBePlayed(selectedCard)){
                 System.out.println("This cards trump value isn't higher enough\n" +
@@ -107,6 +112,7 @@ public class Main {
         System.out.print("Enter the number of players to player the game (3-5): ");
         int numPlayers = getNumInRange(3,5);
         Game game = new Game(humanName,numPlayers,deck);
+        game.displayPickUpDeck();
 
         game.displayAllPlayers();
 
@@ -126,7 +132,7 @@ public class Main {
         game.shuffleDeck();
         System.out.println(dealer.getName() + " is dealing the cards...");
         game.dealCardsToPlayers();
-        System.out.println("The pick-up deck now has " + game.getDeckSize() + " cards.");
+        System.out.println("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
         return game;
     }
     private static char getYesNoChoice() {
@@ -164,7 +170,7 @@ public class Main {
         return index;
     }
 
-    public static GameCategory getGameCategory() {
+    public static GameCategory getGameCategoryFromUser() {
         int i = getNumInRange(1,GameCategory.values().length);
         GameCategory gc = GameCategory.values()[i-1];
         return gc;

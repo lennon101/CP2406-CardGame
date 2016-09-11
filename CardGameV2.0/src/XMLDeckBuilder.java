@@ -16,7 +16,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     private Deck _deck;
     private boolean _hasBeenRead = false;
 
-    private String[] cleavageList = {"none","poor/none","1 poor","2 poor","1 good, 1 poor",
+    private String[] cleavageList = {"none","poor/none","1 poor","2 poor","1 good","1 good, 1 poor",
             "2 good","3 good","1 perfect","1 perfect, 1 good","1 perfect, 2 good",
             "2 perfect, 1 good","3 perfect","4 perfect","6 perfect"};
     private String[] _crustalAbundanceList = {"ultratrace", "trace", "low", "moderate", "high", "very high"};
