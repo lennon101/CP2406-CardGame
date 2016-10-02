@@ -10,75 +10,80 @@ public class Main {
 
         Game game = startNewGame();
 
-        //todo: game.getPlayer(1).setTrumpChooser(true);
-
         while (!game.complete()){
-            // TODO: 9/09/2016  insert logic to find out if player has no cards.
+            Player playerToRemove=null;
+            for (Player p:game.getPlayers()){
+                //System.out.println(p.getName() + "'s hand is: ");
+                //p.displayHand();
+                System.out.println();
+                if (p.getNumCards() <=0){
+                    System.out.println("\n\n=====" + p.getName() + " has won the game! =====\n\n");
+                    playerToRemove = p;
+                    game.unPassAllPlayers();
+                    break;
+                }
+            }
+            try {
+                game.removePlayer(playerToRemove);
+            }catch (Throwable t){}
+
+            game.displayAllPlayers();
             playRound(game);
-            //break;
         }
+
+        System.out.println("Game complete!");
+
     }
 
     private static void playRound(Game game) {
         setUpRound(game);
         while (!game.roundComplete()){
+            Player p = game.getNextAvailablePlayer();
+
             System.out.println("There are " + game.numPlayersLeft() + " players left in this round");
-            if (game.numPlayersLeft() == 2){
-                System.out.println("there are 2 players left");
-            }
-            Player p = game.getNextPlayer();
-            if (p.isPassed()){
-                game.incrementPlayer();
-            }else {
-                if (p.isHuman()){
-                    humanRound(game);
-                }else{
-                    System.out.println("AI round commences");
-                    game.aIRound(p);
-                }
+            if (p.isHuman()){
+                humanRound(game,p);
+            }else{
+                System.out.println("AI round commences");
+                game.aIRound(p);
             }
         }
+
+        Player roundWinner = game.getRoundWinner();
+        // TODO: 12/09/2016 design logic for what happens when the round is complete AND player has no cards and has therefore won the game
+        System.out.println(roundWinner.getName() + " has won this round!");
     }
 
     private static void setUpRound(Game game) {
+        Player firstPlayer = game.getNextAvailablePlayer();
+
         game.unPassAllPlayers();
-        Player firstPlayer = game.getNextPlayer();
         System.out.println("New round commencing\n" + firstPlayer.getName() + " is the next player");
         if (firstPlayer.isHuman()){
-            System.out.println("Your hand is: ");
-            firstPlayer.displayHand();
-            boolean validCardChoice = false;
-            while (!validCardChoice){
-                System.out.print("Choose a card to play by entering the card number (1-" + firstPlayer.getNumCards() + "): ");
-                int cardNum = getNumInRange(1,firstPlayer.getNumCards());
-                Card selectedCard = firstPlayer.getCard(cardNum-1);
-
-                System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
-
-                if (selectedCard.isTrump()){
-                    System.out.println("You must select a card other than a trump to start the round");
-                }else {
-                    validCardChoice = true;
-                    selectedCard.displayCategories();
-
-                    System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
-                    GameCategory gc = getGameCategoryFromUser();
-                    game.playFirstCard(selectedCard,gc,firstPlayer);
-                    game.incrementPlayer();
-                }
-            }
-            System.out.println("The trump category chosen for this round is: " + game.getCategory());
-            System.out.println("And the top value of this category is: " + game.getTrumpValue());
+            setUpHumanRound(firstPlayer,game);
         }else{
             //dumbAI: choose a card at random and set the game category at random
             game.setUpRound(firstPlayer);
         }
     }
 
-    private static void humanRound(Game game) {
-        Player human = game.getHuman();
+    private static void setUpHumanRound(Player p,Game g) {
+        System.out.println("Your hand is: ");
+        p.displayHand();
+        Card c = g.getValidFirstCard(p);
+
+        c.displayCategories();
+        System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
+        GameCategory gc = g.getGameCategoryFromUser();
+
+        g.playFirstCard(c,gc,p);
+        System.out.println("The trump category for this round is: " + g.getCategory());
+        System.out.println("And the top value of this category is: " + g.getTrumpValue());
+    }
+
+    private static void humanRound(Game game,Player human) {
         System.out.println("Your turn to select and play a card.\n" +
-        "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
+                "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
         System.out.println("Your hand is: ");
         human.displayHand();
 
@@ -102,28 +107,23 @@ public class Main {
                 if (selectedCard.isTrump()) {
                     System.out.println("You selected a trump card!");
                     validCardChoice = true;
-                    if (selectedCard != null){
-                        game.playCard(human, selectedCard);
-                    }else {
-                        System.out.println("card is null");
-                    }
-                    System.out.println(human.getName() + " placed the " + selectedCard.getTrumpValueForCategory(getGameCategoryFromUser()) + " and won this round");
-                    System.out.print("--- you selected: " + selectedCard.name() + " with a trump category of: " + selectedCard.trumpType() + "\n");
+                    game.playCard(human, selectedCard);
+
+                    System.out.println(human.getName() + " placed the " + selectedCard.name()+ " with a trump category of: " + selectedCard.trumpType() + " and won this round");
+                    game.playCard(human, selectedCard);
+                    game.playAfterTrump(human);
+
                 } else if (!game.cardCanBePlayed(selectedCard)) {
                     System.out.println("This cards trump value isn't higher enough\n" +
                             "Try again...");
                 } else {
-                    if (selectedCard != null){
-                        game.playCard(human, selectedCard);
-                    }else{
-                        System.out.println("card is null");
-                    }
-                    game.incrementPlayer();
+                    game.playCard(human, selectedCard);
                     validCardChoice = true;
                 }
             }
         }
     }
+
     private static char getPlayRoundChoice(Game g, Player player) {
         Scanner input = new Scanner(System.in);
         char answer = 'x';
@@ -162,7 +162,7 @@ public class Main {
 
     private static Game startNewGame() {
         Scanner input = new Scanner(System.in);
-        String xmlFile = System.getProperty("user.dir") + "/" + CARD_XML_FILE;
+        String xmlFile = System.getProperty("user.dir") + "/CardGameV2.0/" + CARD_XML_FILE;
         // TODO: 10/09/2016 remove the above line from this function and set up logic in deck to start new deck
 
         Deck deck = new XMLDeckBuilder(xmlFile).deck();
@@ -231,9 +231,5 @@ public class Main {
         return index;
     }
 
-    public static GameCategory getGameCategoryFromUser() {
-        int i = getNumInRange(1,GameCategory.values().length);
-        GameCategory gc = GameCategory.values()[i-1];
-        return gc;
-    }
+
 }

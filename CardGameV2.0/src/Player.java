@@ -6,7 +6,6 @@ public class Player {
     private boolean _dealer;
     private boolean _human;
     private BasicDeck _hand;
-    private boolean trumpChooser;
     private boolean passed = false;
     private String _name;
 
@@ -40,13 +39,6 @@ public class Player {
         }
         System.out.println();
     }
-
-
-    public boolean isTrumpChooser() {
-        return trumpChooser;
-    }
-
-    // TODO: 9/09/2016 let player decide if they are a trumpChooser
 
     public boolean isPassed() {
         return passed;

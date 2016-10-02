@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CP2406-CardGame.iml" filepath="$PROJECT_DIR$/.idea/CP2406-CardGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CardGameV1.0/CardGameV1.0.iml" filepath="$PROJECT_DIR$/CardGameV1.0/CardGameV1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CardGameV2.0/CardGameV2.0.iml" filepath="$PROJECT_DIR$/CardGameV2.0/CardGameV2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CardGameOLD/DaneLennonCardGame/DaneLennonCardGame.iml" filepath="$PROJECT_DIR$/CardGameOLD/DaneLennonCardGame/DaneLennonCardGame.iml" />
     </modules>
   </component>
 </project>
