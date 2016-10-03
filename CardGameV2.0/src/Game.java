@@ -33,14 +33,8 @@ public class Game {
     public void selectDealer(){
         Random random = new Random();
         int dealerId = random.nextInt(numPlayersLeft());
-        //todo: randomise this selection
         this._dealerId = dealerId;
         this._nextPlayerId = dealerId;
-    }
-
-    public void setHuman(){
-        humanPlayerId = 0;
-        // TODO: 9/09/2016 randomise this
     }
 
     public void shuffleDeck(){
