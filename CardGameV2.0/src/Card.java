@@ -78,17 +78,17 @@ public abstract class Card {
     @Override
     public String toString() {
         if (isTrump()){
-            return "TrumpCard{" +
-                    "title = " + name() + "; " +
-                    "subtitle = " + trumpType() + "}";
+            return "TrumpCard{\n" +
+                    "\t\ttitle = " + name() + "; \n" +
+                    "\t\tsubtitle = " + trumpType() + "}";
         }else {
-            return "PlayCard{" +
-                    "Title = " + name() + "; " +
-                    "Hardness = " + hardness() + "; " +
-                    "Specific Gravity = " + gravity() + "; " +
-                    "Clevage = " + cleavage() + "; " +
-                    "Crustal Abundance = " + crustalAbundance() + "; " +
-                    "Economic Value = " + economicValue() + "; " +
+            return "PlayCard{\n" +
+                    "\t\tTitle = " + name() + "; \n" +
+                    "\t\tHardness = " + hardness() + "; \n" +
+                    "\t\tSpecific Gravity = " + gravity() + "; \n" +
+                    "\t\tClevage = " + cleavage() + "; \n" +
+                    "\t\tCrustal Abundance = " + crustalAbundance() + "; \n" +
+                    "\t\tEconomic Value = " + economicValue() + "; " +
                     "}";
         }
     }

@@ -93,6 +93,7 @@ public class Main {
         char choice = getPlayRoundChoice(game,human);
         if (choice == 'p' || choice == 'P') {
             System.out.println("You have chosen to pass this round :( ");
+            System.out.println("Picking up a card from the pick-up deck...");
             game.pickUp(human);
             human.passed(true);
         }else if (choice == 'c' || choice == 'C') {
@@ -163,7 +164,6 @@ public class Main {
     private static Game startNewGame() {
         Scanner input = new Scanner(System.in);
         String xmlFile = System.getProperty("user.dir") + "/CardGameV2.0/" + CARD_XML_FILE;
-        // TODO: 10/09/2016 remove the above line from this function and set up logic in deck to start new deck
 
         Deck deck = new XMLDeckBuilder(xmlFile).deck();
         System.out.print("Welcome to Ultimate Super Trump\n" +
