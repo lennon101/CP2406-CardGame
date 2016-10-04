@@ -12,6 +12,7 @@ public class Main {
 
         while (!game.complete()){
             Player playerToRemove=null;
+
             for (Player p:game.getPlayers()){
                 //System.out.println(p.getName() + "'s hand is: ");
                 //p.displayHand();
@@ -50,7 +51,6 @@ public class Main {
         }
 
         Player roundWinner = game.getRoundWinner();
-        // TODO: 12/09/2016 design logic for what happens when the round is complete AND player has no cards and has therefore won the game
         System.out.println(roundWinner.getName() + " has won this round!");
     }
 

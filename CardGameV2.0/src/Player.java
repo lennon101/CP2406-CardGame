@@ -44,8 +44,6 @@ public class Player {
         return passed;
     }
 
-    // TODO: 9/09/2016 let player decide if they are passed or not
-
     public boolean isHuman() {
         return this._human;
     }

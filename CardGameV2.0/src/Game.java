@@ -125,10 +125,6 @@ public class Game {
     public boolean cardCanBePlayed(Card cardToBePlayed){
         //test if the last card played is trumped by the new card being played
         CardComparisonResult comparisonResult = _lastCardPlayed.compare(cardToBePlayed);
-        // TODO: 10/09/2016 this is breaking if a trump card has been previoiusly played
-        if (_lastCardPlayed.isTrump()){
-            //It's a trump
-        }
 
         boolean cardTrumpedForCategory = false;
         switch(_gameCategory){
@@ -241,6 +237,8 @@ public class Game {
         try {
             if (_lastCardPlayed.isTrump()){
                 return true;
+            }else if (getPreviousPlayer().getNumCards()<=0){
+                return true;
             }
         }catch (Throwable t){
             System.out.println(t);
@@ -265,8 +263,10 @@ public class Game {
     public void aIRound(Player ai) {
         Random random = new Random();
         System.out.println(ai.getName() + "'s turn...");
+        ai.displayHand();
         Card c = null;
         boolean canPlay = false;
+
         for (int i=0;i<ai.getNumCards();++i) {
             int cardNum = random.nextInt(ai.getNumCards());
             c = ai.getCard(cardNum);
