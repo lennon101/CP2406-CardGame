@@ -27,9 +27,9 @@ public abstract class Card {
         } else {
             boolean myHardnessTrumps = hardness().isHigherThan(other.hardness());
             boolean myGravityTrumps = gravity().isHigherThan(other.gravity());
-            boolean myCleavageTrumps = cleavage().compareTo(other.cleavage()) > 0;
-            boolean myEconomicTrumps = economicValue().compareTo(other.economicValue()) > 0;
-            boolean myCrustalTrumps = crustalAbundance().compareTo(other.crustalAbundance()) > 0;
+            boolean myCleavageTrumps = cleavage().compareTo(other.cleavage()) >= 0;
+            boolean myEconomicTrumps = economicValue().compareTo(other.economicValue()) >= 0;
+            boolean myCrustalTrumps = crustalAbundance().compareTo(other.crustalAbundance()) >= 0;
 
             return new CardComparisonResult(!myHardnessTrumps, !myGravityTrumps, !myCleavageTrumps, !myEconomicTrumps, !myCrustalTrumps);
         }

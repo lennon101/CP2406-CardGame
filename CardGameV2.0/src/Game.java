@@ -16,15 +16,17 @@ public class Game {
     private Vector<Player> _players;
     private GameCategory _gameCategory;
     private Card _lastCardPlayed;
+    private int _gameNumber;
 
     private Vector<String> aiNames = new Vector<String>(Arrays.asList("Turkish", "Tommy", "Mickey O'Niel", "Brick Top", "Vinny", "Sol", "Tyrone", "Cousin Avi", "Boris The Blade", "Bullet Tooth Tony", "Gorgeous George", "Doug The Head", "Franky Four-Fingers", "Mullet"));
     private int _nextPlayerId = 0;
 
-    public Game(String humanName, int numPlayers,Deck deck) {
+    public Game(String humanName, int numPlayers, Deck deck) {
         this._numPlayers = numPlayers;
         this._picUpDeck = deck;
         this._players = new Vector<Player>();
         this._humanName = humanName;
+        this._gameNumber = 1;
 
         addPlayers();
         selectDealer();
@@ -32,7 +34,7 @@ public class Game {
 
     public void selectDealer(){
         Random random = new Random();
-        int dealerId = random.nextInt(numPlayersLeft());
+        int dealerId = random.nextInt(numPlayersLeftInRound());
         this._dealerId = dealerId;
         this._nextPlayerId = dealerId;
     }
@@ -92,6 +94,10 @@ public class Game {
 
     public void removePlayer(Player p){
         _players.remove(p);
+    }
+
+    public Player getCurrentPlayer() {
+        return _players.get(_nextPlayerId);
     }
 
     public Player getNextAvailablePlayer() {
@@ -156,6 +162,10 @@ public class Game {
     public void playCard(Player p, Card c) {
         _lastCardPlayed = c;
         p.removeCardFromHand(c);
+
+        if (p.getNumCards() == 0){
+            System.out.println(p.getName() + " \n\nhas no more cards");
+        }
     }
 
     public String getTrumpValue() {
@@ -170,15 +180,17 @@ public class Game {
         _gameCategory = gc;
         _lastCardPlayed = c;
         p.removeCardFromHand(c);
+        if (p.getNumCards() == 0){
+            System.out.println(p.getName() + " has no more cards");
+        }
     }
 
     public void setUpRound(Player ai) {
 
         System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
         Card c = getValidFirstCard(ai);
-        int gcNum = chooseCategory();
-        System.out.println("--- he has selected card: " + c.name());
-        GameCategory gc = GameCategory.values()[gcNum];
+        System.out.println("--- he selected: \n\t" + c);
+        GameCategory gc = GameCategory.values()[getRandomCategory()];
         System.out.println("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
 
         playFirstCard(c, gc, ai);
@@ -217,7 +229,7 @@ public class Game {
         }
     }
 
-    private int chooseCategory(){
+    private int getRandomCategory(){
         Random random = new Random();
         return random.nextInt(GameCategory.values().length);
     }
@@ -229,41 +241,58 @@ public class Game {
     public void displayAllPlayers() {
         int i = 0;
         for (Player player:_players){
-            System.out.println("Player " + ++i + ": " + player.getName() + " is ready to play");
+            if (!player.isPassed()){
+                System.out.println("Player " + ++i + ": " + player.getName() + " is ready to play");
+            }
         }
+        for (Player player:_players){
+            if (player.isPassed()){
+                System.out.println("Player " + ++i + ": " + player.getName() + " has opted to pass");
+            }
+        }
+
+        System.out.println("");
     }
 
     public boolean roundComplete() {
-        try {
-            if (_lastCardPlayed.isTrump()){
-                return true;
-            }else if (getPreviousPlayer().getNumCards()<=0){
+
+        if (_lastCardPlayed != null) {
+            if (_lastCardPlayed.isTrump()) {
                 return true;
             }
-        }catch (Throwable t){
-            System.out.println(t);
+            else if (getCurrentPlayer().getNumCards()<=0) {
+                return true;
+            }
+            else if (complete()){
+                return true;
+            }
         }
-        return numPlayersLeft() <=1;
+
+        return numPlayersLeftInRound() <=1;
     }
 
-    public int numPlayersLeft(){
+    public int numPlayersLeftInRound(){
+        return getNumPlayersInGame() - getNumPlayersPassed();
+    }
+
+    public int getNumPlayersPassed(){
         int numPlayersPassed = 0;
         for (Player p:_players){
             if (p.isPassed()){
                 ++numPlayersPassed;
             }
         }
-        return getNumPlayers() - numPlayersPassed;
+        return numPlayersPassed;
     }
 
-    private int getNumPlayers() {
+    private int getNumPlayersInGame() {
         return _players.size();
     }
 
     public void aIRound(Player ai) {
         Random random = new Random();
         System.out.println(ai.getName() + "'s turn...");
-        ai.displayHand();
+        //ai.displayHand();
         Card c = null;
         boolean canPlay = false;
 
@@ -307,7 +336,7 @@ public class Game {
                         c.displayCategories();
                         gc = getGameCategoryFromUser();
                     }else {
-                        int gcNum = chooseCategory();
+                        int gcNum = getRandomCategory();
                         gc = GameCategory.values()[gcNum];
                     }
                     System.out.println("--- he chose: " + gc);
@@ -328,7 +357,8 @@ public class Game {
                     gc = GameCategory.ECONOMIC_VALUE;
                     break;
             }
-            System.out.println("--- has selected the " + c.name() + " card: " + c.getTrumpValueForCategory(gc) + "\n");
+            System.out.println("--- card played after trump card is: \n\t" +
+                    c + "\n with a trump value of " + c.getTrumpValueForCategory(gc) + "\n");
             playFirstCard(c,gc,p);
             unPassAllPlayers();
         }else{
@@ -395,7 +425,10 @@ public class Game {
         Player roundWinner = null;
         if (_lastCardPlayed.isTrump()){
             return getPreviousPlayer();
-        }else if (numPlayersLeft() == 1){
+        }else if (getCurrentPlayer().getNumCards() <= 0) {
+            return getCurrentPlayer();
+        }
+        else if (numPlayersLeftInRound() == 1){
             for (Player p:_players){
                 if (!p.isPassed()){
                     roundWinner = p;
@@ -409,5 +442,11 @@ public class Game {
         return null;
     }
 
+    public int get_gameNumber() {
+        return _gameNumber;
+    }
 
+    public void incrementGameNumber() {
+        this._gameNumber += 1;
+    }
 }

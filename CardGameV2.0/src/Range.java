@@ -1,4 +1,4 @@
-
+import java.util.DoubleSummaryStatistics;
 
 /**
  * Created by danelennon on 9/09/2016.
@@ -27,11 +27,14 @@ public class Range {
     }
 
     boolean isHigherThan(Range other) {
-        return this.higher() > other.higher();
+        return this.higher() >= other.higher();
     }
 
     @Override
     public String toString() {
+        if (lower == higher){
+            return Double.toString(higher);
+        }
         return lower + "-" + higher;
     }
 }

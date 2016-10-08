@@ -14,11 +14,9 @@ public class Main {
             Player playerToRemove=null;
 
             for (Player p:game.getPlayers()){
-                //System.out.println(p.getName() + "'s hand is: ");
-                //p.displayHand();
-                System.out.println();
                 if (p.getNumCards() <=0){
-                    System.out.println("\n\n=====" + p.getName() + " has won the game! =====\n\n");
+                    System.out.println("\n\n=====" + p.getName() + " has won game " + game.get_gameNumber() + "=====\n\n");
+                    game.incrementGameNumber();
                     playerToRemove = p;
                     game.unPassAllPlayers();
                     break;
@@ -28,11 +26,17 @@ public class Main {
                 game.removePlayer(playerToRemove);
             }catch (Throwable t){}
 
-            game.displayAllPlayers();
+            if (game.complete()){
+                break;
+            }
+
+            System.out.println("\n\n===== New round commencing =====\n\n");
             playRound(game);
         }
 
-        System.out.println("Game complete!");
+        System.out.println(game.getNextAvailablePlayer().getName() + " is the last player left.\n" +
+                "and is the loser of the game.\n\n" +
+                "Game complete!");
 
     }
 
@@ -41,7 +45,9 @@ public class Main {
         while (!game.roundComplete()){
             Player p = game.getNextAvailablePlayer();
 
-            System.out.println("There are " + game.numPlayersLeft() + " players left in this round");
+            System.out.println("There are " + game.numPlayersLeftInRound() + " players left in this round\n" +
+            "and " + game.getNumPlayersPassed() + " have passed.");
+            game.displayAllPlayers();
             if (p.isHuman()){
                 humanRound(game,p);
             }else{
@@ -58,7 +64,7 @@ public class Main {
         Player firstPlayer = game.getNextAvailablePlayer();
 
         game.unPassAllPlayers();
-        System.out.println("New round commencing\n" + firstPlayer.getName() + " is the next player");
+        System.out.println(firstPlayer.getName() + " is the next player\n");
         if (firstPlayer.isHuman()){
             setUpHumanRound(firstPlayer,game);
         }else{
@@ -83,6 +89,7 @@ public class Main {
 
     private static void humanRound(Game game,Player human) {
         System.out.println("Your turn to select and play a card.\n" +
+                "The card to beat is: " + "\n\t" + game.getLastCard() + "\n\n" +
                 "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
         System.out.println("Your hand is: ");
         human.displayHand();
