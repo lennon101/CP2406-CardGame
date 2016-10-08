@@ -76,4 +76,41 @@ public class Player {
     public void pickUpCard(Card c) {
         _hand.add(c);
     }
+
+    public boolean hasCombo(){
+        boolean foundGeophysicist = false;
+        boolean foundMagnesite = false;
+        for (Card c:_hand.cards()){
+            if (c.name().equals("Magnesite")){
+                foundGeophysicist = true;
+            }
+            if (c.name().equals("The Geophysicist")){
+                foundMagnesite = true;
+            }
+        }
+
+        return foundGeophysicist && foundMagnesite;
+    }
+
+    public void playCard(Game g, Card c) {
+        g.setLastCardPlayed(c);
+        removeCardFromHand(c);
+
+        if (getNumCards() == 0){
+            System.out.println(getName() + " \n\nhas no more cards");
+        }
+    }
+
+    public void playCombo(Game g) {
+        if (hasCombo()){
+            for (Card c:_hand.cards()){
+                if (c.name().equals("Magnesite")){
+                    playCard(g,c);
+                }
+                if (c.name().equals("The Geophysicist")){
+                    playCard(g,c);
+                }
+            }
+        }
+    }
 }

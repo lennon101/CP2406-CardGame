@@ -19,7 +19,7 @@ public class Game {
     private int _gameNumber;
 
     private Vector<String> aiNames = new Vector<String>(Arrays.asList("Turkish", "Tommy", "Mickey O'Niel", "Brick Top", "Vinny", "Sol", "Tyrone", "Cousin Avi", "Boris The Blade", "Bullet Tooth Tony", "Gorgeous George", "Doug The Head", "Franky Four-Fingers", "Mullet"));
-    private int _nextPlayerId = 0;
+    private int _playerId = 0;
 
     public Game(String humanName, int numPlayers, Deck deck) {
         this._numPlayers = numPlayers;
@@ -36,7 +36,7 @@ public class Game {
         Random random = new Random();
         int dealerId = random.nextInt(numPlayersLeftInRound());
         this._dealerId = dealerId;
-        this._nextPlayerId = dealerId;
+        this._playerId = dealerId;
     }
 
     public void shuffleDeck(){
@@ -97,30 +97,30 @@ public class Game {
     }
 
     public Player getCurrentPlayer() {
-        return _players.get(_nextPlayerId);
+        return _players.get(_playerId);
     }
 
     public Player getNextAvailablePlayer() {
         incrementPlayer();
-        while (_players.get(_nextPlayerId).isPassed()){
+        while (_players.get(_playerId).isPassed()){
             incrementPlayer();
         }
-        return _players.get(_nextPlayerId); //player to the left of last player
+        return _players.get(_playerId); //player to the left of last player
     }
 
     public Player getPreviousPlayer() {
-        if (_nextPlayerId - 1 < 0){
+        if (_playerId - 1 < 0){
             return _players.get(0);
         }else {
-            return _players.get(_nextPlayerId-1);
+            return _players.get(_playerId -1);
         }
     }
 
     private void incrementPlayer() {
-        if (_nextPlayerId +1>=_players.size()){
-            _nextPlayerId = 0;
+        if (_playerId +1>=_players.size()){
+            _playerId = 0;
         }else{
-            ++_nextPlayerId; //player to the left of last player
+            ++_playerId; //player to the left of last player
         }
     }
 
@@ -157,15 +157,6 @@ public class Game {
         }
         //if the last card was trumped, then the new card is allowed to be placed down
         return cardTrumpedForCategory;
-    }
-
-    public void playCard(Player p, Card c) {
-        _lastCardPlayed = c;
-        p.removeCardFromHand(c);
-
-        if (p.getNumCards() == 0){
-            System.out.println(p.getName() + " \n\nhas no more cards");
-        }
     }
 
     public String getTrumpValue() {
@@ -302,13 +293,13 @@ public class Game {
             if (c.isTrump()) {
                 System.out.println("--- he played a trump card!");
                 System.out.print("--- he has selected: " + c.name() + " with a trump category of: " + c.trumpType() + "\n");
-                playCard(ai, c);
+                ai.playCard(this, c);
                 playAfterTrump(ai);
                 canPlay = true;
                 break;
             } else if (cardCanBePlayed(c)) {
                 System.out.println("--- he has selected: " + c.name() + " with a " + _gameCategory + " value of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
-                playCard(ai, c);
+                ai.playCard(this, c);
                 canPlay = true;
                 break;
             }
@@ -448,5 +439,9 @@ public class Game {
 
     public void incrementGameNumber() {
         this._gameNumber += 1;
+    }
+
+    public void setLastCardPlayed(Card c) {
+        this._lastCardPlayed = c;
     }
 }

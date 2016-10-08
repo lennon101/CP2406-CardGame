@@ -106,6 +106,15 @@ public class Main {
         }else if (choice == 'c' || choice == 'C') {
             boolean validCardChoice = false;
             while (!validCardChoice) {
+                if (human.hasCombo()){
+                    System.out.println("You have the The Geophysicist and the Magnesite cards\n" +
+                    "Would you like to play them both and win this round?: (y/n)");
+
+                    if (getYesNoChoice() == 'y'){
+                        human.playCombo(game);
+                    }
+                }
+
                 System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
                 int cardNum = getNumInRange(1, human.getNumCards());
                 Card selectedCard = human.getCard(cardNum - 1);
@@ -115,17 +124,17 @@ public class Main {
                 if (selectedCard.isTrump()) {
                     System.out.println("You selected a trump card!");
                     validCardChoice = true;
-                    game.playCard(human, selectedCard);
+                    human.playCard(game, selectedCard);
 
                     System.out.println(human.getName() + " placed the " + selectedCard.name()+ " with a trump category of: " + selectedCard.trumpType() + " and won this round");
-                    game.playCard(human, selectedCard);
+                    human.playCard(game, selectedCard);
                     game.playAfterTrump(human);
 
                 } else if (!game.cardCanBePlayed(selectedCard)) {
                     System.out.println("This cards trump value isn't higher enough\n" +
                             "Try again...");
                 } else {
-                    game.playCard(human, selectedCard);
+                    human.playCard(game, selectedCard);
                     validCardChoice = true;
                 }
             }
