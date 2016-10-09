@@ -1,28 +1,28 @@
 /**
  * Created by danelennon on 9/09/2016.
  */
-public class GibbsiteCard extends Card {
-    public GibbsiteCard() {
+public class MagnesiteCard extends Card {
+    public MagnesiteCard() {
     }
 
     @Override
     public String name() {
-        return "Gibbsite";
+        return "Magnesite";
     }
 
     @Override
     public Range hardness() {
-        return new Range(2.5, 3.5);
+        return new Range(4);
     }
 
     @Override
     public Range gravity() {
-        return new Range(2.4);
+        return new Range(3);
     }
 
     @Override
     public CleavageValue cleavage() {
-        return CleavageValue.ONE_PERFECT;
+        return CleavageValue.THREE_PERFECT;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class GibbsiteCard extends Card {
 
     @Override
     public EconomicValue economicValue() {
-        return EconomicValue.HIGH;
+        return EconomicValue.MODERATE;
     }
 
     @Override

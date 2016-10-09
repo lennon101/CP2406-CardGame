@@ -7,7 +7,7 @@ import java.util.Vector;
  * Created by danelennon on 9/09/2016.
  */
 public class Game {
-    private Deck _picUpDeck = new BasicDeck();
+    private Deck _pickUpDeck = new BasicDeck();
     private int _numPlayers;
     private int NUM_CARDS_TO_START_WITH = 8;
     private int _dealerId=0;
@@ -20,16 +20,23 @@ public class Game {
 
     private Vector<String> aiNames = new Vector<String>(Arrays.asList("Turkish", "Tommy", "Mickey O'Niel", "Brick Top", "Vinny", "Sol", "Tyrone", "Cousin Avi", "Boris The Blade", "Bullet Tooth Tony", "Gorgeous George", "Doug The Head", "Franky Four-Fingers", "Mullet"));
     private int _playerId = 0;
+    private boolean _comboPlayed;
+    private boolean _withDraw;
 
     public Game(String humanName, int numPlayers, Deck deck) {
         this._numPlayers = numPlayers;
-        this._picUpDeck = deck;
+        this._pickUpDeck = deck;
         this._players = new Vector<Player>();
         this._humanName = humanName;
         this._gameNumber = 1;
+        this._withDraw = false;
 
         addPlayers();
         selectDealer();
+    }
+
+    public void withDraw(){
+        _withDraw = true;
     }
 
     public void selectDealer(){
@@ -40,7 +47,7 @@ public class Game {
     }
 
     public void shuffleDeck(){
-        this._picUpDeck.shuffle();
+        this._pickUpDeck.shuffle();
     }
 
     public void addPlayers(){
@@ -61,23 +68,28 @@ public class Game {
 
     //sets up a vector of Players and deals the right number of cards to them
     public void dealCardsToPlayers(){
-        if (_picUpDeck.getNumCards() < _numPlayers * NUM_CARDS_TO_START_WITH){
+        if (_pickUpDeck.getNumCards() < _numPlayers * NUM_CARDS_TO_START_WITH){
             System.out.println("Not enough cards in the deck for this number of players");
         }else{
             for (int i = 0; i< _numPlayers; ++i){
                 BasicDeck hand = new BasicDeck();
                 for (int j = 0; j < NUM_CARDS_TO_START_WITH; ++j) {
-                    Card c = _picUpDeck.getCard(j);
+                    Card c = _pickUpDeck.getCard(j);
                     hand.add(c);
-                    _picUpDeck.remove(c);
+                    _pickUpDeck.remove(c);
                 }
+                if (i==0){
+                    hand.add(new MagnesiteCard());
+                    hand.add(new TheGeophysicistCard());
+                }
+
                 _players.get(i).add(hand);
             }
         }
     }
 
     public Integer getDeckSize() {
-        return _picUpDeck.getNumCards();
+        return _pickUpDeck.getNumCards();
     }
 
     public boolean complete() {
@@ -89,6 +101,9 @@ public class Game {
     }
 
     private int numPlayersLeftInGame() {
+        if (_withDraw){
+            return 0;
+        }
         return _players.size();
     }
 
@@ -176,7 +191,7 @@ public class Game {
         }
     }
 
-    public void setUpRound(Player ai) {
+    public void setUpAiRound(Player ai) {
 
         System.out.println("--- " + ai.getName() + " placing first card down and choosing trump category");
         Card c = getValidFirstCard(ai);
@@ -252,6 +267,8 @@ public class Game {
                 return true;
             }
             else if (getCurrentPlayer().getNumCards()<=0) {
+                return true;
+            }else if (_comboPlayed){
                 return true;
             }
             else if (complete()){
@@ -357,6 +374,8 @@ public class Game {
         }
     }
 
+
+
     public GameCategory getGameCategoryFromUser() {
         int i = getNumInRange(1,GameCategory.values().length);
         GameCategory gc = GameCategory.values()[i-1];
@@ -391,18 +410,12 @@ public class Game {
         }
     }
 
-    public void displayPickUpDeck() {
-        for (Card c:_picUpDeck.cards()){
-            System.out.println(c);
-        }
-    }
-
     public void pickUp(Player player) {
-        if (_picUpDeck.cards().size() <= 0) {
+        if (_pickUpDeck.cards().size() <= 0) {
             System.out.println("No cards to pick up");
         }else{
-            Card c = _picUpDeck.getCard(0); //the top card
-            _picUpDeck.remove(c);
+            Card c = _pickUpDeck.getCard(0); //the top card
+            _pickUpDeck.remove(c);
             player.pickUpCard(c);
         }
 
@@ -443,5 +456,18 @@ public class Game {
 
     public void setLastCardPlayed(Card c) {
         this._lastCardPlayed = c;
+    }
+
+    public void newRound() {
+        unPassAllPlayers();
+        _comboPlayed = false;
+    }
+
+    public void comboWasPlayed() {
+        _comboPlayed = true;
+    }
+
+    public boolean withDrawing() {
+        return _withDraw;
     }
 }

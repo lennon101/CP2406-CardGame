@@ -15,7 +15,7 @@ public class Main {
 
             for (Player p:game.getPlayers()){
                 if (p.getNumCards() <=0){
-                    System.out.println("\n\n=====" + p.getName() + " has won game " + game.get_gameNumber() + "=====\n\n");
+                    System.out.println("\n\n=====" + p.getName() + " has won game " + game.get_gameNumber() + "=====");
                     game.incrementGameNumber();
                     playerToRemove = p;
                     game.unPassAllPlayers();
@@ -34,9 +34,12 @@ public class Main {
             playRound(game);
         }
 
-        System.out.println(game.getNextAvailablePlayer().getName() + " is the last player left.\n" +
-                "and is the loser of the game.\n\n" +
-                "Game complete!");
+        if (!game.withDrawing()){
+            System.out.println(game.getNextAvailablePlayer().getName() + " is the last player left.\n" +
+                    "and is the loser of the game.\n\n" +
+                    "Game complete!");
+        }
+
 
     }
 
@@ -51,25 +54,28 @@ public class Main {
             if (p.isHuman()){
                 humanRound(game,p);
             }else{
-                System.out.println("AI round commences");
+                System.out.println("AI round commencing...");
                 game.aIRound(p);
             }
         }
-
-        Player roundWinner = game.getRoundWinner();
-        System.out.println(roundWinner.getName() + " has won this round!");
+        if (game.withDrawing()){
+            System.out.println("Game closing");
+        }else{
+            Player roundWinner = game.getRoundWinner();
+            System.out.println(roundWinner.getName() + " has won this round!");
+        }
     }
 
     private static void setUpRound(Game game) {
         Player firstPlayer = game.getNextAvailablePlayer();
 
-        game.unPassAllPlayers();
+        game.newRound();
         System.out.println(firstPlayer.getName() + " is the next player\n");
         if (firstPlayer.isHuman()){
             setUpHumanRound(firstPlayer,game);
         }else{
             //dumbAI: choose a card at random and set the game category at random
-            game.setUpRound(firstPlayer);
+            game.setUpAiRound(firstPlayer);
         }
     }
 
@@ -88,15 +94,17 @@ public class Main {
     }
 
     private static void humanRound(Game game,Player human) {
-        System.out.println("Your turn to select and play a card.\n" +
-                "The card to beat is: " + "\n\t" + game.getLastCard() + "\n\n" +
-                "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
         System.out.println("Your hand is: ");
         human.displayHand();
 
-        System.out.println("Enter: " +
-                "\n(P) to Pass to pass (and pick up a card)" +
-                "\n(C) to Play a card");
+        System.out.println("Your turn to select and play a card.\n" +
+                "The card to beat is: " + "\n\t" + game.getLastCard() + "\n\n" +
+                "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
+
+        System.out.println("Enter: \n" +
+                "(P) to Pass to pass (and pick up a card) \n" +
+                "(C) to Play a card \n" +
+                "(W) to Withdraw from the game");
         char choice = getPlayRoundChoice(game,human);
         if (choice == 'p' || choice == 'P') {
             System.out.println("You have chosen to pass this round :( ");
@@ -105,16 +113,16 @@ public class Main {
             human.passed(true);
         }else if (choice == 'c' || choice == 'C') {
             boolean validCardChoice = false;
-            while (!validCardChoice) {
-                if (human.hasCombo()){
-                    System.out.println("You have the The Geophysicist and the Magnesite cards\n" +
-                    "Would you like to play them both and win this round?: (y/n)");
 
-                    if (getYesNoChoice() == 'y'){
-                        human.playCombo(game);
-                    }
+            if (human.hasCombo()) {
+                System.out.println("You have the The Geophysicist and the Magnesite cards\n" +
+                        "Would you like to play them both and win this round?: (y/n)");
+                if (getYesNoChoice() == 'y') {
+                    human.playCombo(game);
+                    validCardChoice = true;
                 }
-
+            }
+            while (!validCardChoice) {
                 System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
                 int cardNum = getNumInRange(1, human.getNumCards());
                 Card selectedCard = human.getCard(cardNum - 1);
@@ -126,7 +134,7 @@ public class Main {
                     validCardChoice = true;
                     human.playCard(game, selectedCard);
 
-                    System.out.println(human.getName() + " placed the " + selectedCard.name()+ " with a trump category of: " + selectedCard.trumpType() + " and won this round");
+                    System.out.println(human.getName() + " placed the " + selectedCard.name() + " with a trump category of: " + selectedCard.trumpType() + " and won this round");
                     human.playCard(game, selectedCard);
                     game.playAfterTrump(human);
 
@@ -138,6 +146,8 @@ public class Main {
                     validCardChoice = true;
                 }
             }
+        } else if (choice == 'w' || choice == 'W') {
+            game.withDraw();
         }
     }
 
@@ -155,10 +165,14 @@ public class Main {
 
         if (!canPlay){
             while (!valid){
-                System.out.println("You don't have any cards higher enough to play, you must opt to pass");
+                System.out.println("You don't have any cards higher enough to play;\n" +
+                        "You must opt to pass your turn or withdraw from the game.");
                 answer = input.next().charAt(0);
-                if (answer != 'p' && answer != 'P'){
-                    System.out.println("invalid choice, enter \"p\" or \"P\"");
+                if (answer != 'p' && answer != 'P'
+                        && answer != 'w' && answer != 'W'){
+                    System.out.println("invalid choice, enter:\n " +
+                            "\t\"p\" or \"P\"; or\n" +
+                            "\t\"w\" or \"W\"");
                 }else {
                     valid = true;
                 }
@@ -166,8 +180,13 @@ public class Main {
         }else {
             while (!valid) {
                 answer = input.next().charAt(0);
-                if (answer != 'p' && answer != 'c') {
-                    System.out.println("invalid choice, enter \"p\" or \"c\"");
+                if (answer != 'p' && answer != 'P'
+                        && answer != 'c' && answer != 'C'
+                        && answer != 'w' && answer != 'W') {
+                    System.out.println("invalid choice, enter:\n " +
+                            "\t\"p\" or \"P\"; or\n" +
+                            "\t\"c\" or \"C\"; or\n" +
+                            "\t\"w\" or \"W\"");
                 } else {
                     valid = true;
                 }

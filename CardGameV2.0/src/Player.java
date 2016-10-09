@@ -103,14 +103,21 @@ public class Player {
 
     public void playCombo(Game g) {
         if (hasCombo()){
+            g.comboWasPlayed();
+
+            //find each card to be played
+            Card magnesite = null;
+            Card geophysicist = null;
             for (Card c:_hand.cards()){
                 if (c.name().equals("Magnesite")){
-                    playCard(g,c);
+                    magnesite = c;
                 }
                 if (c.name().equals("The Geophysicist")){
-                    playCard(g,c);
+                    geophysicist = c;
                 }
             }
+            playCard(g,magnesite);
+            playCard(g,geophysicist);
         }
     }
 }

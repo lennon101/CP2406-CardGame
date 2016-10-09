@@ -28,10 +28,12 @@ public class TestPlayer {
 
         System.out.println("Give the player a deck of cards");
         BasicDeck hand = new BasicDeck();
-        for (int j = 0; j < 2; ++j) {
+        for (int j = 0; j < 5; ++j) {
             Card c = deck.getCard(j);
             hand.add(c);
         }
+        hand.add(new TheGeophysicistCard());
+        hand.add(new MagnesiteCard());
         player.add(hand);
 
         int numCards = player.getNumCards();
@@ -42,6 +44,8 @@ public class TestPlayer {
 
         System.out.print("A random card drawn from the players hand is: ");
         System.out.println(player.getCard(numCards-1));
+
+        System.out.println("does player have the special combo? " + player.hasCombo());
 
 
     }
