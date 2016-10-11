@@ -78,10 +78,6 @@ public class Game {
                     hand.add(c);
                     _pickUpDeck.remove(c);
                 }
-                if (i==0){
-                    hand.add(new MagnesiteCard());
-                    hand.add(new TheGeophysicistCard());
-                }
 
                 _players.get(i).add(hand);
             }
