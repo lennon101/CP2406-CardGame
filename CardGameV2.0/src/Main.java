@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 /**
@@ -5,12 +9,42 @@ import java.util.Scanner;
  */
 public class Main {
     private static final String CARD_XML_FILE = "MstCards_151021.plist";
+    private static int numPlayers;
+    private static String humanName;
+    private static Game game;
 
     public static void main(String[] args) {
 
-        Game game = startNewGame();
+        //create a gameView
+        GameView gameView = new GameView();
 
-        while (!game.complete()){
+        gameView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameView.setSize(1000,600);
+        gameView.setPreferredSize(new Dimension(1000,600));
+        gameView.setVisible(true);
+
+        gameView.log("Welcome to Ultimate Super Trump\n" +
+                "Please enter your name and the number of players:");
+
+        gameView.newGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (gameView.getNumPlayers() != 0 && numberIsValidForRange(gameView.getNumPlayers(),3,5)){
+                    humanName = gameView.getHumanName();
+                    numPlayers = gameView.getNumPlayers();
+
+                    //setup game controller
+                    game = startNewGame(gameView);
+                    setUpRound(game);
+
+                }else {
+                    JOptionPane.showMessageDialog(gameView, "must enter a valid number between 3-5");
+                }
+            }
+        });
+
+
+        /*while (!game.complete()){
             Player playerToRemove=null;
 
             for (Player p:game.getPlayers()){
@@ -38,7 +72,7 @@ public class Main {
             System.out.println(game.getNextAvailablePlayer().getName() + " is the last player left.\n" +
                     "and is the loser of the game.\n\n" +
                     "Game complete!");
-        }
+        }*/
 
 
     }
@@ -74,13 +108,14 @@ public class Main {
         if (firstPlayer.isHuman()){
             setUpHumanRound(firstPlayer,game);
         }else{
-            //dumbAI: choose a card at random and set the game category at random
+            //dumbAI: choose a cardPanel at random and set the game category at random
             game.setUpAiRound(firstPlayer);
         }
     }
 
     private static void setUpHumanRound(Player p,Game g) {
         System.out.println("Your hand is: ");
+
         p.displayHand();
         Card c = g.getValidFirstCard(p);
 
@@ -97,18 +132,18 @@ public class Main {
         System.out.println("Your hand is: ");
         human.displayHand();
 
-        System.out.println("Your turn to select and play a card.\n" +
-                "The card to beat is: " + "\n\t" + game.getLastCard() + "\n\n" +
+        System.out.println("Your turn to select and play a cardPanel.\n" +
+                "The cardPanel to beat is: " + "\n\t" + game.getLastCard() + "\n\n" +
                 "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
 
         System.out.println("Enter: \n" +
-                "(P) to Pass to pass (and pick up a card) \n" +
-                "(C) to Play a card \n" +
+                "(P) to Pass to pass (and pick up a cardPanel) \n" +
+                "(C) to Play a cardPanel \n" +
                 "(W) to Withdraw from the game");
         char choice = getPlayRoundChoice(game,human);
         if (choice == 'p' || choice == 'P') {
             System.out.println("You have chosen to pass this round :( ");
-            System.out.println("Picking up a card from the pick-up deck...");
+            System.out.println("Picking up a cardPanel from the pick-up deck...");
             game.pickUp(human);
             human.passed(true);
         }else if (choice == 'c' || choice == 'C') {
@@ -123,14 +158,14 @@ public class Main {
                 }
             }
             while (!validCardChoice) {
-                System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
+                System.out.print("Choose a cardPanel to play by entering the cardPanel number (1-" + human.getNumCards() + "): ");
                 int cardNum = getNumInRange(1, human.getNumCards());
                 Card selectedCard = human.getCard(cardNum - 1);
 
-                System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
+                System.out.println("You have selected cardPanel " + (cardNum) + ": " + selectedCard.name() + "\n");
 
                 if (selectedCard.isTrump()) {
-                    System.out.println("You selected a trump card!");
+                    System.out.println("You selected a trump cardPanel!");
                     validCardChoice = true;
                     human.playCard(game, selectedCard);
 
@@ -196,27 +231,21 @@ public class Main {
     }
 
 
-    private static Game startNewGame() {
-        Scanner input = new Scanner(System.in);
-        String xmlFile = System.getProperty("user.dir") + "/CardGameV2.0/" + CARD_XML_FILE;
-
+    private static Game startNewGame(GameView gv) {
+        String xmlFile = System.getProperty("user.dir")  + "/" + CARD_XML_FILE;
         Deck deck = new XMLDeckBuilder(xmlFile).deck();
-        System.out.print("Welcome to Ultimate Super Trump\n" +
-                "Please enter you name:");
-        String humanName = input.next();
-        System.out.print("Enter the number of players to player the game (3-5): ");
-        int numPlayers = getNumInRange(3,5);
+
         Game game = new Game(humanName,numPlayers,deck);
 
-        game.displayAllPlayers();
+        game.displayAllPlayers(gv);
 
-        System.out.println("\nThere are " + game.getDeckSize() + " cards in the pick-up deck.");
+        gv.log("\nThere are " + game.getDeckSize() + " cards in the pick-up deck.");
 
         Player dealer = game.getDealer();
-        System.out.println(dealer.getName() + " is the Dealer");
+        gv.log(dealer.getName() + " is the Dealer");
 
         if (dealer.isHuman()) {
-            System.out.println("would you like to shuffle and deal the cards now? (y/n): ");
+            gv.log("would you like to shuffle and deal the cards now? (y/n): ");
             char yes_no = getYesNoChoice();
             while (yes_no != 'y'){
                 System.out.println("Your friends are getting board, shuffle and deal the cards now? (y/n): ");
@@ -224,11 +253,21 @@ public class Main {
             }
         }
         game.shuffleDeck();
-        System.out.println(dealer.getName() + " is dealing the cards...");
+        gv.log(dealer.getName() + " is dealing the cards...");
         game.dealCardsToPlayers();
-        System.out.println("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
+        gv.log("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
         return game;
     }
+
+    private static boolean numberIsValidForRange(int i, int lowerInclusive, int upperInclusive) {
+        if (i >= lowerInclusive && i <= upperInclusive){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
     private static char getYesNoChoice() {
         Scanner input = new Scanner(System.in);
         boolean valid = false;

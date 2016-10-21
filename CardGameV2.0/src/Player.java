@@ -105,7 +105,7 @@ public class Player {
         if (hasCombo()){
             g.comboWasPlayed();
 
-            //find each card to be played
+            //find each cardPanel to be played
             Card magnesite = null;
             Card geophysicist = null;
             for (Card c:_hand.cards()){

@@ -19,9 +19,9 @@ public class TestDeck {
         int numCards = deck.getNumCards();
         System.out.println(numCards);
 
-        System.out.println("Display a random card from the deck");
+        System.out.println("Display a random cardPanel from the deck");
         int randNum =random.nextInt(numCards);
-        System.out.println("Displaying card number " + Integer.toString(randNum));
+        System.out.println("Displaying cardPanel number " + Integer.toString(randNum));
         System.out.println(deck.getCard(randNum));
 
         System.out.println("Test deck shuffle");

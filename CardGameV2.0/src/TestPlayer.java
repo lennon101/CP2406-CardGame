@@ -42,7 +42,7 @@ public class TestPlayer {
         System.out.println("Display the players hand:");
         player.displayHand();
 
-        System.out.print("A random card drawn from the players hand is: ");
+        System.out.print("A random cardPanel drawn from the players hand is: ");
         System.out.println(player.getCard(numCards-1));
 
         System.out.println("does player have the special combo? " + player.hasCombo());

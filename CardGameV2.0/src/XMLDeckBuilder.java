@@ -101,7 +101,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     }
 
     private NormalCard extractNormalCard(NodeList list) {
-        //function is passed a list that contains all the card data
+        //function is passed a list that contains all the cardPanel data
         String title = "";
         String chemistry="";
         String classification="";
@@ -216,7 +216,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     }
 
     public TrumpCard extractTrumpCard(NodeList list){
-        //function is passed a list that contains all the card data
+        //function is passed a list that contains all the cardPanel data
         String title = "";
         TrumpType trumpType = TrumpType.NONE;
 

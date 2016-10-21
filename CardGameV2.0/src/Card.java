@@ -22,7 +22,7 @@ public abstract class Card {
 
     public CardComparisonResult compare(Card other){
         if (other.isTrump()) {
-            //We have a trump card
+            //We have a trump cardPanel
             return new CardComparisonResult(true, true, true, true, true);
         } else {
             boolean myHardnessTrumps = hardness().isHigherThan(other.hardness());
