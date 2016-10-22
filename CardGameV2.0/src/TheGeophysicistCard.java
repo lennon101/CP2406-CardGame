@@ -4,6 +4,6 @@
 public class TheGeophysicistCard extends TrumpCard {
 
     public TheGeophysicistCard() {
-        super(TrumpType.SPECIFIC_GRAVITY, "The Geophysicist");
+        super(TrumpType.SPECIFIC_GRAVITY, "The Geophysicist","");
     }
 }

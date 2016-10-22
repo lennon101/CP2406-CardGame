@@ -35,7 +35,7 @@ public class Main {
 
                     //setup game controller
                     game = startNewGame(gameView);
-                    setUpRound(game);
+                    setUpRound(game,gameView);
 
                 }else {
                     JOptionPane.showMessageDialog(gameView, "must enter a valid number between 3-5");
@@ -77,8 +77,8 @@ public class Main {
 
     }
 
-    private static void playRound(Game game) {
-        setUpRound(game);
+    private static void playRound(Game game,GameView gv) {
+        setUpRound(game,gv);
         while (!game.roundComplete()){
             Player p = game.getNextAvailablePlayer();
 
@@ -86,10 +86,10 @@ public class Main {
             "and " + game.getNumPlayersPassed() + " have passed.");
             game.displayAllPlayers();
             if (p.isHuman()){
-                humanRound(game,p);
+                humanRound(game,p,gv);
             }else{
                 System.out.println("AI round commencing...");
-                game.aIRound(p);
+                game.aIRound(p,gv);
             }
         }
         if (game.withDrawing()){
@@ -100,20 +100,20 @@ public class Main {
         }
     }
 
-    private static void setUpRound(Game game) {
+    private static void setUpRound(Game game,GameView gv) {
         Player firstPlayer = game.getNextAvailablePlayer();
 
         game.newRound();
         System.out.println(firstPlayer.getName() + " is the next player\n");
         if (firstPlayer.isHuman()){
-            setUpHumanRound(firstPlayer,game);
+            setUpHumanRound(firstPlayer,game,gv);
         }else{
             //dumbAI: choose a cardPanel at random and set the game category at random
-            game.setUpAiRound(firstPlayer);
+            game.setUpAiRound(firstPlayer,gv);
         }
     }
 
-    private static void setUpHumanRound(Player p,Game g) {
+    private static void setUpHumanRound(Player p,Game g,GameView gv) {
         System.out.println("Your hand is: ");
 
         p.displayHand();
@@ -123,12 +123,12 @@ public class Main {
         System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
         GameCategory gc = g.getGameCategoryFromUser();
 
-        g.playFirstCard(c,gc,p);
+        p.playFirstCard(g,c,gc,gv);
         System.out.println("The trump category for this round is: " + g.getCategory());
         System.out.println("And the top value of this category is: " + g.getTrumpValue());
     }
 
-    private static void humanRound(Game game,Player human) {
+    private static void humanRound(Game game,Player human, GameView gv) {
         System.out.println("Your hand is: ");
         human.displayHand();
 
@@ -153,12 +153,12 @@ public class Main {
                 System.out.println("You have the The Geophysicist and the Magnesite cards\n" +
                         "Would you like to play them both and win this round?: (y/n)");
                 if (getYesNoChoice() == 'y') {
-                    human.playCombo(game);
+                    human.playCombo(game,gv);
                     validCardChoice = true;
                 }
             }
             while (!validCardChoice) {
-                System.out.print("Choose a cardPanel to play by entering the cardPanel number (1-" + human.getNumCards() + "): ");
+                System.out.print("Choose a card to play by entering the card number (1-" + human.getNumCards() + "): ");
                 int cardNum = getNumInRange(1, human.getNumCards());
                 Card selectedCard = human.getCard(cardNum - 1);
 
@@ -167,17 +167,17 @@ public class Main {
                 if (selectedCard.isTrump()) {
                     System.out.println("You selected a trump cardPanel!");
                     validCardChoice = true;
-                    human.playCard(game, selectedCard);
+                    human.playCard(game, selectedCard, gv);
 
                     System.out.println(human.getName() + " placed the " + selectedCard.name() + " with a trump category of: " + selectedCard.trumpType() + " and won this round");
-                    human.playCard(game, selectedCard);
-                    game.playAfterTrump(human);
+                    human.playCard(game, selectedCard, gv);
+                    game.playAfterTrump(human,gv);
 
                 } else if (!game.cardCanBePlayed(selectedCard)) {
                     System.out.println("This cards trump value isn't higher enough\n" +
                             "Try again...");
                 } else {
-                    human.playCard(game, selectedCard);
+                    human.playCard(game, selectedCard, gv);
                     validCardChoice = true;
                 }
             }
@@ -246,10 +246,8 @@ public class Main {
 
         if (dealer.isHuman()) {
             gv.log("would you like to shuffle and deal the cards now? (y/n): ");
-            char yes_no = getYesNoChoice();
-            while (yes_no != 'y'){
-                System.out.println("Your friends are getting board, shuffle and deal the cards now? (y/n): ");
-                yes_no = getYesNoChoice();
+            while (!forcedYes()){
+                gv.log("Your friends are getting board, shuffle and deal the cards now? (y/n): ");
             }
         }
         game.shuffleDeck();
@@ -257,6 +255,15 @@ public class Main {
         game.dealCardsToPlayers();
         gv.log("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
         return game;
+    }
+
+    private static boolean forcedYes() {
+        if (JOptionPane.showConfirmDialog(null, "deal now?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private static boolean numberIsValidForRange(int i, int lowerInclusive, int upperInclusive) {
@@ -269,11 +276,9 @@ public class Main {
 
 
     private static char getYesNoChoice() {
-        Scanner input = new Scanner(System.in);
         boolean valid = false;
         char answer = 'x';
         while (!valid){
-            answer = input.next().charAt(0);
             if (answer != 'n' && answer != 'y'){
                 System.out.println("invalid choice, enter \"y\" or \"n\"");
             }else {
@@ -282,6 +287,7 @@ public class Main {
         }
         return answer;
     }
+
 
     public static int getNumInRange(int start, int stop) {
         Scanner input = new Scanner(System.in);

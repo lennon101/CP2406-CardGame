@@ -102,6 +102,7 @@ public class XMLDeckBuilder implements DeckBuilder {
 
     private NormalCard extractNormalCard(NodeList list) {
         //function is passed a list that contains all the cardPanel data
+        String filename = "";
         String title = "";
         String chemistry="";
         String classification="";
@@ -116,7 +117,9 @@ public class XMLDeckBuilder implements DeckBuilder {
         for (int i = 1; i < list.getLength(); i++) {
             Node xmlNode = list.item(i);
 
-            if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
+            if (xmlNode.getPreviousSibling().getTextContent().equals("fileName") && xmlNode.getNodeName().equals("string")) {
+                filename = xmlNode.getTextContent();
+            } else if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
                 title = xmlNode.getTextContent();
             } else if (xmlNode.getPreviousSibling().getTextContent().equals("chemistry") && xmlNode.getNodeName().equals("string")) {
                 chemistry = xmlNode.getTextContent();
@@ -154,7 +157,7 @@ public class XMLDeckBuilder implements DeckBuilder {
                 //System.out.println("no PlayCard attributes found in xml node");
             }
         }
-        return new NormalCard(TrumpType.NONE,title,hardness,specificGravity,cleavage,crustalAbundance,economicValue);
+        return new NormalCard(TrumpType.NONE,title,hardness,specificGravity,cleavage,crustalAbundance,economicValue,filename);
     }
 
     private CleavageValue getCleavageType(String cleavageString) {
@@ -217,20 +220,23 @@ public class XMLDeckBuilder implements DeckBuilder {
 
     public TrumpCard extractTrumpCard(NodeList list){
         //function is passed a list that contains all the cardPanel data
+        String filename = "";
         String title = "";
         TrumpType trumpType = TrumpType.NONE;
 
         for (int i = 1; i < list.getLength(); i++) {
             Node xmlNode = list.item(i);
 
-            if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
+            if (xmlNode.getPreviousSibling().getTextContent().equals("fileName") && xmlNode.getNodeName().equals("string")) {
+                filename = xmlNode.getTextContent();
+            } else if (xmlNode.getPreviousSibling().getTextContent().equals("title") && xmlNode.getNodeName().equals("string")) {
                 title = xmlNode.getTextContent();
             } else if (xmlNode.getPreviousSibling().getTextContent().equals("subtitle") && xmlNode.getNodeName().equals("string")) {
                 String subTitle = xmlNode.getTextContent();
                 trumpType = getTrumpType(subTitle);
             }
         }
-        return new TrumpCard(trumpType,title);
+        return new TrumpCard(trumpType,title,filename);
     }
 
     private TrumpType getTrumpType(String subTitle) {

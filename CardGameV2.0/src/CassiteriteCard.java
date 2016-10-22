@@ -7,6 +7,11 @@ public class CassiteriteCard extends Card {
     }
 
     @Override
+    String filename() {
+        return "";
+    }
+
+    @Override
     public String name() {
         return "Cassiterite";
     }

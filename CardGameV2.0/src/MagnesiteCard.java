@@ -6,6 +6,11 @@ public class MagnesiteCard extends Card {
     }
 
     @Override
+    String filename() {
+        return "";
+    }
+
+    @Override
     public String name() {
         return "Magnesite";
     }

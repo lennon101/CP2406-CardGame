@@ -3,16 +3,23 @@
  */
 public class TrumpCard extends Card{
     private TrumpType _trumpType;
-    private String _name;
+    private String _title;
+    private String _filename;
 
-    public TrumpCard(TrumpType trumpType, String name) {
+    public TrumpCard(TrumpType trumpType, String title, String filename) {
         this._trumpType = trumpType;
-        this._name = name;
+        this._title = title;
+        this._filename = filename;
+    }
+
+    @Override
+    String filename() {
+        return _filename;
     }
 
     @Override
     String name() {
-        return _name;
+        return _title;
     }
 
     @Override

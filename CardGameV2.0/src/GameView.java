@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  */
 public class GameView extends JFrame {
 
-    private JLabel lastCardPlayedLabel = new JLabel("last card played label");
+    private JLabel lastCardPlayedLabel = new JLabel();
     private JButton pickUpDeckButton = new JButton("the pick up deck");
     private JTextArea logTextArea = new JTextArea();
     private JTextArea inputUserName = new JTextArea("player1");
@@ -54,18 +54,13 @@ public class GameView extends JFrame {
         c.weightx = 1;
         upperPanel.add(logPanel,c);
 
-        JScrollPane logScrollPane = new JScrollPane(logTextArea);
-        logPanel.add(logScrollPane,BorderLayout.CENTER);
-
-
-        // TODO: 21/10/16 remove test card image
-        //ImageIcon image = new ImageIcon("images/Slide01.jpg");
-        //image = getScaledImage(image,120,120);
-
         logTextArea.setEditable(false);
+        logTextArea.setLineWrap(true);
         logTextArea.setWrapStyleWord(true);
-        logTextArea.setPreferredSize(new Dimension(300,250));
-        //last.setIcon(image);
+
+        JScrollPane logScrollPane = new JScrollPane(logTextArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        logScrollPane.setPreferredSize(new Dimension(300,250));
+        logPanel.add(logScrollPane,BorderLayout.CENTER);
 
         lastCardPlayedPanel.add(lastCardPlayedLabel);
         pickUpDeckPanel.add(pickUpDeckButton);
@@ -90,6 +85,11 @@ public class GameView extends JFrame {
 
         cardPanel.add(new JButton("Button 1"));
 
+
+        ImageIcon splashImage = new ImageIcon("images/Slide65.jpg");
+        splashImage = getScaledImage(splashImage,250,300);
+        lastCardPlayedLabel.setIcon(splashImage);
+
         pickUpDeckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,7 +97,6 @@ public class GameView extends JFrame {
                 pack();
             }
         });
-
     }
 
     // TODO: 21/10/16 move this to gameView controller perhaps?
@@ -111,6 +110,7 @@ public class GameView extends JFrame {
 
     public void log(String logText){
         logTextArea.append(logText + "\n");
+        logTextArea.setCaretPosition(logTextArea.getDocument().getLength());
     }
 
     public int getNumPlayers(){
@@ -125,4 +125,21 @@ public class GameView extends JFrame {
     public String getHumanName() {
         return inputUserName.getText();
     }
+
+    public void displayCards(Game game){
+        //display the lastcard played
+        if (game.getLastCard() != null){
+            ImageIcon lastCardPlayedImage = new ImageIcon("images/" + game.getLastCard().filename());
+
+            lastCardPlayedImage = getScaledImage(lastCardPlayedImage,lastCardPlayedLabel.getWidth(),lastCardPlayedLabel.getHeight());
+            lastCardPlayedLabel.setIcon(lastCardPlayedImage);
+        }
+
+        //display the players hand
+        Player p = game.getHumanPlayer();
+
+    }
+
+
+
 }

@@ -2,6 +2,7 @@
  * Created by danelennon on 9/09/2016.
  */
 public class NormalCard extends Card {
+    private String _filname;
     private TrumpType _trumpType;
     private String _name;
     private Range _hardness;
@@ -10,7 +11,7 @@ public class NormalCard extends Card {
     private CrustalAbundanceValue _crustal_abundance;
     private EconomicValue _economic_value;
 
-    public NormalCard(TrumpType _trumpType, String _name, Range _hardness, Range _specific_gravity, CleavageValue _cleavage, CrustalAbundanceValue _crustal_abundance, EconomicValue _economic_value) {
+    public NormalCard(TrumpType _trumpType, String _name, Range _hardness, Range _specific_gravity, CleavageValue _cleavage, CrustalAbundanceValue _crustal_abundance, EconomicValue _economic_value, String filename) {
         this._trumpType = _trumpType;
         this._name = _name;
         this._hardness = _hardness;
@@ -18,6 +19,12 @@ public class NormalCard extends Card {
         this._cleavage = _cleavage;
         this._crustal_abundance = _crustal_abundance;
         this._economic_value = _economic_value;
+        this._filname = filename;
+    }
+
+    @Override
+    String filename() {
+        return _filname;
     }
 
     @Override

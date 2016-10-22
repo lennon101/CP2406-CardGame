@@ -2,6 +2,9 @@
  * Created by danelennon on 9/09/2016.
  */
 public abstract class Card {
+
+    abstract String filename();
+
     abstract String name();
 
     abstract Range hardness();
@@ -79,16 +82,16 @@ public abstract class Card {
     public String toString() {
         if (isTrump()){
             return "TrumpCard{\n" +
-                    "\t\ttitle = " + name() + "; \n" +
-                    "\t\tsubtitle = " + trumpType() + "}";
+                    "\ttitle = " + name() + "; \n" +
+                    "\tsubtitle = " + trumpType() + "}";
         }else {
             return "PlayCard{\n" +
-                    "\t\tTitle = " + name() + "; \n" +
-                    "\t\tHardness = " + hardness() + "; \n" +
-                    "\t\tSpecific Gravity = " + gravity() + "; \n" +
-                    "\t\tClevage = " + cleavage() + "; \n" +
-                    "\t\tCrustal Abundance = " + crustalAbundance() + "; \n" +
-                    "\t\tEconomic Value = " + economicValue() + "; " +
+                    "\tTitle = " + name() + "; \n" +
+                    "\tHardness = " + hardness() + "; \n" +
+                    "\tSpecific Gravity = " + gravity() + "; \n" +
+                    "\tClevage = " + cleavage() + "; \n" +
+                    "\tCrustal Abundance = " + crustalAbundance() + "; \n" +
+                    "\tEconomic Value = " + economicValue() + "; " +
                     "}";
         }
     }
