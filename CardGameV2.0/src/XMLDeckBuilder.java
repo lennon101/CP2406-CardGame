@@ -171,7 +171,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     private CrustalAbundanceValue getCrustalAbundanceType(String crustalAbundanceString) {
         for (int i = 0; i< this._crustalAbundanceList.length; ++i){
             if (this._crustalAbundanceList[i].equals(crustalAbundanceString)){
-                return CrustalAbundanceValue.values()[i];
+                return CrustalAbundanceValue.values()[i+1];
             }
         }
         return null;
@@ -180,7 +180,7 @@ public class XMLDeckBuilder implements DeckBuilder {
     private EconomicValue getEconomicValueType(String economicValueString) {
         for (int i = 0; i< this._economicValueList.length; ++i){
             if (this._economicValueList[i].equals(economicValueString)){
-                return EconomicValue.values()[i];
+                return EconomicValue.values()[i+1];
             }
         }
         return null;
