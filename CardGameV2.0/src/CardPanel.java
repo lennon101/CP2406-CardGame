@@ -9,16 +9,16 @@ import java.awt.event.ActionListener;
 public class CardPanel extends JPanel {
 
     private Card card;
-    private JButton button;
+    private JLabel label;
 
     public CardPanel(Card card,ImageIcon cardIcon) {
         this.card = card;
         setLayout(new BorderLayout());
 
-        button = new JButton();
-        add(button);
+        label = new JLabel();
+        add(label);
         cardIcon = getScaledImage(cardIcon,100,150);
-        button.setIcon(cardIcon);
+        label.setIcon(cardIcon);
 
     }
 
@@ -28,5 +28,9 @@ public class CardPanel extends JPanel {
         ImageIcon resizedImg = new ImageIcon(newImg);  // transform it back
 
         return resizedImg;
+    }
+
+    public Card getCard() {
+        return card;
     }
 }

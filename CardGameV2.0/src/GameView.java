@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by danelennon on 21/10/16.
@@ -85,7 +87,6 @@ public class GameView extends JFrame {
         splashPanel = new JPanel(new GridLayout(1,0,5,0));
         handPanelContainer.add(splashPanel);
         for (int i = 0; i<8;++i){
-            //JButton button = new JButton();
             JLabel label = new JLabel();
             splashImage = getScaledImage(splashImage,100,150);
             label.setIcon(splashImage);

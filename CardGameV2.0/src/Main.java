@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.Scanner;
 
 /**
@@ -37,7 +34,11 @@ public class Main {
 
                     //setup game controller
                     game = startNewGame(gameView);
+
+                    addMouseListeners(game,gameView);
+
                     setUpRound(game,gameView);
+
 
                 }else {
                     JOptionPane.showMessageDialog(gameView, "must enter a valid number between 3-5");
@@ -54,6 +55,8 @@ public class Main {
                 game.getHumanPlayer().passed(true);
             }
         });
+
+
 
 
         /*while (!game.complete()){
@@ -88,6 +91,42 @@ public class Main {
 
 
     }
+
+    private static void addMouseListeners(Game g, GameView gv) {
+        gv.handPanel.addPanelMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Card selectedCard = ((CardPanel) e.getSource()).getCard();
+
+                System.out.println("You have selected card " + selectedCard.name() + "\n");
+
+                if (selectedCard.isTrump()){
+                    System.out.println("You must select a card other than a trump to start the round");
+                }else {
+                    String[] trumpTypeList = {"Hardness","Economic value","Specific gravity","Cleavage","Crustal abundance",};
+                    String gcStr = (String) JOptionPane.showInputDialog(gv,
+                            "Select a trump category for this round by entering the number of the category:",
+                            "Trump Category",
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            trumpTypeList,
+                            trumpTypeList[0]);
+
+                    GameCategory gc = null;
+                    for (int i = 0; i< trumpTypeList.length; ++i){
+                        if (trumpTypeList[i].equals(gcStr)){
+                            gc = GameCategory.values()[i];
+                        }
+                    }
+
+                    g.getHumanPlayer().playFirstCard(g,selectedCard,gc,gv);
+                    System.out.println("The trump category for this round is: " + g.getCategory());
+                    System.out.println("And the top value of this category is: " + g.getTrumpValue());
+                }
+            }
+        });
+    }
+
 
     private static void playRound(Game game,GameView gv) {
         setUpRound(game,gv);
@@ -130,6 +169,11 @@ public class Main {
         gv.log("Select a card from your hand to play the first card of the round.");
 
         p.displayHand();
+
+        //Card c = g.getValidFirstCard(p);
+
+        //c.displayCategories();
+
     }
 
     private static void humanRound(Game game,Player human, GameView gv) {
