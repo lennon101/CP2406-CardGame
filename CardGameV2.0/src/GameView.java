@@ -9,18 +9,23 @@ import java.awt.event.ActionListener;
 public class GameView extends JFrame {
 
     private JLabel lastCardPlayedLabel = new JLabel();
-    private JButton pickUpDeckButton = new JButton("the pick up deck");
+    public JButton pickUpDeckButton = new JButton("the pick up deck");
     private JTextArea logTextArea = new JTextArea();
     private JTextArea inputUserName = new JTextArea("player1");
     private JTextArea inputNumPlayers = new JTextArea("3");
     public JButton newGameButton = new JButton("New Game");
+
+    private JPanel handPanelContainer;
+
+    private HandPanel handPanel;
+    private JPanel splashPanel;
 
     public GameView() {
         JPanel lastCardPlayedPanel = new JPanel();
         JPanel pickUpDeckPanel = new JPanel(new BorderLayout());
         JPanel logPanel = new JPanel(new BorderLayout());
         JPanel userInputPanel = new JPanel(new GridLayout(3,2));
-        JPanel playerHandPanel = new JPanel(new GridLayout(1,0));
+        handPanelContainer = new JPanel(new BorderLayout());
 
         setLayout(new GridBagLayout());
 
@@ -37,7 +42,7 @@ public class GameView extends JFrame {
         add(userInputPanel,c);
         c.gridy = 3;
         c.weighty = 1;
-        add(playerHandPanel,c);
+        add(handPanelContainer,c);
 
         c.gridx = 0;
         c.gridy = 0;
@@ -72,34 +77,29 @@ public class GameView extends JFrame {
         userInputPanel.add(new JLabel(""));
         userInputPanel.add(newGameButton);
 
-        JPanel cardPanel = new JPanel(new BorderLayout());
-
-        playerHandPanel.add(cardPanel);
-        playerHandPanel.add(new JButton("Button 2"));
-        playerHandPanel.add(new JButton("Button 3"));
-        playerHandPanel.add(new JButton("Button 4"));
-        playerHandPanel.add(new JButton("Button 5"));
-        playerHandPanel.add(new JButton("Button 6"));
-        playerHandPanel.add(new JButton("Button 7"));
-        playerHandPanel.add(new JButton("Button 8"));
-
-        cardPanel.add(new JButton("Button 1"));
-
-
         ImageIcon splashImage = new ImageIcon("images/Slide65.jpg");
         splashImage = getScaledImage(splashImage,250,300);
         lastCardPlayedLabel.setIcon(splashImage);
 
+        //create a fake deck for the splash screen
+        splashPanel = new JPanel(new GridLayout(1,0));
+        handPanelContainer.add(splashPanel);
+        for (int i = 0; i<8;++i){
+            JButton button = new JButton();
+            splashImage = getScaledImage(splashImage,100,150);
+            button.setIcon(splashImage);
+            splashPanel.add(button);
+        }
+
         pickUpDeckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playerHandPanel.add(new JButton("New Button"));
+                handPanel.add(new JButton("New Button"));
                 pack();
             }
         });
     }
 
-    // TODO: 21/10/16 move this to gameView controller perhaps?
     private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h){
         Image image = srcImg.getImage(); // transform it
         Image newImg = image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
@@ -127,6 +127,8 @@ public class GameView extends JFrame {
     }
 
     public void displayCards(Game game){
+        handPanelContainer.remove(splashPanel);
+
         //display the lastcard played
         if (game.getLastCard() != null){
             ImageIcon lastCardPlayedImage = new ImageIcon("images/" + game.getLastCard().filename());
@@ -136,7 +138,11 @@ public class GameView extends JFrame {
         }
 
         //display the players hand
-        Player p = game.getHumanPlayer();
+        BasicDeck d = game.getHumanPlayer().get_playerDeck();
+        handPanel = new HandPanel(d);
+        handPanel.revalidate();
+        handPanelContainer.add(handPanel);
+        handPanelContainer.revalidate();
 
     }
 

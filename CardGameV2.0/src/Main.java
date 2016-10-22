@@ -43,6 +43,18 @@ public class Main {
             }
         });
 
+        gameView.pickUpDeckButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameView.log("You have chosen to pass this round :( ");
+                gameView.log("Picking up a cardPanel from the pick-up deck...");
+                game.pickUp(game.getHumanPlayer());
+                game.getHumanPlayer().passed(true);
+            }
+        });
+
+
+
 
         /*while (!game.complete()){
             Player playerToRemove=null;
@@ -115,11 +127,12 @@ public class Main {
 
     private static void setUpHumanRound(Player p,Game g,GameView gv) {
         System.out.println("Your hand is: ");
+        gv.log("Select a card from your hand to play the first card of the round.");
 
         p.displayHand();
         Card c = g.getValidFirstCard(p);
 
-        c.displayCategories();
+        //c.displayCategories();
         System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
         GameCategory gc = g.getGameCategoryFromUser();
 
@@ -132,20 +145,24 @@ public class Main {
         System.out.println("Your hand is: ");
         human.displayHand();
 
-        System.out.println("Your turn to select and play a cardPanel.\n" +
+        gv.log("Your turn to select and play a cardPanel.\n" +
                 "The cardPanel to beat is: " + "\n\t" + game.getLastCard() + "\n\n" +
                 "Game Category: " + game.getCategory() + " of " + game.getTrumpValue());
 
-        System.out.println("Enter: \n" +
-                "(P) to Pass to pass (and pick up a cardPanel) \n" +
-                "(C) to Play a cardPanel \n" +
-                "(W) to Withdraw from the game");
-        char choice = getPlayRoundChoice(game,human);
-        if (choice == 'p' || choice == 'P') {
-            System.out.println("You have chosen to pass this round :( ");
-            System.out.println("Picking up a cardPanel from the pick-up deck...");
-            game.pickUp(human);
-            human.passed(true);
+        if (human.canPlay(game)){
+            gv.log("Options:\n" +
+                    "\tPass -> pick up a card from the pickup deck \n" +
+                    "\tPlay a card -> Select any of the cards in your hand \n" +
+                    "\tWithdraw -> quit the game"); // TODO: 22/10/16 add withdraw option
+        }else{
+            gv.log("You don't have any cards high enough to play and therefore MUST pass.\n" +
+                    "Options:\n" +
+                    "\tPass -> pick up a card from the pickup deck \n" +
+                    "\tWithdraw -> quit the game");
+        }
+
+        /*if (choice == 'p' || choice == 'P') {
+
         }else if (choice == 'c' || choice == 'C') {
             boolean validCardChoice = false;
 
@@ -183,51 +200,7 @@ public class Main {
             }
         } else if (choice == 'w' || choice == 'W') {
             game.withDraw();
-        }
-    }
-
-    private static char getPlayRoundChoice(Game g, Player player) {
-        Scanner input = new Scanner(System.in);
-        char answer = 'x';
-        boolean valid = false;
-        //search through all of players cards to see if they can actually play any cards
-        boolean canPlay = false;
-        for (Card c:player.get_playerDeck().cards()){
-            if (g.cardCanBePlayed(c)) {
-                canPlay = true;
-            }
-        }
-
-        if (!canPlay){
-            while (!valid){
-                System.out.println("You don't have any cards higher enough to play;\n" +
-                        "You must opt to pass your turn or withdraw from the game.");
-                answer = input.next().charAt(0);
-                if (answer != 'p' && answer != 'P'
-                        && answer != 'w' && answer != 'W'){
-                    System.out.println("invalid choice, enter:\n " +
-                            "\t\"p\" or \"P\"; or\n" +
-                            "\t\"w\" or \"W\"");
-                }else {
-                    valid = true;
-                }
-            }
-        }else {
-            while (!valid) {
-                answer = input.next().charAt(0);
-                if (answer != 'p' && answer != 'P'
-                        && answer != 'c' && answer != 'C'
-                        && answer != 'w' && answer != 'W') {
-                    System.out.println("invalid choice, enter:\n " +
-                            "\t\"p\" or \"P\"; or\n" +
-                            "\t\"c\" or \"C\"; or\n" +
-                            "\t\"w\" or \"W\"");
-                } else {
-                    valid = true;
-                }
-            }
-        }
-        return answer;
+        }*/
     }
 
 
@@ -253,6 +226,8 @@ public class Main {
         game.shuffleDeck();
         gv.log(dealer.getName() + " is dealing the cards...");
         game.dealCardsToPlayers();
+
+        gv.displayCards(game);
         gv.log("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
         return game;
     }

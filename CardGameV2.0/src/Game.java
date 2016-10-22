@@ -140,7 +140,7 @@ public class Game {
     }
 
     public boolean cardCanBePlayed(Card cardToBePlayed){
-        //test if the last cardPanel played is trumped by the new cardPanel being played
+        //test if the last card played is trumped by the new card being played
         CardComparisonResult comparisonResult = _lastCardPlayed.compare(cardToBePlayed);
 
         boolean cardTrumpedForCategory = false;
@@ -166,7 +166,7 @@ public class Game {
                 _gameCategory = GameCategory.CLEAVAGE;
                 break;
         }
-        //if the last cardPanel was trumped, then the new cardPanel is allowed to be placed down
+        //if the last card was trumped, then the new card is allowed to be placed down
         return cardTrumpedForCategory;
     }
 
@@ -180,7 +180,7 @@ public class Game {
 
     public void setUpAiRound(Player ai,GameView gv) {
 
-        gv.log("--- " + ai.getName() + " placing first cardPanel down and choosing trump category");
+        gv.log("--- " + ai.getName() + " placing first card down and choosing trump category");
         Card c = getValidFirstCard(ai);
         gv.log("--- he selected:\n" + c);
         GameCategory gc = GameCategory.values()[getRandomCategory()];
@@ -194,14 +194,14 @@ public class Game {
             Card selectedCard = null;
             boolean validCardChoice = false;
             while (!validCardChoice){
-                System.out.print("Choose a cardPanel to play by entering the cardPanel number (1-" + p.getNumCards() + "): ");
+                System.out.print("Choose a card to play by entering the card number (1-" + p.getNumCards() + "): ");
                 int cardNum = getNumInRange(1,p.getNumCards());
                 selectedCard = p.getCard(cardNum-1);
 
-                System.out.println("You have selected cardPanel " + (cardNum) + ": " + selectedCard.name() + "\n");
+                System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
 
                 if (selectedCard.isTrump()){
-                    System.out.println("You must select a cardPanel other than a trump to start the round");
+                    System.out.println("You must select a card other than a trump to start the round");
                 }else {
                     validCardChoice = true;
                 }
@@ -310,7 +310,7 @@ public class Game {
             int cardNum = random.nextInt(ai.getNumCards());
             c = ai.getCard(cardNum);
             if (c.isTrump()) {
-                System.out.println("--- he played a trump cardPanel!");
+                System.out.println("--- he played a trump card!");
                 System.out.print("--- he has selected: " + c.name() + " with a trump category of: " + c.trumpType() + "\n");
                 ai.playCard(this, c,gv);
                 playAfterTrump(ai, gv);
@@ -333,7 +333,7 @@ public class Game {
 
     public void playAfterTrump(Player p,GameView gv){
         GameCategory gc = null;
-        System.out.println("--- " + p.getName() + " is following instructions on trump cardPanel placed down");
+        System.out.println("--- " + p.getName() + " is following instructions on trump card placed down");
         System.out.println("--- Game Category set to: " + _lastCardPlayed.trumpType());
 
         if (p.getNumCards() >0){
@@ -367,7 +367,7 @@ public class Game {
                     gc = GameCategory.ECONOMIC_VALUE;
                     break;
             }
-            System.out.println("--- cardPanel played after trump cardPanel is: \n\t" +
+            System.out.println("--- card played after trump card is: \n\t" +
                     c + "\n with a trump value of " + c.getTrumpValueForCategory(gc) + "\n");
             p.playFirstCard(this,c,gc,gv);
             unPassAllPlayers();
@@ -416,7 +416,7 @@ public class Game {
         if (_pickUpDeck.cards().size() <= 0) {
             System.out.println("No cards to pick up");
         }else{
-            Card c = _pickUpDeck.getCard(0); //the top cardPanel
+            Card c = _pickUpDeck.getCard(0); //the top card
             _pickUpDeck.remove(c);
             player.pickUpCard(c);
         }

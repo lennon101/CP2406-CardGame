@@ -133,4 +133,15 @@ public class Player {
 
         gv.displayCards(g);
     }
+
+    public boolean canPlay(Game g) {
+        //search through all of players cards to see if they can actually play any cards
+        boolean canPlay = false;
+        for (Card c:get_playerDeck().cards()){
+            if (g.cardCanBePlayed(c)) {
+                canPlay = true;
+            }
+        }
+        return canPlay;
+    }
 }
