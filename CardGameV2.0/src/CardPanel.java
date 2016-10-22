@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class CardPanel extends JPanel {
 
     private Card card;
-    public JButton button;
+    private JButton button;
 
     public CardPanel(Card card,ImageIcon cardIcon) {
         this.card = card;

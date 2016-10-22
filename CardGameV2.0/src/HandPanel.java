@@ -6,7 +6,7 @@ import java.awt.*;
  */
 public class HandPanel extends JPanel {
 
-    private CardPanel[] cardPanels;
+    public CardPanel[] cardPanels;
 
     public HandPanel(BasicDeck hand) {
         this.cardPanels = new CardPanel[hand.getNumCards()];

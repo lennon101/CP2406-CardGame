@@ -17,14 +17,14 @@ public class GameView extends JFrame {
 
     private JPanel handPanelContainer;
 
-    private HandPanel handPanel;
+    public HandPanel handPanel;
     private JPanel splashPanel;
 
     public GameView() {
         JPanel lastCardPlayedPanel = new JPanel();
         JPanel pickUpDeckPanel = new JPanel(new BorderLayout());
         JPanel logPanel = new JPanel(new BorderLayout());
-        JPanel userInputPanel = new JPanel(new GridLayout(3,2));
+        JPanel userInputPanel = new JPanel(new GridLayout(3,2,5,5));
         handPanelContainer = new JPanel(new BorderLayout());
 
         setLayout(new GridBagLayout());
@@ -82,13 +82,14 @@ public class GameView extends JFrame {
         lastCardPlayedLabel.setIcon(splashImage);
 
         //create a fake deck for the splash screen
-        splashPanel = new JPanel(new GridLayout(1,0));
+        splashPanel = new JPanel(new GridLayout(1,0,5,0));
         handPanelContainer.add(splashPanel);
         for (int i = 0; i<8;++i){
-            JButton button = new JButton();
+            //JButton button = new JButton();
+            JLabel label = new JLabel();
             splashImage = getScaledImage(splashImage,100,150);
-            button.setIcon(splashImage);
-            splashPanel.add(button);
+            label.setIcon(splashImage);
+            splashPanel.add(label);
         }
 
         pickUpDeckButton.addActionListener(new ActionListener() {

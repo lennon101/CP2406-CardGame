@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Scanner;
 
 /**
@@ -52,8 +54,6 @@ public class Main {
                 game.getHumanPlayer().passed(true);
             }
         });
-
-
 
 
         /*while (!game.complete()){
@@ -130,15 +130,6 @@ public class Main {
         gv.log("Select a card from your hand to play the first card of the round.");
 
         p.displayHand();
-        Card c = g.getValidFirstCard(p);
-
-        //c.displayCategories();
-        System.out.println("\nSelect a trump category for this round by entering the number of the category: ");
-        GameCategory gc = g.getGameCategoryFromUser();
-
-        p.playFirstCard(g,c,gc,gv);
-        System.out.println("The trump category for this round is: " + g.getCategory());
-        System.out.println("And the top value of this category is: " + g.getTrumpValue());
     }
 
     private static void humanRound(Game game,Player human, GameView gv) {
@@ -229,6 +220,7 @@ public class Main {
 
         gv.displayCards(game);
         gv.log("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
+
         return game;
     }
 
