@@ -9,10 +9,11 @@ public class HandPanel extends JPanel {
 
     public CardPanel[] cardPanels;
 
-    public HandPanel(BasicDeck hand) {
+    public HandPanel(BasicDeck hand,Color bg) {
         this.cardPanels = new CardPanel[hand.getNumCards()];
 
-        setLayout(new GridLayout(1,0,5,5)); //an infinite number of columns needed
+        setLayout(new GridLayout(0,8,5,5)); //an infinite number of columns needed
+        setBackground(bg);
 
         //add the cardPanels to the handPanel
         for (int i = 0; i<hand.getNumCards();++i) {

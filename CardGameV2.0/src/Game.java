@@ -127,7 +127,7 @@ public class Game {
         }
     }
 
-    private void incrementPlayer() {
+    public void incrementPlayer() {
         if (_playerId +1>=_players.size()){
             _playerId = 0;
         }else{
@@ -135,7 +135,7 @@ public class Game {
         }
     }
 
-    public GameCategory getCategory(){
+    public GameCategory getGameCategory(){
         return this._gameCategory;
     }
 
@@ -190,36 +190,17 @@ public class Game {
     }
 
     public Card getValidFirstCard(Player p){
-        if (p.isHuman()){
-            Card selectedCard = null;
-            boolean validCardChoice = false;
-            while (!validCardChoice){
-                System.out.print("Choose a card to play by entering the card number (1-" + p.getNumCards() + "): ");
-                int cardNum = getNumInRange(1,p.getNumCards());
-                selectedCard = p.getCard(cardNum-1);
-
-                System.out.println("You have selected card " + (cardNum) + ": " + selectedCard.name() + "\n");
-
-                if (selectedCard.isTrump()){
-                    System.out.println("You must select a card other than a trump to start the round");
-                }else {
-                    validCardChoice = true;
-                }
+        Random random = new Random();
+        Card c = null;
+        boolean isValid = false;
+        while (!isValid) {
+            int cardNum = random.nextInt(p.getNumCards());
+            c = p.getCard(cardNum);
+            if (!c.isTrump()) {
+                isValid = true;
             }
-            return selectedCard;
-        }else {
-            Random random = new Random();
-            Card c = null;
-            boolean isValid = false;
-            while (!isValid) {
-                int cardNum = random.nextInt(p.getNumCards());
-                c = p.getCard(cardNum);
-                if (!c.isTrump()) {
-                    isValid = true;
-                }
-            }
-            return c;
         }
+        return c;
     }
 
     private int getRandomCategory(){
@@ -265,10 +246,7 @@ public class Game {
     public boolean roundComplete() {
 
         if (_lastCardPlayed != null) {
-            if (_lastCardPlayed.isTrump()) {
-                return true;
-            }
-            else if (getCurrentPlayer().getNumCards()<=0) {
+            if (getCurrentPlayer().getNumCards()<=0) {
                 return true;
             }else if (_comboPlayed){
                 return true;
@@ -301,8 +279,8 @@ public class Game {
 
     public void aIRound(Player ai,GameView gv) {
         Random random = new Random();
-        System.out.println(ai.getName() + "'s turn...");
-        //ai.displayHand();
+        gv.log(ai.getName() + "'s turn...");
+        ai.displayHand();
         Card c = null;
         boolean canPlay = false;
 
@@ -310,14 +288,14 @@ public class Game {
             int cardNum = random.nextInt(ai.getNumCards());
             c = ai.getCard(cardNum);
             if (c.isTrump()) {
-                System.out.println("--- he played a trump card!");
-                System.out.print("--- he has selected: " + c.name() + " with a trump category of: " + c.trumpType() + "\n");
+                gv.log("--- he played a trump card!");
+                gv.log("--- he has selected: " + c.name() + " with a trump category of: " + c.trumpType() + "\n");
                 ai.playCard(this, c,gv);
                 playAfterTrump(ai, gv);
                 canPlay = true;
                 break;
             } else if (cardCanBePlayed(c)) {
-                System.out.println("--- he has selected: " + c.name() + " with a " + _gameCategory + " value of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
+                gv.log("--- he has selected: " + c.name() + " with a " + _gameCategory + " value of: " + c.getTrumpValueForCategory(_gameCategory) + "\n");
                 ai.playCard(this, c,gv);
                 canPlay = true;
                 break;
@@ -325,23 +303,22 @@ public class Game {
         }
 
         if (!canPlay){
-            System.out.println("--- he has chosen to pass\n");
+            gv.log("--- he has chosen to pass\n");
             ai.passed(true);
             pickUp(ai);
         }
     }
 
     public void playAfterTrump(Player p,GameView gv){
-        GameCategory gc = null;
-        System.out.println("--- " + p.getName() + " is following instructions on trump card placed down");
-        System.out.println("--- Game Category set to: " + _lastCardPlayed.trumpType());
+        GameCategory gc;
+        gv.log("-- " + p.getName() + " is following instructions on trump card placed down");
+        gv.log("-- Game Category set to: " + _lastCardPlayed.trumpType());
 
-        if (p.getNumCards() >0){
+        if (p.getNumCards() > 0){
             Card c = getValidFirstCard(p);
-
             switch (_lastCardPlayed.trumpType()) {
                 case ANY:
-                    System.out.println("--- choosing trump category");
+                    System.out.println("-- choosing trump category");
                     if (p.isHuman()){
                         c.displayCategories();
                         gc = getGameCategoryFromUser();
@@ -349,22 +326,10 @@ public class Game {
                         int gcNum = getRandomCategory();
                         gc = GameCategory.values()[gcNum];
                     }
-                    System.out.println("--- he chose: " + gc);
+                    System.out.println("-- he chose: " + gc);
                     break;
-                case HARDNESS:
-                    gc = GameCategory.HARDNESS;
-                    break;
-                case SPECIFIC_GRAVITY:
-                    gc = GameCategory.SPECIFIC_GRAVITY;
-                    break;
-                case CLEAVAGE:
-                    gc = GameCategory.CLEAVAGE;
-                    break;
-                case CRUSTAL_ABUNDANCE:
-                    gc = GameCategory.CRUSTAL_ABUNDANCE;
-                    break;
-                case ECONOMIC_VALUE:
-                    gc = GameCategory.ECONOMIC_VALUE;
+                default:
+                    gc = getGameCategoryFromTrumpCategory(_lastCardPlayed.trumpType());
                     break;
             }
             System.out.println("--- card played after trump card is: \n\t" +
@@ -374,6 +339,29 @@ public class Game {
         }else{
             System.out.println(p.getName() + " has no more cards to play and has won this game! yew!");
         }
+    }
+
+    public GameCategory getGameCategoryFromTrumpCategory(TrumpType t){
+        GameCategory gc = null;
+        switch (t){
+            case HARDNESS:
+                gc = GameCategory.HARDNESS;
+                break;
+            case SPECIFIC_GRAVITY:
+                gc = GameCategory.SPECIFIC_GRAVITY;
+                break;
+            case CLEAVAGE:
+                gc = GameCategory.CLEAVAGE;
+                break;
+            case CRUSTAL_ABUNDANCE:
+                gc = GameCategory.CRUSTAL_ABUNDANCE;
+                break;
+            case ECONOMIC_VALUE:
+                gc = GameCategory.ECONOMIC_VALUE;
+                break;
+        }
+
+        return gc;
     }
 
 

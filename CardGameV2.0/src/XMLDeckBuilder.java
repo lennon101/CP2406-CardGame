@@ -21,7 +21,7 @@ public class XMLDeckBuilder implements DeckBuilder {
             "2 perfect, 1 good","3 perfect","4 perfect","6 perfect"};
     private String[] _crustalAbundanceList = {"ultratrace", "trace", "low", "moderate", "high", "very high"};
     private String[] _economicValueList = {"trivial","low","moderate","high","very high","I'm rich!"};
-    private String[] _trumpTypeList = {"none","any","Hardness","Economic value","Specific gravity","Crustal abundance","Cleavage"};
+    private String[] _trumpTypeList = {"none","any","Hardness","Economic value","Specific gravity","Cleavage","Crustal abundance"};
 
     public XMLDeckBuilder(String filePath) {
         _filePath = filePath;

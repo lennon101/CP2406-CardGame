@@ -97,7 +97,7 @@ public class Player {
         removeCardFromHand(c);
 
         if (getNumCards() == 0){
-            System.out.println(getName() + " \n\nhas no more cards");
+            gv.log(getName() + " \n\nhas no more cards");
         }
 
         gv.displayCards(g);

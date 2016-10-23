@@ -82,16 +82,16 @@ public abstract class Card {
     public String toString() {
         if (isTrump()){
             return "TrumpCard{\n" +
-                    "\ttitle = " + name() + "; \n" +
-                    "\tsubtitle = " + trumpType() + "}";
+                    "--- title = " + name() + "; \n" +
+                    "--- subtitle = " + trumpType() + "}";
         }else {
             return "PlayCard{\n" +
-                    "\tTitle = " + name() + "; \n" +
-                    "\tHardness = " + hardness() + "; \n" +
-                    "\tSpecific Gravity = " + gravity() + "; \n" +
-                    "\tClevage = " + cleavage() + "; \n" +
-                    "\tCrustal Abundance = " + crustalAbundance() + "; \n" +
-                    "\tEconomic Value = " + economicValue() + "; " +
+                    "--- Title = " + name() + "; \n" +
+                    "--- Hardness = " + hardness() + "; \n" +
+                    "--- Specific Gravity = " + gravity() + "; \n" +
+                    "--- Clevage = " + cleavage() + "; \n" +
+                    "--- Crustal Abundance = " + crustalAbundance() + "; \n" +
+                    "--- Economic Value = " + economicValue() + "; " +
                     "}";
         }
     }
