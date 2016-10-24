@@ -99,8 +99,6 @@ public class Player {
         if (getNumCards() == 0){
             gv.log(getName() + " \n\nhas no more cards");
         }
-
-        gv.displayCards(g);
     }
 
     public void playCombo(Game g,GameView gv) {
@@ -132,6 +130,7 @@ public class Player {
         }
 
         gv.displayCards(g);
+
     }
 
     public boolean canPlay(Game g) {

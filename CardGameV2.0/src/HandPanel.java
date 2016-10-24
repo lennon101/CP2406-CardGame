@@ -13,12 +13,14 @@ public class HandPanel extends JPanel {
         this.cardPanels = new CardPanel[hand.getNumCards()];
 
         setLayout(new GridLayout(0,8,5,5)); //an infinite number of columns needed
+        setPreferredSize(new Dimension(1000,200));
         setBackground(bg);
 
         //add the cardPanels to the handPanel
         for (int i = 0; i<hand.getNumCards();++i) {
             ImageIcon cardIcon = new ImageIcon("images/" + hand.getCard(i).filename());
             cardPanels[i] = new CardPanel(hand.getCard(i),cardIcon);
+            cardPanels[i].setBackground(bg);
             add(cardPanels[i]);
         }
     }

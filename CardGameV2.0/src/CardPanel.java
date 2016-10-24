@@ -17,7 +17,7 @@ public class CardPanel extends JPanel {
 
         label = new JLabel();
         add(label);
-        cardIcon = getScaledImage(cardIcon,175,250);
+        cardIcon = getScaledImage(cardIcon,150,200);
         label.setIcon(cardIcon);
 
     }

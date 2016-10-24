@@ -19,7 +19,7 @@ public class GameView extends JFrame {
     public HandPanel handPanel;
     private JPanel splashPanel;
 
-    private final Color bg = Color.cyan;
+    private final Color bg = new Color(206,149,92);
 
     public GameView() {
 
@@ -36,6 +36,7 @@ public class GameView extends JFrame {
         logPanel.setBackground(bg);
         userInputPanel.setBackground(bg);
         handPanelContainer.setBackground(bg);
+        handPanelContainer.setPreferredSize(new Dimension(1200,100));
 
         setLayout(new GridBagLayout());
 
