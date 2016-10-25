@@ -42,102 +42,120 @@ public class GameFrame extends JFrame {
 
         JPanel upperPanel = new JPanel(new GridBagLayout());
         upperPanel.setBackground(bg);
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.insets = new Insets(10,10,10,10);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.fill = GridBagConstraints.BOTH;
-        c.weighty = 0.7;
-        add(upperPanel,c);
-        c.gridy = 1;
-        c.weighty = 0.1;
-        add(userInputPanel,c);
-        c.gridy = 3;
-        c.weighty = 0.3;
-        add(handPanelContainer,c);
-
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        c.weightx = 0.3;
-        upperPanel.add(lastCardPlayedPanel,c);
-        c.gridx = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.2;
-        upperPanel.add(pickUpDeckPanel,c);
-
-        ImageIcon deckOfCardsIcon = new ImageIcon("images/deck-of-cards.jpg");
-        deckOfCardsIcon = getScaledImage(deckOfCardsIcon,80,100);
-        pickUpDeckButton.setIcon(deckOfCardsIcon);
-
-        c.gridx = 3;
-        c.gridwidth = 3;
-        c.gridheight = 2;
-        c.weightx = 1;
-        c.ipadx = 20;
-        upperPanel.add(logPanel,c);
 
         logTextArea.setEditable(false);
         logTextArea.setLineWrap(true);
         logTextArea.setWrapStyleWord(true);
 
+        trumpText.setEditable(false);
+        trumpText.setLineWrap(true);
+        trumpText.setWrapStyleWord(true);
+        trumpText.setPreferredSize(new Dimension(200,50));
+
+        ///////////////////////////
+        ///Main Frame constraints
+        //////////////////////////
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.insets = new Insets(10,10,10,10);
+
+        //upper panel
+        c.gridx = 0;
+        c.gridy = 0;
+        c.fill = GridBagConstraints.BOTH;
+        c.weighty = 1;
+        add(upperPanel,c);
+
+        //lower panel (hand panel container)
+        c.gridy = 3;
+        c.weighty = 0.3;
+        add(handPanelContainer,c);
+
+        ///////////////////////////
+        ///Upper panel constraints
+        //////////////////////////
+        c.fill = GridBagConstraints.NONE;
+
+        //last card played panel
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.weightx = 1;
+        c.fill = GridBagConstraints.BOTH;
+        upperPanel.add(lastCardPlayedPanel,c);
+
+        //pick-up deck panel --> first row, second column
+        c.gridx = 1;
+        upperPanel.add(pickUpDeckPanel,c);
+
+        //log panel --> first row, starting at 3 column, spanning 2 rows
+        c.gridx = 2;
+        c.gridwidth = 2;
+        upperPanel.add(logPanel,c);
+
+        //second row:
+        c.weighty = 0.1;
+
+        //Category label --> second row, first column, below the last card played label
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.weightx = 0.3;
+        c.fill = GridBagConstraints.NONE;
+        upperPanel.add(trumpText,c);
+
+        //pick-up deck label --> second row, second column, below the pick-up deck image
+        c.weightx = 0;
+        c.gridx = 1;
+        upperPanel.add(new JLabel("Pick up deck"),c);
+
+        //new game button --> second row, third column
+        c.gridx = 2;
+        c.fill = GridBagConstraints.BOTH;
+        upperPanel.add(newGameButton,c);
+
+        //user name --> second row, forth column
+        c.gridx = 3;
+        upperPanel.add(inputUserName,c);
+
+        //blank space for now to fill gap where trump value label should go
+        c.gridx = 0;
+        c.gridy = 2;
+        upperPanel.add(new JLabel("blank"),c);
+
+        //another blank label to fill gap underneath pick-up deck label
+        c.gridx = 1;
+        upperPanel.add(new JLabel("blank"),c);
+
+        //Instructions button --> third row, third column
+        c.gridx = 2;
+        upperPanel.add(new JButton("Instructions"),c);
+
+        //number of players input --> third row, forth column
+        c.gridx = 3;
+        c.gridy = 2;
+        upperPanel.add(inputNumPlayers,c);
+
+
+        //////////////////////
+        ///Log panel attributes
+        ///////////////////////
+
         JScrollPane logScrollPane = new JScrollPane(logTextArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         logScrollPane.setPreferredSize(new Dimension(300,250));
         logPanel.add(logScrollPane,BorderLayout.CENTER);
 
+        //////////////////////
+
+
         lastCardPlayedPanel.add(lastCardPlayedLabel,BorderLayout.CENTER);
-        trumpText.setEditable(false);
-        trumpText.setLineWrap(true);
-        trumpText.setWrapStyleWord(true);
-        //trumpText.setPreferredSize();
-        lastCardPlayedPanel.add(trumpText,BorderLayout.SOUTH);
+
+        ImageIcon deckOfCardsIcon = new ImageIcon("images/deck-of-cards.jpg");
+        deckOfCardsIcon = getScaledImage(deckOfCardsIcon,80,100);
+        pickUpDeckButton.setIcon(deckOfCardsIcon);
         pickUpDeckPanel.add(pickUpDeckButton);
 
-
-        //////////////////////////
-        ///Set up user input panel
-        //////////////////////////
-
-        //fake label to fill space
-        GridBagConstraints cNew = new GridBagConstraints();
-        cNew.weightx = 1;
-        cNew.fill = GridBagConstraints.HORIZONTAL;
-        cNew.gridx = 0;     //first row
-        cNew.gridy = 0;     //first column
-        cNew.gridwidth = 2; //2 columns wide
-        userInputPanel.add(new JLabel(""), cNew);
-
-        //fake label to fill space
-        cNew.fill = GridBagConstraints.HORIZONTAL;
-        cNew.weightx = 1;
-        cNew.gridx = 1;
-        cNew.gridy = 0;
-        userInputPanel.add(new JLabel(""), cNew);
-
-        //New Game button
-        cNew.fill = GridBagConstraints.HORIZONTAL;
-        cNew.weightx = 0.5;
-        cNew.gridx = 1;
-        cNew.gridy = 1;
-        userInputPanel.add(newGameButton, cNew);
-
-
-        cNew.fill = GridBagConstraints.BOTH;
-        cNew.ipady = 0;       //reset to default
-        cNew.weighty = 1.0;   //request any extra vertical space
-        cNew.weightx = 0.3;
-        cNew.insets = new Insets(5,0,0,0);  //top padding
-        cNew.gridx = 2;       //aligned with button 2
-        cNew.gridwidth = 2;   //2 columns wide
-        cNew.gridy = 1;       //second row
-        userInputPanel.add(inputUserName, cNew);
-
-        cNew.gridy = 2;        //third row
-        userInputPanel.add(inputNumPlayers, cNew);
-        //userInputPanel.add(newGameButton);
 
         ImageIcon splashImage = new ImageIcon("images/Slide65.jpg");
         splashImage = getScaledImage(splashImage,250,300);
