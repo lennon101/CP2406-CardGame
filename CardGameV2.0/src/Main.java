@@ -15,55 +15,59 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //create a gameView
-        GameFrame gameView = new GameFrame();
+        //create a gameFrame
+        GameFrame gameFrame = new GameFrame();
 
-        gameView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameView.setSize(1150,800);
-        gameView.setPreferredSize(new Dimension(1150,800));
-        gameView.setVisible(true);
-        gameView.getContentPane().setBackground(new Color(206,149,92));
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameFrame.setSize(1400,800);
+        gameFrame.setVisible(true);
+        gameFrame.getContentPane().setBackground(new Color(206,149,92));
 
-        gameView.log("Welcome to Ultimate Super Trump\n" +
+        gameFrame.log("Welcome to Ultimate Super Trump\n" +
                 "Please enter your name and the number of players:");
 
-        InstructionsFrame instructionsFrame = new InstructionsFrame();
-
-        gameView.newGameButton.addActionListener(new ActionListener() {
+        gameFrame.newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (numberIsValidForRange(gameView.getNumPlayers(), 3, 5)) {
-                    humanName = gameView.getHumanName();
-                    numPlayers = gameView.getNumPlayers();
+                if (numberIsValidForRange(gameFrame.getNumPlayers(), 3, 5)) {
+                    humanName = gameFrame.getHumanName();
+                    numPlayers = gameFrame.getNumPlayers();
 
                     //setup game controller
-                    g = startNewGame(gameView);
+                    g = startNewGame(gameFrame);
 
-                    //addMouseListeners(gameView);
-                    setUpRound(gameView);
+                    //addMouseListeners(gameFrame);
+                    setUpRound(gameFrame);
                     if (gameState.equals(GameState.PLAY)) {
-                        playRound(gameView); //playRound breaks loop when it gets to human
+                        playRound(gameFrame); //playRound breaks loop when it gets to human
                     }
                 } else {
-                    JOptionPane.showMessageDialog(gameView, "must enter a valid number between 3-5");
+                    JOptionPane.showMessageDialog(gameFrame, "must enter a valid number between 3-5");
                 }
             }
 
         });
 
-        gameView.pickUpDeckButton.addActionListener(new ActionListener() {
+        gameFrame.instructButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InstructionsFrame instructionsFrame = new InstructionsFrame();
+            }
+        });
+
+        gameFrame.pickUpDeckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Thread() {
                     public void run() {
-                        gameView.log("You have chosen to pass this round :( ");
-                        gameView.log("Picking up a cardPanel from the pick-up deck...");
+                        gameFrame.log("You have chosen to pass this round :( ");
+                        gameFrame.log("Picking up a cardPanel from the pick-up deck...");
                         g.pickUp(g.getHumanPlayer());
                         g.getHumanPlayer().passed(true);
-                        gameView.updateCardsView(g);
-                        addMouseListeners(gameView);
-                        playRound(gameView);
+                        gameFrame.updateCardsView(g);
+                        addMouseListeners(gameFrame);
+                        playRound(gameFrame);
                     }
                 }.start();
             }

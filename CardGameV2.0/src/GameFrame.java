@@ -14,6 +14,7 @@ public class GameFrame extends JFrame {
     private JTextFieldWithPrompt inputNumPlayers = new JTextFieldWithPrompt("Enter # players");
 
     public JButton newGameButton = new JButton("New Game");
+    public JButton instructButton = new JButton("Instructions");
 
     private JPanel handPanelContainer;
 
@@ -63,12 +64,12 @@ public class GameFrame extends JFrame {
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.BOTH;
-        c.weighty = 1;
+        c.weighty = 0.1;
         add(upperPanel,c);
 
         //lower panel (hand panel container)
-        c.gridy = 3;
-        c.weighty = 0.3;
+        c.gridy = 2;
+        c.weighty = 1;
         add(handPanelContainer,c);
 
         ///////////////////////////
@@ -82,6 +83,7 @@ public class GameFrame extends JFrame {
         c.gridwidth = 1;
         c.gridheight = 1;
         c.weightx = 1;
+        c.weighty = 0.5;
         c.fill = GridBagConstraints.BOTH;
         upperPanel.add(lastCardPlayedPanel,c);
 
@@ -94,7 +96,7 @@ public class GameFrame extends JFrame {
         c.gridwidth = 2;
         upperPanel.add(logPanel,c);
 
-        //second row:
+        //second row and below:
         c.weighty = 0.1;
 
         //Category label --> second row, first column, below the last card played label
@@ -130,7 +132,7 @@ public class GameFrame extends JFrame {
 
         //Instructions button --> third row, third column
         c.gridx = 2;
-        upperPanel.add(new JButton("Instructions"),c);
+        upperPanel.add(instructButton,c);
 
         //number of players input --> third row, forth column
         c.gridx = 3;
