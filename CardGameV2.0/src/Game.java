@@ -178,11 +178,11 @@ public class Game {
         return _players;
     }
 
-    public void setUpAiRound(Player ai,GameView gv) {
+    public void setUpAiRound(Player ai, GameFrame gv) {
 
         gv.log("--- " + ai.getName() + " placing first card down and choosing trump category");
         Card c = getValidFirstCard(ai);
-        gv.log("--- he selected:\n" + c);
+        gv.log("--- he selected the " + c.name() + " card.");
         GameCategory gc = GameCategory.values()[getRandomCategory()];
         gv.log("--- he selected the " + gc + " Category with a top value of: " + c.getTrumpValueForCategory(gc) + "\n");
 
@@ -228,7 +228,7 @@ public class Game {
         System.out.println("");
     }
 
-    public void displayAllPlayers(GameView gv) {
+    public void displayAllPlayers(GameFrame gv) {
         int i = 0;
         for (Player player:_players){
             if (!player.isPassed()){
@@ -277,7 +277,7 @@ public class Game {
         return _players.size();
     }
 
-    public void aIRound(Player ai,GameView gv) {
+    public void aIRound(Player ai, GameFrame gv) {
         Random random = new Random();
         gv.log(ai.getName() + "'s turn...");
         ai.displayHand();
@@ -309,7 +309,7 @@ public class Game {
         }
     }
 
-    public void playAfterTrump(Player p,GameView gv){
+    public void playAfterTrump(Player p, GameFrame gv){
         GameCategory gc;
         gv.log("-- " + p.getName() + " is following instructions on trump card placed down");
         gv.log("-- Game Category set to: " + _lastCardPlayed.trumpType());

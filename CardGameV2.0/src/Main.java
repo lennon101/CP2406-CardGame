@@ -16,21 +16,24 @@ public class Main {
     public static void main(String[] args) {
 
         //create a gameView
-        GameView gameView = new GameView();
+        GameFrame gameView = new GameFrame();
 
         gameView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameView.setSize(1150,800);
         gameView.setPreferredSize(new Dimension(1150,800));
         gameView.setVisible(true);
-        gameView.getContentPane().setBackground(Color.GRAY);
+        gameView.getContentPane().setBackground(new Color(206,149,92));
 
         gameView.log("Welcome to Ultimate Super Trump\n" +
                 "Please enter your name and the number of players:");
 
+        InstructionsFrame instructionsFrame = new InstructionsFrame();
+
         gameView.newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (numberIsValidForRange(gameView.getNumPlayers(),3,5)){
+
+                if (numberIsValidForRange(gameView.getNumPlayers(), 3, 5)) {
                     humanName = gameView.getHumanName();
                     numPlayers = gameView.getNumPlayers();
 
@@ -39,28 +42,33 @@ public class Main {
 
                     //addMouseListeners(gameView);
                     setUpRound(gameView);
-                    if (gameState.equals(GameState.PLAY)){
+                    if (gameState.equals(GameState.PLAY)) {
                         playRound(gameView); //playRound breaks loop when it gets to human
-                        humanRound(gameView);
                     }
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(gameView, "must enter a valid number between 3-5");
                 }
             }
+
         });
 
         gameView.pickUpDeckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameView.log("You have chosen to pass this round :( ");
-                gameView.log("Picking up a cardPanel from the pick-up deck...");
-                g.pickUp(g.getHumanPlayer());
-                g.getHumanPlayer().passed(true);
-                gameView.displayCards(g);
-                addMouseListeners(gameView);
-                playRound(gameView);
+                new Thread() {
+                    public void run() {
+                        gameView.log("You have chosen to pass this round :( ");
+                        gameView.log("Picking up a cardPanel from the pick-up deck...");
+                        g.pickUp(g.getHumanPlayer());
+                        g.getHumanPlayer().passed(true);
+                        gameView.updateCardsView(g);
+                        addMouseListeners(gameView);
+                        playRound(gameView);
+                    }
+                }.start();
             }
         });
+
 
         /*
         while (!game.complete()){
@@ -97,45 +105,41 @@ public class Main {
 
 
 
-    private static void addMouseListeners(GameView gv) {
-        gv.handPanel.addPanelMouseListener(new MouseAdapter() {
+    private static void addMouseListeners(GameFrame gf) {
+        gf.handPanel.addPanelMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 new Thread() {
                     public void run() {
                         Card selectedCard = ((CardPanel) e.getSource()).getCard();
 
-                        gv.log("You have selected card " + selectedCard.name() + "\n");
+                        gf.log("You have selected card " + selectedCard.name() + "\n");
 
                         if (gameState.equals(GameState.SETUP)){
                             if (!selectedCard.isTrump()){
-                                playFirstCard(g,gv,selectedCard,getGameCategoryFromHuman(gv));
+                                playFirstCard(g,gf,selectedCard,getGameCategoryFromHuman(gf));
                                 gameState = GameState.PLAY;
-                                playRound(gv); //playRound breaks loop when it gets to human
-                                humanRound(gv);
+                                playRound(gf); //playRound breaks loop when it gets to human
                             }else {
-                                gv.log("You must select a card other than a trump to start the round");
+                                gf.log("You must select a card other than a trump to start the round");
                             }
                         }else if (gameState.equals(GameState.PLAY)){
-                            playCard(selectedCard,gv);
+                            playCard(selectedCard,gf);
                         }else if (gameState.equals(GameState.AFTER_TRUMP)){
                             GameCategory gc;
                             switch (g.getLastCard().trumpType()) {
                                 case ANY:
                                     System.out.println("-- choosing trump category");
-                                    gc = getGameCategoryFromHuman(gv);
+                                    gc = getGameCategoryFromHuman(gf);
                                     System.out.println("-- you chose: " + gc);
                                     break;
                                 default:
                                     gc = g.getGameCategoryFromTrumpCategory(g.getLastCard().trumpType());
                                     break;
                             }
-                            playFirstCard(g,gv,selectedCard,gc);
+                            playFirstCard(g,gf,selectedCard,gc);
                             gameState = GameState.PLAY;
-                            g.incrementPlayer();
-                            playRound(gv); //playRound breaks loop when it gets to human
-                            humanRound(gv);
-
+                            playRound(gf); //playRound breaks loop when it gets to human
                         }
 
                     }
@@ -145,8 +149,8 @@ public class Main {
         });
     }
 
-    private static GameCategory getGameCategoryFromHuman(GameView gv){
-        return (GameCategory) JOptionPane.showInputDialog(gv,
+    private static GameCategory getGameCategoryFromHuman(GameFrame gf){
+        return (GameCategory) JOptionPane.showInputDialog(gf,
                 "Select a trump category for this round:",
                 "Trump Category",
                 JOptionPane.QUESTION_MESSAGE,
@@ -155,100 +159,102 @@ public class Main {
                 GameCategory.values()[0]);
     }
 
-    private static void playFirstCard(Game g, GameView gv, Card c,GameCategory gc) {
-        g.getHumanPlayer().playFirstCard(g,c,gc,gv);
-        addMouseListeners(gv);
-        gv.log("The trump category for this round is: " + g.getGameCategory());
-        gv.log("And the top value of this category is: " + g.getTrumpValue());
+    private static void playFirstCard(Game g, GameFrame gf, Card c, GameCategory gc) {
+        g.getHumanPlayer().playFirstCard(g,c,gc,gf);
+        addMouseListeners(gf);
+        gf.log("The trump category for this round is: " + g.getGameCategory());
+        gf.log("And the top value of this category is: " + g.getTrumpValue());
 
         g.incrementPlayer();
     }
 
-    private static void playCard(Card c, GameView gv){
+    private static void playCard(Card c, GameFrame gf){
         Player human = g.getHumanPlayer();
         if (human.hasCombo()) {
             System.out.println("You have the The Geophysicist and the Magnesite cards\n" +
                     "Would you like to play them both and win this round?: (y/n)");
             if (getYesNoChoice() == 'y') {
-                human.playCombo(g,gv);
+                human.playCombo(g,gf);
             }
         }
 
         if (c.isTrump()) {
-            gv.log("You selected a trump card!");
-            human.playCard(g, c, gv);
-            gv.displayCards(g);
-            addMouseListeners(gv);
+            gf.log("You selected a trump card!");
+            human.playCard(g, c, gf);
+            gf.updateCardsView(g);
+            addMouseListeners(gf);
 
-            gv.log(human.getName() + " placed the " + c.name() + " with a trump category of: " + c.trumpType());
-            gv.log("Select another card to play after your trump card");
+            gf.log(human.getName() + " placed the " + c.name() + " with a trump category of: " + c.trumpType());
+            gf.log("Select another card to play after your trump card");
             gameState = GameState.AFTER_TRUMP;
 
+
         } else if (!g.cardCanBePlayed(c)) {
-            gv.log("This cards trump value isn't higher enough\n" +
+            gf.log("This cards trump value isn't higher enough\n" +
                     "Try again...");
         } else {
-            human.playCard(g, c, gv);
-            playRound(gv);
-            addMouseListeners(gv);
+            human.playCard(g, c, gf);
+            playRound(gf);
+            addMouseListeners(gf);
         }
     }
 
 
-    private static void playRound(GameView gv) {
+    private static void playRound(GameFrame gf) {
         while (!g.roundComplete()){
             Player p = g.getNextAvailablePlayer();
 
-            gv.log("There are " + g.numPlayersLeftInRound() + " players left in this round\n" +
-            "and " + g.getNumPlayersPassed() + " have passed.");
+            gf.log("There are " + g.numPlayersLeftInRound() + " players left in this round " +
+                    "and " + g.getNumPlayersPassed() + " have passed.");
             g.displayAllPlayers();
             if (p.isHuman()){
-                gv.log("its your turn now!");
-                //addMouseListeners(gv);
+                notifyHumanToPlay(gf);
                 break;
             }else{
                 System.out.println("AI round commencing...");
-                g.aIRound(p,gv);
+                g.aIRound(p,gf);
             }
         }
-        gv.displayCards(g);
-        addMouseListeners(gv);
+        closeTheRound(gf);
+    }
+
+    private static void closeTheRound(GameFrame gf) {
+        gf.updateCardsView(g);
+        addMouseListeners(gf);
         if (g.withDrawing()){
             System.out.println("Game closing");
         }else{
             Player roundWinner = g.getRoundWinner();
             if (roundWinner != null){
-                gv.log(roundWinner.getName() + " has won this round!" +
+                gf.log(roundWinner.getName() + " has won this round!" +
                         "\n\n===== New round commencing =====\n\n");
 
                 g.newRound();
                 if (roundWinner.getNumCards() > 0 ){
-                    gv.log(roundWinner.getName() + " leading out the new round.");
+                    gf.log(roundWinner.getName() + " leading out the new round.");
                     if (roundWinner.isHuman()){
                         gameState = GameState.SETUP;
-                        //addMouseListeners(gv);
                     }else {
-                        g.setUpAiRound(roundWinner,gv);
-                        addMouseListeners(gv);
-                        playRound(gv);
+                        g.setUpAiRound(roundWinner,gf);
+                        addMouseListeners(gf);
+                        playRound(gf);
                     }
                 } else {
-                    gv.log(roundWinner.getName() + " has won the game! \n");
+                    gf.log(roundWinner.getName() + " has won the game! \n");
 
                     Player p = g.getNextAvailablePlayer();
-                    gv.log(p.getName() + " leading out the new round.");
+                    gf.log(p.getName() + " leading out the new round.");
 
-                    gv.log("There are " + g.numPlayersLeftInRound() + " players left in this round\n" +
+                    gf.log("There are " + g.numPlayersLeftInRound() + " players left in this round\n" +
                             "and " + g.getNumPlayersPassed() + " have passed.");
                     g.displayAllPlayers();
                     if (p.isHuman()){
-                        gv.log("its your turn now!");
-                        //addMouseListeners(gv);
+                        gf.log("its your turn now!");
                         gameState = GameState.SETUP;
                     }else{
-                        g.setUpAiRound(roundWinner,gv);
-                        addMouseListeners(gv);
-                        playRound(gv);
+                        g.setUpAiRound(roundWinner,gf);
+                        addMouseListeners(gf);
+                        playRound(gf);
                     }
                 }
 
@@ -258,7 +264,7 @@ public class Main {
         }
     }
 
-    private static void setUpRound(GameView gv) {
+    private static void setUpRound(GameFrame gv) {
         Player firstPlayer = g.getNextAvailablePlayer();
 
         g.newRound();
@@ -275,10 +281,9 @@ public class Main {
         }
     }
 
-    private static void humanRound(GameView gv) {
+    private static void notifyHumanToPlay(GameFrame gv) {
 
-        gv.log("Your turn to select and play a card.\n" +
-                "Game Category: " + g.getGameCategory() + " of " + g.getTrumpValue());
+        gv.log("Your turn to select and play a card.\n");
 
         if (g.getHumanPlayer().canPlay(g)){
             gv.log("Options:\n" +
@@ -292,7 +297,7 @@ public class Main {
     }
 
 
-    private static Game startNewGame(GameView gv) {
+    private static Game startNewGame(GameFrame gv) {
         String xmlFile = System.getProperty("user.dir")  + "/" + CARD_XML_FILE;
         Deck deck = new XMLDeckBuilder(xmlFile).deck();
 
@@ -306,7 +311,6 @@ public class Main {
         gv.log(dealer.getName() + " is the Dealer");
 
         if (dealer.isHuman()) {
-            gv.log("would you like to shuffle and deal the cards now? (y/n): ");
             while (!forcedYes()){
                 gv.log("Your friends are getting board, shuffle and deal the cards now? (y/n): ");
             }
@@ -315,7 +319,7 @@ public class Main {
         gv.log(dealer.getName() + " is dealing the cards...");
         game.dealCardsToPlayers();
 
-        gv.displayCards(game);
+        gv.updateCardsView(game);
         addMouseListeners(gv);
         gv.log("The pick-up deck now has " + game.getDeckSize() + " cards.\n");
 

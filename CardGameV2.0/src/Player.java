@@ -92,7 +92,7 @@ public class Player {
         return foundGeophysicist && foundMagnesite;
     }
 
-    public void playCard(Game g, Card c, GameView gv) {
+    public void playCard(Game g, Card c, GameFrame gv) {
         g.setLastCardPlayed(c);
         removeCardFromHand(c);
 
@@ -101,7 +101,7 @@ public class Player {
         }
     }
 
-    public void playCombo(Game g,GameView gv) {
+    public void playCombo(Game g, GameFrame gv) {
         if (hasCombo()){
             g.comboWasPlayed();
 
@@ -121,7 +121,7 @@ public class Player {
         }
     }
 
-    public void playFirstCard(Game g, Card c, GameCategory gc, GameView gv) {
+    public void playFirstCard(Game g, Card c, GameCategory gc, GameFrame gv) {
         g.setGameCategory(gc);
         g.setLastCardPlayed(c);
         removeCardFromHand(c);
@@ -129,7 +129,7 @@ public class Player {
             System.out.println(getName() + " has no more cards");
         }
 
-        gv.displayCards(g);
+        gv.updateCardsView(g);
 
     }
 

@@ -4,14 +4,15 @@ import java.awt.*;
 /**
  * Created by danelennon on 21/10/16.
  */
-public class GameView extends JFrame {
+public class GameFrame extends JFrame {
 
     private JLabel lastCardPlayedLabel = new JLabel();
     private JTextArea trumpText = new JTextArea("...");
     public JButton pickUpDeckButton = new JButton();
     private JTextArea logTextArea = new JTextArea();
-    private JTextArea inputUserName = new JTextArea("player1");
-    private JTextArea inputNumPlayers = new JTextArea("3");
+    private JTextFieldWithPrompt inputUserName = new JTextFieldWithPrompt("Enter your name");
+    private JTextFieldWithPrompt inputNumPlayers = new JTextFieldWithPrompt("Enter # players");
+
     public JButton newGameButton = new JButton("New Game");
 
     private JPanel handPanelContainer;
@@ -21,22 +22,21 @@ public class GameView extends JFrame {
 
     private final Color bg = new Color(206,149,92);
 
-    public GameView() {
+    public GameFrame() {
 
         JPanel lastCardPlayedPanel = new JPanel(new BorderLayout());
         lastCardPlayedPanel.setPreferredSize(new Dimension(100,100));
         JPanel pickUpDeckPanel = new JPanel(new BorderLayout());
         JPanel logPanel = new JPanel(new BorderLayout());
-        JPanel userInputPanel = new JPanel(new GridLayout(3,2,5,5));
+        JPanel userInputPanel = new JPanel(new GridBagLayout());
         handPanelContainer = new JPanel(new BorderLayout());
-
+        handPanelContainer.setPreferredSize(new Dimension(1200,100));
 
         lastCardPlayedPanel.setBackground(bg);
         pickUpDeckPanel.setBackground(bg);
         logPanel.setBackground(bg);
         userInputPanel.setBackground(bg);
         handPanelContainer.setBackground(bg);
-        handPanelContainer.setPreferredSize(new Dimension(1200,100));
 
         setLayout(new GridBagLayout());
 
@@ -44,6 +44,7 @@ public class GameView extends JFrame {
         upperPanel.setBackground(bg);
         GridBagConstraints c = new GridBagConstraints();
 
+        c.insets = new Insets(10,10,10,10);
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.BOTH;
@@ -95,12 +96,48 @@ public class GameView extends JFrame {
         lastCardPlayedPanel.add(trumpText,BorderLayout.SOUTH);
         pickUpDeckPanel.add(pickUpDeckButton);
 
-        userInputPanel.add(new JLabel("Player name: ", SwingConstants.RIGHT));
-        userInputPanel.add(inputUserName);
-        userInputPanel.add(new JLabel("Num players: ",SwingConstants.RIGHT));
-        userInputPanel.add(inputNumPlayers);
-        userInputPanel.add(new JLabel(""));
-        userInputPanel.add(newGameButton);
+
+        //////////////////////////
+        ///Set up user input panel
+        //////////////////////////
+
+        //fake label to fill space
+        GridBagConstraints cNew = new GridBagConstraints();
+        cNew.weightx = 1;
+        cNew.fill = GridBagConstraints.HORIZONTAL;
+        cNew.gridx = 0;     //first row
+        cNew.gridy = 0;     //first column
+        cNew.gridwidth = 2; //2 columns wide
+        userInputPanel.add(new JLabel(""), cNew);
+
+        //fake label to fill space
+        cNew.fill = GridBagConstraints.HORIZONTAL;
+        cNew.weightx = 1;
+        cNew.gridx = 1;
+        cNew.gridy = 0;
+        userInputPanel.add(new JLabel(""), cNew);
+
+        //New Game button
+        cNew.fill = GridBagConstraints.HORIZONTAL;
+        cNew.weightx = 0.5;
+        cNew.gridx = 1;
+        cNew.gridy = 1;
+        userInputPanel.add(newGameButton, cNew);
+
+
+        cNew.fill = GridBagConstraints.BOTH;
+        cNew.ipady = 0;       //reset to default
+        cNew.weighty = 1.0;   //request any extra vertical space
+        cNew.weightx = 0.3;
+        cNew.insets = new Insets(5,0,0,0);  //top padding
+        cNew.gridx = 2;       //aligned with button 2
+        cNew.gridwidth = 2;   //2 columns wide
+        cNew.gridy = 1;       //second row
+        userInputPanel.add(inputUserName, cNew);
+
+        cNew.gridy = 2;        //third row
+        userInputPanel.add(inputNumPlayers, cNew);
+        //userInputPanel.add(newGameButton);
 
         ImageIcon splashImage = new ImageIcon("images/Slide65.jpg");
         splashImage = getScaledImage(splashImage,250,300);
@@ -147,7 +184,7 @@ public class GameView extends JFrame {
         return inputUserName.getText();
     }
 
-    public void displayCards(Game game){
+    public void updateCardsView(Game game){
         handPanelContainer.remove(splashPanel);
         if (handPanel != null){
             handPanelContainer.remove(handPanel);
@@ -167,7 +204,6 @@ public class GameView extends JFrame {
         //display the players hand
         BasicDeck d = game.getHumanPlayer().get_playerDeck();
         handPanel = new HandPanel(d,bg);
-        handPanel.revalidate();
         handPanelContainer.add(handPanel);
         handPanelContainer.revalidate();
         handPanel.repaint();
