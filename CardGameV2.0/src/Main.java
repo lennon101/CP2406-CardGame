@@ -19,7 +19,7 @@ public class Main {
         GameFrame gameFrame = new GameFrame();
 
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.setSize(1400,800);
+        gameFrame.setSize(1400,850);
         gameFrame.setVisible(true);
         gameFrame.getContentPane().setBackground(new Color(206,149,92));
 
@@ -61,13 +61,19 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 new Thread() {
                     public void run() {
-                        gameFrame.log("You have chosen to pass this round :( ");
-                        gameFrame.log("Picking up a cardPanel from the pick-up deck...");
-                        g.pickUp(g.getHumanPlayer());
-                        g.getHumanPlayer().passed(true);
-                        gameFrame.updateCardsView(g);
-                        addMouseListeners(gameFrame);
-                        playRound(gameFrame);
+                        if (gameState.equals(GameState.SETUP)){
+                            JOptionPane.showMessageDialog(null, "You are the first player of this round and must play the first card");
+                        }else if (gameState.equals(GameState.AFTER_TRUMP)){
+                            JOptionPane.showMessageDialog(null, "You must play a card after your trump card");
+                        }else {
+                            gameFrame.log("You have chosen to pass this round :( ");
+                            gameFrame.log("Picking up a cardPanel from the pick-up deck...");
+                            g.pickUp(g.getHumanPlayer());
+                            g.getHumanPlayer().passed(true);
+                            gameFrame.updateCardsView(g);
+                            addMouseListeners(gameFrame);
+                            playRound(gameFrame);
+                        }
                     }
                 }.start();
             }
@@ -121,7 +127,8 @@ public class Main {
 
                         if (gameState.equals(GameState.SETUP)){
                             if (!selectedCard.isTrump()){
-                                playFirstCard(g,gf,selectedCard,getGameCategoryFromHuman(gf));
+                                GameCategory gc = getGameCategoryFromHuman(gf);
+                                playFirstCard(g,gf,selectedCard,gc);
                                 gameState = GameState.PLAY;
                                 playRound(gf); //playRound breaks loop when it gets to human
                             }else {
@@ -148,7 +155,6 @@ public class Main {
 
                     }
                 }.start();
-
             }
         });
     }
@@ -199,7 +205,11 @@ public class Main {
         } else {
             human.playCard(g, c, gf);
             playRound(gf);
-            addMouseListeners(gf);
+            if (gameState.equals(GameState.AFTER_TRUMP)){
+                //do nothing
+            }else {
+                addMouseListeners(gf);
+            }
         }
     }
 
@@ -245,6 +255,7 @@ public class Main {
                     }
                 } else {
                     gf.log(roundWinner.getName() + " has won the game! \n");
+                    // TODO: 26/10/16 game returns null pointer at this point
 
                     Player p = g.getNextAvailablePlayer();
                     gf.log(p.getName() + " leading out the new round.");

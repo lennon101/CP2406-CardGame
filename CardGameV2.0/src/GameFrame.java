@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
     private final Color bg = new Color(206,149,92);
 
     public GameFrame() {
+        pickUpDeckButton.setEnabled(false);
 
         JPanel lastCardPlayedPanel = new JPanel(new BorderLayout());
         lastCardPlayedPanel.setPreferredSize(new Dimension(100,100));
@@ -153,7 +154,7 @@ public class GameFrame extends JFrame {
 
         lastCardPlayedPanel.add(lastCardPlayedLabel,BorderLayout.CENTER);
 
-        ImageIcon deckOfCardsIcon = new ImageIcon("images/deck-of-cards.jpg");
+        ImageIcon deckOfCardsIcon = new ImageIcon("images/deck-of-cards.png");
         deckOfCardsIcon = getScaledImage(deckOfCardsIcon,80,100);
         pickUpDeckButton.setIcon(deckOfCardsIcon);
         pickUpDeckPanel.add(pickUpDeckButton);
@@ -205,6 +206,7 @@ public class GameFrame extends JFrame {
     }
 
     public void updateCardsView(Game game){
+        pickUpDeckButton.setEnabled(true);
         handPanelContainer.remove(splashPanel);
         if (handPanel != null){
             handPanelContainer.remove(handPanel);
