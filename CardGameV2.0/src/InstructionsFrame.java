@@ -32,6 +32,17 @@ public class InstructionsFrame extends JFrame{
         JScrollPane scrollPane = new JScrollPane(instructionsTextArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(400,400));
 
+        JLabel title = new JLabel("Instructions");
+        title.setFont(new Font("Arial",Font.BOLD,18));
+        title.setHorizontalAlignment(JLabel.CENTER);
+
+        c.gridwidth = 1;
+        c.gridheight =1;
+        c.weightx = 1;
+        c.weighty = 0.1;
+        add(title);
+        c.gridy = 1;
+        c.weighty = 1;
         add(scrollPane,c);
 
 

@@ -78,42 +78,7 @@ public class Main {
                 }.start();
             }
         });
-
-
-        /*
-        while (!game.complete()){
-            Player playerToRemove=null;
-
-            for (Player p:game.getPlayers()){
-                if (p.getNumCards() <=0){
-                    System.out.println("\n\n=====" + p.getName() + " has won game " + game.get_gameNumber() + "=====");
-                    game.incrementGameNumber();
-                    playerToRemove = p;
-                    game.unPassAllPlayers();
-                    break;
-                }
-            }
-            try {
-                game.removePlayer(playerToRemove);
-            }catch (Throwable t){}
-
-            if (game.complete()){
-                break;
-            }
-
-            System.out.println("\n\n===== New round commencing =====\n\n");
-            playRound(game);
-        }
-
-        if (!game.withDrawing()){
-            System.out.println(game.getNextAvailablePlayer().getName() + " is the last player left.\n" +
-                    "and is the loser of the game.\n\n" +
-                    "Game complete!");
-        }*/
-
     }
-
-
 
     private static void addMouseListeners(GameFrame gf) {
         gf.handPanel.addPanelMouseListener(new MouseAdapter() {
@@ -137,20 +102,24 @@ public class Main {
                         }else if (gameState.equals(GameState.PLAY)){
                             playCard(selectedCard,gf);
                         }else if (gameState.equals(GameState.AFTER_TRUMP)){
-                            GameCategory gc;
-                            switch (g.getLastCard().trumpType()) {
-                                case ANY:
-                                    System.out.println("-- choosing trump category");
-                                    gc = getGameCategoryFromHuman(gf);
-                                    System.out.println("-- you chose: " + gc);
-                                    break;
-                                default:
-                                    gc = g.getGameCategoryFromTrumpCategory(g.getLastCard().trumpType());
-                                    break;
+                            if (selectedCard.isTrump()){
+                                gf.log("You must select a card other than a trump after playing a trump");
+                            }else {
+                                GameCategory gc;
+                                switch (g.getLastCard().trumpType()) {
+                                    case ANY:
+                                        System.out.println("-- choosing trump category");
+                                        gc = getGameCategoryFromHuman(gf);
+                                        System.out.println("-- you chose: " + gc);
+                                        break;
+                                    default:
+                                        gc = g.getGameCategoryFromTrumpCategory(g.getLastCard().trumpType());
+                                        break;
+                                }
+                                playFirstCard(g, gf, selectedCard, gc);
+                                gameState = GameState.PLAY;
+                                playRound(gf); //playRound breaks loop when it gets to human
                             }
-                            playFirstCard(g,gf,selectedCard,gc);
-                            gameState = GameState.PLAY;
-                            playRound(gf); //playRound breaks loop when it gets to human
                         }
 
                     }
@@ -255,7 +224,8 @@ public class Main {
                     }
                 } else {
                     gf.log(roundWinner.getName() + " has won the game! \n");
-                    // TODO: 26/10/16 game returns null pointer at this point
+                    JOptionPane.showMessageDialog(null, roundWinner.getName() + " won the game and is now leaving. ");
+                    g.removePlayer(roundWinner);
 
                     Player p = g.getNextAvailablePlayer();
                     gf.log(p.getName() + " leading out the new round.");
@@ -267,7 +237,7 @@ public class Main {
                         gf.log("its your turn now!");
                         gameState = GameState.SETUP;
                     }else{
-                        g.setUpAiRound(roundWinner,gf);
+                        g.setUpAiRound(p,gf);
                         addMouseListeners(gf);
                         playRound(gf);
                     }
@@ -331,6 +301,7 @@ public class Main {
             }
         }
         game.shuffleDeck();
+        gv.clearLog();
         gv.log(dealer.getName() + " is dealing the cards...");
         game.dealCardsToPlayers();
 

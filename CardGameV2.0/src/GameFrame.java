@@ -111,7 +111,11 @@ public class GameFrame extends JFrame {
         //pick-up deck label --> second row, second column, below the pick-up deck image
         c.weightx = 0;
         c.gridx = 1;
-        upperPanel.add(new JLabel("Pick up deck"),c);
+        JLabel pickupdecklabel = new JLabel("Pick up deck");
+        pickupdecklabel.setFont(new Font("Arial", Font.BOLD, 14));
+        pickupdecklabel.setHorizontalAlignment(JLabel.CENTER);
+        pickupdecklabel.setVerticalAlignment(JLabel.NORTH);
+        upperPanel.add(pickupdecklabel,c);
 
         //new game button --> second row, third column
         c.gridx = 2;
@@ -125,11 +129,11 @@ public class GameFrame extends JFrame {
         //blank space for now to fill gap where trump value label should go
         c.gridx = 0;
         c.gridy = 2;
-        upperPanel.add(new JLabel("blank"),c);
+        upperPanel.add(new JLabel(),c);
 
         //another blank label to fill gap underneath pick-up deck label
         c.gridx = 1;
-        upperPanel.add(new JLabel("blank"),c);
+        upperPanel.add(new JLabel(),c);
 
         //Instructions button --> third row, third column
         c.gridx = 2;
@@ -233,5 +237,7 @@ public class GameFrame extends JFrame {
     }
 
 
-
+    public void clearLog() {
+        logTextArea.setText("New game commencing!\n");
+    }
 }
